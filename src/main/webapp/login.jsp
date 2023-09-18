@@ -17,30 +17,40 @@
 	rel="stylesheet">
 <style>
 .container {
-	width: 600px;
+	width: 400px;
 }
-#head{padding:30px;font-size: 4rem; display: flex;justify-content: center;align-content: center;}
-form,#footer {
+
+#title {
+	padding: 30px;
+	font-size: 4rem;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+#body {
 	border: 1px solid gray; /* 테두리 스타일 및 색상 설정 */
-	padding: 40px; /* 테두리 주위의 여백 설정 */
+	padding: 20px; /* 테두리 주위의 여백 설정 */
+	background-color: #D2DAFF;
 }
 </style>
 </head>
 <body>
 	<div class="container">
-		<div id="head">Login</div>
 		<div id="body">
+			<div id="title">Login</div>
 			<form>
 				<div class="row mb-3">
-					<label for="inputId" class="col-sm-3 col-form-label"><img src="user.svg" alt="userImg">
-					아이디</label>
-					<div class="col-sm-9">
+					<label for="inputId" class="col-sm-4 col-form-label" ><img
+						src="user.svg" alt="userImg"> 아이디</label>
+					<div class="col-sm-8 p-0">
 						<input type="email" class="form-control" id="inputId">
 					</div>
 				</div>
 				<div class="row mb-3">
-					<label for="inputPassword" class="col-sm-3 col-form-label"><img src="lock.svg" alt="lockImg"> 비밀번호</label>
-					<div class="col-sm-9">
+					<label for="inputPassword" class="col-sm-4 col-form-label "><img
+						src="lock.svg" alt="lockImg"> 비밀번호</label>
+					<div class="col-sm-8 p-0">
 						<input type="password" class="form-control" id="inputPassword">
 					</div>
 				</div>
@@ -49,25 +59,26 @@ form,#footer {
 					<div class="col-sm-12">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" id="idCheck">
-							<label class="form-check-label" for="idCheck"> 아이디
-								기억하기 </label>
+							<label class="form-check-label" for="idCheck"> 아이디 기억하기 </label>
 						</div>
 					</div>
 				</div>
-				<div class="row mb-3">
-					<button type="submit" class="btn btn-primary ">로그인</button>
+				<div class="row mb-3 px-2">
+					<button type="submit" class="btn" style="background-color: #B1B2FF;">로그인</button>
 				</div>
 			</form>
 			<div class="row mb-3">
 				<ul class="nav justify-content-center">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">비밀번호 찾기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">아이디 찾기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
+					<li class="nav-item"><a class="nav-link active px-0"
+						aria-current="page" href="#" style="font-size: medium;">비밀번호 찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0" href="#"> 아이디 찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0" href="#"> 회원가입</a></li>
 				</ul>
 			</div>
+			<div id="footer" style="text-align: center; ">
+				<img src="marvlestudio.jpg" width="150" height="auto">
+			</div>
 		</div>
-		<div id="footer" style="text-align: center">어벤져스</div>
 	</div>
 </body>
 </html>

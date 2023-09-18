@@ -66,7 +66,7 @@
 				</div>
 
 			</div>
-			<div style="background-color: #D2DAFF; height: 30px"></div>
+			<div style="background-color: #D2DAFF; height: 20px"></div>
 		</div>
 		<div class="container-fluid p-0" style="background-color: #EEF1FF;">
 			<div id="body" class="container">
@@ -269,7 +269,7 @@
 				</div>
 			</div>
 		</div>
-		<div style="background-color: #D2DAFF; height: 30px"></div>
+		<div style="background-color: #D2DAFF; height: 20px"></div>
 		<div id="footer" class="pt-4">footer</div>
 
 	</div>
