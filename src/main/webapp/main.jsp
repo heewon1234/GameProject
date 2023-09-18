@@ -17,21 +17,21 @@
 	rel="stylesheet">
 <style>
 #head {
-	background-color: #A6E3E9
+	background-color: #B1B2FF
 }
 
 #body {
-	background-color: #BCCEF8
+	background-color: #D2DAFF
 }
 
 #footer {
-	background-color: #A6E3E9
+	background-color: #B1B2FF
 }
 </style>
 </head>
 
 <body>
-	<div class="container-fluid p-0" style="background-color:#CBF1F5;">
+	<div class="container-fluid p-0" >
 		<div id="head">
 			<div>
 				<div class="container">
@@ -40,7 +40,7 @@
 						<div class="col-md-2 d-flex align-items-center">
 							<i class="fas fa-gamepad me-2" style="font-size: 1.5rem;"></i> <select class="form-select"
 								aria-label="Default select example"
-								style="max-width: 120px; background-color: #CBF1F5;">
+								style="max-width: 120px; background-color: #D2DAFF;">
 								<option selected>Game</option>
 								<option value="1">One</option>
 								<option value="2">Two</option>
@@ -55,9 +55,9 @@
 				</div>
 
 			</div>
-			<div style="background-color: #CBF1F5; height: 30px "></div>
+			<div style="background-color: #D2DAFF; height: 30px "></div>
 		</div>
-		<div class="container-fluid p-0" style="background-color:#E3FDFD;">
+		<div class="container-fluid p-0" style="background-color:#EEF1FF;">
 			<div id="body" class="container">
 				<div id="titleImg">
 					<div id="carouselExampleSlidesOnly" class="carousel slide"
@@ -82,7 +82,7 @@
 					<div id="left" class="col-8 pt-4">
 						<div class="container">
 							<div id="top"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #98A8F8;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;">
 								<div>
 									<h5 style="color: white">게임선택</h5>
 								</div>
@@ -144,7 +144,7 @@
 								</div>
 							</div>
 							<div id="bottom"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #98A8F8;"
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;"
 								class="mt-4">
 								<div>
 									<h5 style="color: white">최근 게시물 ></h5>
@@ -204,7 +204,7 @@
 					<div id="right" class="col-4 pt-4">
 						<div class="container">
 							<div id="login"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; padding-top:60px; background-color: #98A8F8;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; padding-top:60px; background-color: #AAC4FF;">
 								<div class="mb-3" style="text-align: center">
 									<h5>로그인 해주세요!!</h5>
 								</div>
@@ -222,7 +222,7 @@
 								</div>
 							</div>
 							<div id="ranking" class="mt-4"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #98A8F8;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;">
 								<h5 style="color: white">내 랭킹 ></h5>
 								<table class="table mt-4">
 									<thead>
