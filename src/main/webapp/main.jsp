@@ -82,7 +82,7 @@
 					<div id="left" class="col-8 pt-4">
 						<div class="container">
 							<div id="top"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #C9CFFF;">
 								<div>
 									<h5 style="color: white">게임선택</h5>
 								</div>
@@ -144,7 +144,7 @@
 								</div>
 							</div>
 							<div id="bottom"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;"
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #C9CFFF;"
 								class="mt-4">
 								<div>
 									<h5 style="color: white">최근 게시물 ></h5>
@@ -204,7 +204,7 @@
 					<div id="right" class="col-4 pt-4">
 						<div class="container">
 							<div id="login"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; padding-top:60px; background-color: #AAC4FF;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; padding-top:60px; background-color: #C9CFFF;">
 								<div class="mb-3" style="text-align: center">
 									<h5>로그인 해주세요!!</h5>
 								</div>
@@ -222,7 +222,7 @@
 								</div>
 							</div>
 							<div id="ranking" class="mt-4"
-								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #AAC4FF;">
+								style="border: 2px solid #000; border-radius:15px; padding: 40px; background-color: #C9CFFF;">
 								<h5 style="color: white">내 랭킹 ></h5>
 								<table class="table mt-4">
 									<thead>
