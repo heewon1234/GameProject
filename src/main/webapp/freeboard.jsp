@@ -43,7 +43,7 @@
 					<div class="row">
 						<div
 							class="col-md-2 d-flex align-items-center justify-content-center">
-							<img src="marvlestudio.jpg">
+							<img src="/UI_img/marvlestudio.jpg">
 						</div>
 
 						<div class="col-md-2 p-0">
@@ -64,7 +64,7 @@
 						</div>
 						<div
 							class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
-							<a class="nav-link" href="#"><img src="log-out.svg"></a>
+							<a class="nav-link" href="#"><img src="/UI_img/log-out.svg"></a>
 						</div>
 
 					</div>
@@ -76,7 +76,7 @@
 			<div id="body" class="container p-0">
 				<div id="top"
 					style="display: flex; justify-content: center; align-items: center;">
-					<img src="marvlestudio.jpg" alt="Marvel Studio">
+					<img src="/UI_img/marvlestudio.jpg" alt="Marvel Studio">
 				</div>
 
 				<div id="center" class="mt-4"

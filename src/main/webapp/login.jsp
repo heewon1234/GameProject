@@ -42,14 +42,14 @@
 			<form>
 				<div class="row mb-3">
 					<label for="inputId" class="col-sm-4 col-form-label" ><img
-						src="user.svg" alt="userImg"> 아이디</label>
+						src="/UI_img/user.svg" alt="userImg"> 아이디</label>
 					<div class="col-sm-8 p-0">
 						<input type="email" class="form-control" id="inputId">
 					</div>
 				</div>
 				<div class="row mb-3">
 					<label for="inputPassword" class="col-sm-4 col-form-label "><img
-						src="lock.svg" alt="lockImg"> 비밀번호</label>
+						src="/UI_img/lock.svg" alt="lockImg"> 비밀번호</label>
 					<div class="col-sm-8 p-0">
 						<input type="password" class="form-control" id="inputPassword">
 					</div>
@@ -76,7 +76,7 @@
 				</ul>
 			</div>
 			<div id="footer" style="text-align: center; ">
-				<img src="marvlestudio.jpg" width="150" height="auto">
+				<img src="/UI_img/marvlestudio.jpg" width="150" height="auto">
 			</div>
 		</div>
 	</div>

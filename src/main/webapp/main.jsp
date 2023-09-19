@@ -43,7 +43,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-2">
-							<img src="marvlestudio.jpg">
+							<img src="/UI_img/marvlestudio.jpg">
 						</div>
 						<div class="col-md-2 p-0">
 							<div class="d-flex align-items-center justify-content-center" style="height: 40px; width:150px; border-radius:5px; background-color: #D2DAFF; margin-top: 2.4%">
@@ -72,15 +72,15 @@
 					data-bs-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="어벤져스.jpg" class="d-block w-100" alt="1"
+							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="1"
 								style="max-height: 350px">
 						</div>
 						<div class="carousel-item">
-							<img src="어벤져스.jpg" class="d-block w-100" alt="2"
+							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="2"
 								style="max-height: 350px">
 						</div>
 						<div class="carousel-item">
-							<img src="어벤져스.jpg" class="d-block w-100" alt="3"
+							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="3"
 								style="max-height: 350px">
 						</div>
 					</div>
@@ -97,7 +97,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임1</figcaption>
 											</figure>
@@ -106,7 +106,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임2</figcaption>
 											</figure>
@@ -115,7 +115,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임3</figcaption>
 											</figure>
@@ -124,7 +124,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임4</figcaption>
 											</figure>
@@ -133,7 +133,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임5</figcaption>
 											</figure>
@@ -142,7 +142,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="캡틴.jpg" class="figure-img img-fluid rounded"
+												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
 													alt="...">
 												<figcaption class="figure-caption text-center">게임6</figcaption>
 											</figure>
