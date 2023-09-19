@@ -60,17 +60,15 @@
 								</select>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 
 			</div>
-			<div style="background-color: #D2DAFF; height: 20px"></div>
+			<div style="background-color: #C9CFFF; height: 10px"></div>
 		</div>
 		<div class="container-fluid p-0" style="background-color: #EEF1FF;">
 			<div id="body" class="container">
-				<div id="carouselExampleSlidesOnly" class="carousel slide"
+				<div id="carouselExampleSlidesOnly" class="carousel slide p-4"
 					data-bs-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -87,7 +85,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="contents" class="row">
+				<div id="contents" class="row pb-4">
 					<div id="left" class="col-8 pt-4">
 						<div class="container">
 							<div id="top"
@@ -223,9 +221,9 @@
 								<div class="row mb-3">
 									<ul class="nav justify-content-center" style="font-size: 1rem;">
 										<li class="nav-item"><a class="nav-link active p-2"
-											aria-current="page" style="color: white" href="#">비밀번호 찾기</a></li>
+											aria-current="page" style="color: white" href="#">아이디 찾기</a></li>
 										<li class="nav-item"><a class="nav-link p-2"
-											style="color: white" href="#">아이디 찾기</a></li>
+											style="color: white" href="#">비밀번호 찾기</a></li>
 										<li class="nav-item"><a class="nav-link p-2"
 											style="color: white" href="#">회원가입</a></li>
 									</ul>
@@ -269,7 +267,7 @@
 				</div>
 			</div>
 		</div>
-		<div style="background-color: #D2DAFF; height: 20px"></div>
+		<!-- <div style="background-color: #D2DAFF; height: 20px"></div> -->
 		<div id="footer" class="pt-4">footer</div>
 
 	</div>
