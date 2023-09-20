@@ -93,6 +93,13 @@
 
 
 				<div id="bottom" class="p-3 mt-2">
+					<div class="d-flex pb-1 justify-content-end">
+						<form class="d-flex pb-3" role="search" style="width: 250px;">
+							<input class="form-control me-2" type="search"
+								placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success" type="submit">Search</button>
+						</form>
+					</div>
 					<div id="title" class="p-2"
 						style="background-color: white; display: flex; justify-content: space-between; align-items: center; font-size: larger;">
 						<div>자유게시판</div>
