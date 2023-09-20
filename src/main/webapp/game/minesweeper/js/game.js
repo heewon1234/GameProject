@@ -4,7 +4,7 @@ var states = {
 };
 
 var graphicAssets = {
-    tiles: { URL: '/assets/tiles.png', name: 'tiles', frames: 14 }
+    tiles: { URL: '/game/minesweeper/assets/tiles.png', name: 'tiles', frames: 14 }
 };
 
 var fontStyles = {
