@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -32,36 +30,54 @@ public class BoardDAO {
 		return ds.getConnection();
 
 	}
-
-	// board 전체 게시물 불러오기
-	public List<BoardDTO> list(int startNum, int endNum) throws Exception{
-		String sql = "SELECT * FROM (SELECT row_number() over(order by seq desc) as rn, board.* FROM board) AS rn WHERE rn BETWEEN ? AND ?;";
-
-		try(
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				) {
-
-			pstat.setInt(1, startNum);
-			pstat.setInt(2, endNum);
-
-			try(ResultSet rs = pstat.executeQuery()){
-				List<BoardDTO> list = new ArrayList<>();
-
+	
+	public List<BoardDTO> selectBy(int start, int end) throws Exception{
+		BoardDTO dto = new BoardDTO();
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = "select * from (select row_number() over(order by seq desc) as rn, board.* from board) as sub where rn between ? and ?;";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, start);
+			pstat.setInt(2, end);
+			try(ResultSet rs = pstat.executeQuery();){
 				while(rs.next()) {
 					int seq = rs.getInt("seq");
 					String writer = rs.getString("writer");
 					String title = rs.getString("title");
 					String contents = rs.getString("contents");
-					Timestamp write_date = rs.getTimestamp("write_date");
+					Timestamp write_date = dto.getWrite_date("write_date");
 					int view_count = rs.getInt("view_count");
-					String game_name = rs.getString("game_name");
-
-					list.add(new BoardDTO(seq, writer, title, contents, write_date, view_count, game_name));
-					System.out.println(list.size());
-				}return list;
+					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count));
+				}
+				return list;
 			}
-		} 
+		}
+	}
+	
+	public List<BoardDTO> selectBy(int start, int end, String searchText) throws Exception{
+		BoardDTO dto = new BoardDTO();
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = "select * from (select row_number() over(order by seq desc) as rn, board.* from board where contents like ? or title like ? or writer like ?) as sub where rn between ? and ?";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(4, start);
+			pstat.setInt(5, end);
+			pstat.setString(1, "%"+searchText+"%");
+			pstat.setString(2, "%"+searchText+"%");
+			pstat.setString(3, "%"+searchText+"%"); 
+			try(ResultSet rs = pstat.executeQuery();){
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String writer = rs.getString("writer");
+					String title = rs.getString("title");
+					String contents = rs.getString("contents");
+					String write_date = dto.getFormedWriteDate(rs.getTimestamp("write_date"));
+					int view_count = rs.getInt("view_count");
+					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count));
+				}
+				return list;
+			}
+		}
 	}
 
 	// board 게시물 작성
@@ -169,7 +185,36 @@ public class BoardDAO {
 			return pstat.executeUpdate();
 		}
 	}
-
-
-
+	
+	// board 전체 게시물 불러오기 임시 폐업
+//	public List<BoardDTO> list(int startNum, int endNum) throws Exception{
+//		String sql = "SELECT * FROM (SELECT row_number() over(order by seq desc) as rn, board.* FROM board) AS rn WHERE rn BETWEEN ? AND ?;";
+//
+//		try(
+//				Connection con = this.getConnection();
+//				PreparedStatement pstat = con.prepareStatement(sql);
+//				) {
+//
+//			pstat.setInt(1, startNum);
+//			pstat.setInt(2, endNum);
+//
+//			try(ResultSet rs = pstat.executeQuery()){
+//				List<BoardDTO> list = new ArrayList<>();
+//
+//				while(rs.next()) {
+//					int seq = rs.getInt("seq");
+//					String writer = rs.getString("writer");
+//					String title = rs.getString("title");
+//					String contents = rs.getString("contents");
+//					Timestamp write_date = rs.getTimestamp("write_date");
+//					int view_count = rs.getInt("view_count");
+//					String game_name = rs.getString("game_name");
+//
+//					list.add(new BoardDTO(seq, writer, title, contents, write_date, view_count, game_name));
+//					System.out.println(list.size());
+//				}return list;
+//			}
+//		} 
+//	}
+	
 }
