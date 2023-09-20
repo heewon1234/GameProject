@@ -5,6 +5,7 @@ public class FilesDTO {
 	private String ori_name;
 	private String sys_name;
 	private int parent_seq;
+	
 	public FilesDTO() {}
 	
 	public FilesDTO(int seq, String ori_name, String sys_name, int parent_seq) {
