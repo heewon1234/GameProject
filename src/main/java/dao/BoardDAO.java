@@ -31,6 +31,7 @@ public class BoardDAO {
 
 	}
 	
+	// board 모든 게시물 검색
 	public List<BoardDTO> selectBy(int start, int end) throws Exception{
 		BoardDTO dto = new BoardDTO();
 		List<BoardDTO> list = new ArrayList<>();
@@ -45,15 +46,17 @@ public class BoardDAO {
 					String writer = rs.getString("writer");
 					String title = rs.getString("title");
 					String contents = rs.getString("contents");
-					Timestamp write_date = dto.getWrite_date("write_date");
+					Timestamp write_date = rs.getTimestamp("write_date");
 					int view_count = rs.getInt("view_count");
-					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count));
+					String game_name = rs.getString("game_name");
+					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count, game_name));
 				}
 				return list;
 			}
 		}
 	}
 	
+	// board 제목, 내용, 작성자 중 키워드 검색
 	public List<BoardDTO> selectBy(int start, int end, String searchText) throws Exception{
 		BoardDTO dto = new BoardDTO();
 		List<BoardDTO> list = new ArrayList<>();
@@ -71,9 +74,10 @@ public class BoardDAO {
 					String writer = rs.getString("writer");
 					String title = rs.getString("title");
 					String contents = rs.getString("contents");
-					String write_date = dto.getFormedWriteDate(rs.getTimestamp("write_date"));
+					Timestamp write_date = rs.getTimestamp("write_date");
 					int view_count = rs.getInt("view_count");
-					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count));
+					String game_name = rs.getString("game_name");
+					list.add(new BoardDTO(seq,writer,title,contents,write_date,view_count, game_name));
 				}
 				return list;
 			}
@@ -82,7 +86,7 @@ public class BoardDAO {
 
 	// board 게시물 작성
 	public int insert(BoardDTO dto) throws Exception{
-		String sql = "insert into board (write, title, contents, game_name)\r\n"
+		String sql = "insert into board (writer, title, contents, game_name)\r\n"
 				+ "values(?, ?, ?, ?);" ;
 
 		try(
@@ -121,7 +125,7 @@ public class BoardDAO {
 
 	// board 게시물 수정
 	public int update(BoardDTO dto) throws Exception {
-		String sql = "update board set title=?, contact=?, game_name=? where seq = ?;" ;
+		String sql = "update board set title=?, contents=?, game_name=? where seq = ?;" ;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -211,7 +215,6 @@ public class BoardDAO {
 //					String game_name = rs.getString("game_name");
 //
 //					list.add(new BoardDTO(seq, writer, title, contents, write_date, view_count, game_name));
-//					System.out.println(list.size());
 //				}return list;
 //			}
 //		} 
