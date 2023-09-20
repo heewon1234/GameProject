@@ -24,12 +24,12 @@
                 totalMines: 40
             };
         </script>
-        <script src="minesweeperJs/phaser.min.js"></script>
-        <script src="minesweeperJs/game.js"></script>
-        <script src="minesweeperJs/tile.js"></script>
-        <script src="minesweeperJs/board.js"></script>
-        <script src="minesweeperJs/timer.js"></script>
-        <script src="minesweeperJs/counter.js"></script>
+        <script src="/game/minesweeper/js/phaser.min.js"></script>
+        <script src="/game/minesweeper/js/game.js"></script>
+        <script src="/game/minesweeper/js/tile.js"></script>
+        <script src="/game/minesweeper/js/board.js"></script>
+        <script src="/game/minesweeper/js/timer.js"></script>
+        <script src="/game/minesweeper/js/counter.js"></script>
         <style>
             * {
                 box-sizing: border-box;
@@ -93,10 +93,10 @@
                     <div id="center" class="mt-4" style="background-color: #FFF9B0; text-align: center;">
                         <ul class="nav nav-pills nav-fill"
                             style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-                            <li class="nav-item"><a class="nav-link" href="../members/myPage.jsp">마이페이지</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./gameBoard.jsp">게임</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./freeboard.jsp">자유게시판</a></li>
-                            <li class="nav-item"><a class="nav-link" href="./rankingBoard.jsp">랭킹게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
                         </ul>
                     </div>
 
