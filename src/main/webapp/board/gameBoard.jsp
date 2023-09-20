@@ -4,12 +4,32 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>랭킹게시판</title>
+        <title>게임 게시판</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+        <script>
+            var gameProperties = {
+                screenWidth: 1200,
+                screenHeight: 600,
+
+                tileWidth: 25.6,
+                tileHeight: 25.6,
+
+                boardWidth: 16,
+                boardHeight: 16,
+
+                totalMines: 40
+            };
+        </script>
+        <script src="minesweeperJs/phaser.min.js"></script>
+        <script src="minesweeperJs/game.js"></script>
+        <script src="minesweeperJs/tile.js"></script>
+        <script src="minesweeperJs/board.js"></script>
+        <script src="minesweeperJs/timer.js"></script>
+        <script src="minesweeperJs/counter.js"></script>
         <style>
             * {
                 box-sizing: border-box;
@@ -74,9 +94,9 @@
                         <ul class="nav nav-pills nav-fill"
                             style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
                             <li class="nav-item"><a class="nav-link" href="../members/myPage.jsp">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="./gameBoard.jsp">게임</a></li>
-						<li class="nav-item"><a class="nav-link" href="./freeboard.jsp">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="./rankingBoard.jsp">랭킹게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./gameBoard.jsp">게임</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./freeboard.jsp">자유게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./rankingBoard.jsp">랭킹게시판</a></li>
                         </ul>
                     </div>
 
@@ -95,81 +115,13 @@
                                 <li class="nav-item"><a class="nav-link" href="#">게임 6</a></li>
                             </ul>
                         </div>
-                        <h3 style="margin-top: 20px;">내 랭킹</h3>
-                        <div id="title" class="mt-4">
-                            <table class="table">
-                                <tbody class="table">
-                                    <tr>
-                                        <th scope="col" class="w-25">1위</th>
-                                        <td class="w-25">3000점</td>
-                                        <td class="w-25">Otto</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="contents" class="mt-4">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="w-25">순위</th>
-                                        <th scope="col" class="w-25">점수</th>
-                                        <th scope="col" class="w-25">닉네임</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <h3 style="margin-top: 20px;">지뢰찾기</h3>
+                        <hr>
+                        <div id="wrapper" align="center"></div>
+                        <div class="alert alert-light">
+                            <h4 class="alert-heading">지뢰찾기</h4>
+                            <hr>
+                            <p class="mb-0">설명입니다.</p>
                         </div>
                     </div>
                 </div>

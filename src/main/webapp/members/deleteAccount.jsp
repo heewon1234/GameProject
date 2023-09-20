@@ -44,7 +44,7 @@
                     <div class="panel panel-info">
                         <ul class="list-group">
                             <li class="list-group-item"><a href="./myPage.jsp">내프로필</a></li>
-                            <li class="list-group-item"><a href="./rankingBoard.jsp">랭킹</a></li>
+                            <li class="list-group-item"><a href="../board/rankingBoard.jsp">랭킹</a></li>
                             <li class="list-group-item"><a href="./deleteAccount.jsp">회원탈퇴</a></li>
                         </ul>
                     </div>
