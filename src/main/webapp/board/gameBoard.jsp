@@ -46,6 +46,11 @@
             #footer {
                 background-color: #B1B2FF
             }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+            }
         </style>
     </head>
 
@@ -94,9 +99,9 @@
                         <ul class="nav nav-pills nav-fill"
                             style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
                             <li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
                         </ul>
                     </div>
 
@@ -107,7 +112,15 @@
                             style="background-color: white; display: flex; justify-content: space-between; align-items: center;">
                             <ul class="nav nav-pills nav-fill"
                                 style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-                                <li class="nav-item"><a class="nav-link" href="#">게임 1</a></li>
+                                <li class="nav-item dropdown"><button type="button" class="btn" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        지뢰찾기
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">하급</a></li>
+                                        <li><a class="dropdown-item" href="#">중급</a></li>
+                                        <li><a class="dropdown-item" href="#">상급</a></li>
+                                    </ul>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 2</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 3</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 4</a></li>
@@ -115,7 +128,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#">게임 6</a></li>
                             </ul>
                         </div>
-                        <h3 style="margin-top: 20px;">지뢰찾기</h3>
+                        <h3 style="margin-top: 20px;">지뢰찾기 중급</h3>
                         <hr>
                         <div id="wrapper" align="center"></div>
                         <div class="alert alert-light">
