@@ -18,10 +18,10 @@
                 tileWidth: 25.6,
                 tileHeight: 25.6,
 
-                boardWidth: 16,
-                boardHeight: 16,
+                boardWidth: 9,
+                boardHeight: 9,
 
-                totalMines: 40
+                totalMines: 10
             };
         </script>
         <script src="/game/minesweeper/js/phaser.min.js"></script>
