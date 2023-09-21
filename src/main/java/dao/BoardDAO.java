@@ -190,6 +190,24 @@ public class BoardDAO {
 		}
 	}
 	
+	// 평상시 레코드 개수 반환
+	public int getRecordCount() throws Exception {
+		String qry = "select count(*) as cnt from board;";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(qry);
+				) {
+			try(
+					ResultSet rs = pstat.executeQuery();
+					){
+					rs.next();
+					int result = rs.getInt("cnt");
+					return result;
+					// return rs.getInt(1);
+			}
+		}
+	}
+	
 	// board 전체 게시물 불러오기 임시 폐업
 //	public List<BoardDTO> list(int startNum, int endNum) throws Exception{
 //		String sql = "SELECT * FROM (SELECT row_number() over(order by seq desc) as rn, board.* FROM board) AS rn WHERE rn BETWEEN ? AND ?;";

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import constants.Constants;
+import dao.BoardDAO;
 import dto.BoardDTO;
 import dto.FilesDTO;
 import dto.ReplyDTO;
@@ -26,10 +28,29 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		
+		BoardDAO boardDAO = BoardDAO.getInstance();
 		try {
 			if(cmd.equals("/list.board")) { // 게시물 리스트 가져오기
+				int currentPage = request.getParameter("cpage")==null ? 1 : Integer.parseInt(request.getParameter("cpage"));
+				String keyword = request.getParameter("keyword");
 				
+				// 검색어 X, 평상시 게시물 로드
+				if(keyword == null) {
+					List<BoardDTO> listDTO = boardDAO.selectBy(currentPage * Constants.RECORD_COUNT_PER_PAGE - 9, currentPage* Constants.RECORD_COUNT_PER_PAGE);
+					
+					request.getSession().setAttribute("latestPageNum", currentPage);
+					request.setAttribute("listDTO", listDTO);
+					
+					request.setAttribute("recordTotalCount", boardDAO.getRecordCount());
+					request.setAttribute("recordCountPerPage", Constants.RECORD_COUNT_PER_PAGE);
+					request.setAttribute("naviCountPerPage", Constants.NAVI_COUNT_PER_PAGE);
+				} 
+				// 검색어 O, 해당 게시물만 로드
+				else {
+					
+				}
 				
+				request.getRequestDispatcher("/board/freeboard.jsp").forward(request, response);
 			} else if(cmd.equals("/insert.board")) { // 게시물 등록
 				
 //				String uploadPath = request.getServletContext().getRealPath("files");
