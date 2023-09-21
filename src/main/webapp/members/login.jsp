@@ -15,6 +15,10 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	rel="stylesheet">
+<script
+	src="
+https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
+"></script>
 <style>
 .container {
 	width: 400px;
@@ -60,8 +64,8 @@
 				<div class="row mb-3">
 					<div class="col-sm-12">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="idCheck">
-							<label class="form-check-label" for="idCheck" id="remID"> 아이디 기억하기 </label>
+							<input class="form-check-input" type="checkbox" id="remID">
+							<label class="form-check-label" for="remID"> 아이디 기억하기 </label>
 						</div>
 					</div>
 				</div>
@@ -73,12 +77,12 @@
 			<div class="row mb-3">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active px-0"
-						aria-current="page" href="/goToPwSearch.members" style="font-size: medium;">비밀번호
-							찾기 |&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link px-0" href="/goToIdSearch.members">
-							아이디 찾기 |&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link px-0" href="/goToSignUp.members">
-							회원가입</a></li>
+						aria-current="page" href="/goToPwSearch.members"
+						style="font-size: medium;">비밀번호 찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0"
+						href="/goToIdSearch.members"> 아이디 찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0"
+						href="/goToSignUp.members"> 회원가입</a></li>
 				</ul>
 			</div>
 			<div id="footer" style="text-align: center;">
@@ -93,13 +97,13 @@
 
 			if (idField.value.trim() === "") {
 				alert("아이디를 입력하세요.");
-				idField.focus(); 
+				idField.focus();
 				return false;
 			}
 
 			if (pwField.value.trim() === "") {
 				alert("비밀번호를 입력하세요.");
-				pwField.focus(); 
+				pwField.focus();
 				return false;
 			}
 
@@ -107,25 +111,29 @@
 		}
 	</script>
 	<script>
-        let inputID = document.getElementById("inputId");
-        let remID = document.getElementById("remID");
+		$(document).ready(function() {
+			let inputID = document.getElementById("inputId");
+			let remID = document.getElementById("remID");
 
-        let userID = Cookies.get("remid");
-        if(userID){
-            inputID.value = userID;
-            remID.checked = true;
-        }
-        inputID.oninput = function() {
-            remID.checked = false;
-        };
-        remID.onchange = function(){
-            if(remID.checked){
-                let id = inputID.value;
-                Cookies.set("remid",id,{expires:7});
-            }else{
-                Cookies.remove("remid")
-            }
-        }
-    </script>
+			let userID = Cookies.get("remid");
+			if (userID) {
+				inputID.value = userID;
+				remID.checked = true;
+			}
+			inputID.oninput = function() {
+				remID.checked = false;
+			};
+			remID.onchange = function() {
+				if (remID.checked) {
+					let id = inputID.value;
+					Cookies.set("remid", id, {
+						expires : 7
+					});
+				} else {
+					Cookies.remove("remid")
+				}
+			}
+		});
+	</script>
 </body>
 </html>

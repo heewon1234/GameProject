@@ -30,11 +30,11 @@ public class MembersDAO {
 	
 	// 회원가입
 	public int insert(MembersDTO dto) throws Exception{
-		String sql = "INSERT INTO MEMBERS VALUES(?, ?, ?, ?, ?, ?, ?, ?, default, default)";
+		String sql = "INSERT INTO MEMBERS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)";
 
 		try(
 				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
+				PreparedStatement pstat = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 				) 
 
 		{
@@ -46,26 +46,13 @@ public class MembersDAO {
 			pstat.setString(6, dto.getZipcode());
 			pstat.setString(7, dto.getAddress1());
 			pstat.setString(8, dto.getAddress2());
-			return pstat.executeUpdate();
+			pstat.setString(9, dto.getPosition());
+			pstat.executeUpdate();
 
-		}
-	}
-	
-	// ID 중복 체크
-	public boolean isDuplicatedID(String input) throws Exception {
-		String qry = "select id from MEMBERS where id=?";
-		try(
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(qry);
-				
-				) {
-			pstat.setString(1, input);
-			try(
-					ResultSet rs = pstat.executeQuery();
-					){
-				return rs.next();
+			try(ResultSet rs = pstat.getGeneratedKeys()){
+				rs.next();
+				return rs.getInt(1);
 			}
-
 		}
 	}
 	
