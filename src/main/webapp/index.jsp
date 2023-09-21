@@ -46,9 +46,10 @@
 							<img src="/UI_img/marvlestudio.jpg">
 						</div>
 						<div class="col-md-2 p-0">
-							<div class="d-flex align-items-center justify-content-center" style="height: 40px; width:150px; border-radius:5px; background-color: #D2DAFF; margin-top: 2.4%">
-								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;  "></i> <select
-									class="form-select" aria-label="Default select example"
+							<div class="d-flex align-items-center justify-content-center"
+								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
+								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
+								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
 									<option value="1">One</option>
@@ -97,8 +98,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임1</figcaption>
 											</figure>
 										</div>
@@ -106,8 +107,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임2</figcaption>
 											</figure>
 										</div>
@@ -115,8 +116,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임3</figcaption>
 											</figure>
 										</div>
@@ -124,8 +125,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임4</figcaption>
 											</figure>
 										</div>
@@ -133,8 +134,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임5</figcaption>
 											</figure>
 										</div>
@@ -142,8 +143,8 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg" class="figure-img img-fluid rounded"
-													alt="...">
+												<img src="/UI_img/캡틴.jpg"
+													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">게임6</figcaption>
 											</figure>
 										</div>
@@ -210,25 +211,59 @@
 					</div>
 					<div id="right" class="col-4 pt-4">
 						<div class="container">
-							<div id="login"
-								style="border: 2px solid #000; border-radius: 15px; padding: 40px; padding-top: 60px; background-color: #C9CFFF;">
-								<div class="mb-3" style="text-align: center">
-									<h5>로그인 해주세요!!</h5>
-								</div>
-								<div class="row mb-3">
-									<button type="submit" class="btn btn-primary ">로그인</button>
-								</div>
-								<div class="row mb-3">
-									<ul class="nav justify-content-center" style="font-size: 1rem;">
-										<li class="nav-item"><a class="nav-link active p-2"
-											aria-current="page" style="color: white" href="#">아이디 찾기</a></li>
-										<li class="nav-item"><a class="nav-link p-2"
-											style="color: white" href="#">비밀번호 찾기</a></li>
-										<li class="nav-item"><a class="nav-link p-2"
-											style="color: white" href="#">회원가입</a></li>
-									</ul>
-								</div>
-							</div>
+							<!-- ----------------------------------------------------------- -->
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<div id="login"
+										style="border: 2px solid #000; border-radius: 15px; padding: 40px; padding-top: 60px; background-color: #C9CFFF;">
+										<div class="mb-3" style="text-align: center">
+											<h5>로그인 해주세요!!</h5>
+										</div>
+										<div class="row mb-3">
+											<button type="button" class="btn btn-primary"
+												id="loginButton">로그인</button>
+										</div>
+										<div class="row mb-3">
+											<ul class="nav justify-content-center"
+												style="font-size: 1rem;">
+												<li class="nav-item"><a class="nav-link active p-2"
+													aria-current="page" style="color: white"
+													href="/goToIdSearch.members">아이디 찾기</a></li>
+												<li class="nav-item"><a class="nav-link p-2"
+													style="color: white" href="/goToPwSearch.members">비밀번호
+														찾기</a></li>
+												<li class="nav-item"><a class="nav-link p-2"
+													style="color: white" href="/goToSignUp.members">회원가입</a></li>
+											</ul>
+										</div>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div id="profile"
+										style="border: 2px solid #000; border-radius: 15px; padding: 25px; padding-top: 20px; background-color: #C9CFFF; width: 392px;">
+										<div id="user" class="p-2" style="display: flex;">
+											<div id="userIcon" style="font-size: 3rem">
+												<i class="fa-solid fa-user"></i>
+											</div>
+											<div class="mt-3 mx-4">
+												<div id="user">user</div>
+												<div id="email">user@naver.com</div>
+											</div>
+											<div class="mt-3 mx-4" style="cursor: pointer;"
+												onclick="window.location.href='/logout.members';">
+												<div class="d-flex border p-2"
+													style="width: 120px; border-radius: 20px; align-items: center; justify-content: center;">
+													<div>로그아웃</div>
+													<img src="/UI_img/log-out.svg" style="margin-left: 5px;">
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
+
+							<!-- ---------------------------------------------------- -->
 							<div id="ranking" class="mt-4"
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;">
 								<h5 style="color: white">내 랭킹 ></h5>
@@ -271,5 +306,14 @@
 		<div id="footer" class="pt-4">footer</div>
 
 	</div>
+
+	<script>
+		// 버튼을 클릭했을 때 이벤트 핸들러를 추가합니다.
+		$(document).ready(function() {
+			$("#loginButton").on("click", function() {
+				location.href = "/goToLogin.members";
+			})
+		});
+	</script>
 </body>
 </html>
