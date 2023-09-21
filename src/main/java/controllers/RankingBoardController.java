@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.RankingBoardDAO;
 import dto.RankingBoardDTO;
@@ -19,6 +20,7 @@ public class RankingBoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
 		RankingBoardDAO rnkdao = RankingBoardDAO.getInstance();
+		HttpSession session = request.getSession();
 		
 		try {
 			
@@ -34,6 +36,16 @@ public class RankingBoardController extends HttpServlet {
 				request.getRequestDispatcher("/board/rankingBoard.jsp");
 				
 			} else if(cmd.equals("/search.rankBoard")) { // 랭킹 검색 ( 아이디 )
+				
+			}
+			
+			else if(cmd.equals("/rankRead.rankBoard")) {
+				System.out.println("점수 확인");
+				
+				String score = request.getParameter("score");
+				System.out.println(score);
+				String id = (String) session.getAttribute("loginID");
+				System.out.println(id);
 				
 			}
 			

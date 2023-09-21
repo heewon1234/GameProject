@@ -144,7 +144,9 @@
 					</div>
                         <h3 style="margin-top: 20px;">바운스볼</h3>
                         <hr>
-                        <div id="wrapper" align="center"><input id="score"></div>
+                        <div id="wrapper" align="center">
+                        <div id="point"></div>
+                        </div>
                         <div class="alert alert-light">
                             <h4 class="alert-heading">바운스볼</h4>
                             <hr>
