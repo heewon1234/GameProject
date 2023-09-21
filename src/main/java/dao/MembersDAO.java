@@ -51,7 +51,7 @@ public class MembersDAO {
 		}
 	}
 	
-	// ID 중복 체크
+	// ID 중복체크
 	public boolean isDuplicatedID(String input) throws Exception {
 		String qry = "select id from MEMBERS where id=?";
 		try(
