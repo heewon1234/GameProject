@@ -1,6 +1,7 @@
 package dto;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class BoardDTO {
 	private int seq;
@@ -65,6 +66,10 @@ public class BoardDTO {
 	}
 	public void setGame_name(String game_name) {
 		this.game_name = game_name;
+	}
+	public String getTimestampToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    return sdf.format(getWrite_date());
 	}
 
 }
