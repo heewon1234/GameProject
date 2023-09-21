@@ -45,6 +45,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 			<div id="title">Login</div>
 			<form action="/login.members" method="post"
 				onsubmit="return validateForm();">
+				
 				<div class="row mb-3">
 					<label for="inputId" class="col-sm-4 col-form-label"><img
 						src="/UI_img/user.svg" alt="userImg"> 아이디</label>

@@ -46,10 +46,12 @@ public class MembersController extends HttpServlet {
 
 				String id = request.getParameter("id");
 				String pw = EncryptionUtils.getSHA512(request.getParameter("pw"));
+				String email = membersDAO.getEmail(id);
 				boolean result = membersDAO.isAccountExist(id, pw);
 
 				if(result) { 
 					request.getSession().setAttribute("loginID", id); // session scope
+					request.setAttribute("email", email); // session scope
 				}
 				response.sendRedirect("/index.jsp");
 
