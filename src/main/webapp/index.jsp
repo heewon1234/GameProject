@@ -52,12 +52,12 @@
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									<option value="1">1. 지뢰찾기</option>
+									<option value="2">2. 바운스볼</option>
+									<option value="3">3. 플래피버드</option>
+									<option value="4">4. 풀문보트</option>
+									<option value="5">5. 드래곤 플라이트</option>
+									<option value="6">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임1</figcaption>
+												<figcaption class="figure-caption text-center">지뢰찾기</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -109,7 +109,7 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임2</figcaption>
+												<figcaption class="figure-caption text-center">바운스볼</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -118,7 +118,7 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임3</figcaption>
+												<figcaption class="figure-caption text-center">플래피버드</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -127,7 +127,7 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임4</figcaption>
+												<figcaption class="figure-caption text-center">풀문보트</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -136,7 +136,8 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임5</figcaption>
+												<figcaption class="figure-caption text-center">드래곤
+													플라이트</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -145,7 +146,7 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임6</figcaption>
+												<figcaption class="figure-caption text-center">컬러블라인드</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -304,7 +305,7 @@
 			</div>
 		</div>
 		<!-- <div style="background-color: #D2DAFF; height: 20px"></div> -->
-		<div id="footer" class="pt-4">footer</div>
+		<div id="footer_container"></div>
 
 	</div>
 
@@ -314,6 +315,9 @@
 			$("#loginButton").on("click", function() {
 				location.href = "/goToLogin.members";
 			})
+		});
+		$(document).ready(function() {
+			$("#footer_container").load("../commons/footer.html")
 		});
 	</script>
 </body>
