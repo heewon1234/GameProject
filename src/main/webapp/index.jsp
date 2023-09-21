@@ -246,9 +246,10 @@
 												<i class="fa-solid fa-user"></i>
 											</div>
 											<div class="mt-3 mx-4">
-												<div id="user">${loginID }</div>
-												<div id="email">${email }</div>
+												<div id="user">${loginID}</div>
+												<div id="email">${email}</div>
 											</div>
+
 											<div class="mt-3 mx-4" style="cursor: pointer;"
 												onclick="window.location.href='/logout.members';">
 												<div class="d-flex border p-2"
