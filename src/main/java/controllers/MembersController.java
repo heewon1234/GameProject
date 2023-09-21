@@ -18,6 +18,7 @@ import dto.MembersDTO;
 
 @WebServlet("*.members")
 public class MembersController extends HttpServlet {
+	// 시작
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
