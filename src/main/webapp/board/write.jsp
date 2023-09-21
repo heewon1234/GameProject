@@ -62,12 +62,12 @@
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									<option value="1">1.지뢰찾기</option>
+									<option value="2">2.바운스볼</option>
+									<option value="3">3.플래피버드</option>
+									<option value="4">4.풀문보트</option>
+									<option value="5">5.드래곤플라이트</option>
+									<option value="6">6.컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -87,10 +87,14 @@
 					style="background-color: #FFF9B0; text-align: center;">
 					<ul class="nav nav-pills nav-fill"
 						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-						<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/members/myPage.jsp">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/gameBoard.jsp">게임</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/freeboard.jsp">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 					</ul>
 				</div>
 
@@ -101,48 +105,73 @@
 						style="background-color: white; border-radius: 5px; display: flex; align-items: center;">
 						<div class="p-2" style="width: 20%; font-size: 2.5rem">글쓰기</div>
 						<form class="d-flex" role="search"
-							style="width: 80%; justify-content: flex-end;">
+							style="width: 80%; justify-content: flex-end;" action="/insert.board">
 							<button class="btn btn-outline-success" type="submit">등록</button>
-						</form>
 					</div>
 					<div class="mt-4" style="display: flex; align-items: center;">
 						<select class="form-select" aria-label="Default select example"
-							style="max-width: 200px">
+							style="max-width: 200px" name="game_name">
 							<option selected>게임선택</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-							<option value="4">Four</option>
-							<option value="5">Five</option>
-							<option value="6">Six</option>
+							<option value="1">지뢰찾기</option>
+							<option value="2">바운스볼</option>
+							<option value="3">플래피버드</option>
+							<option value="4">풀문보트</option>
+							<option value="5">드래곤 플라이트</option>
+							<option value="6">컬러블라인드</option>
 						</select>
 					</div>
 					<div class="mt-4" style="align-items: center;">
 						<input class="form-control me-2" type="search"
-							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%">
+							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%"
+							name="title">
 					</div>
-					<div class="mt-4" >
-						<textarea id="summernote" ></textarea>
+					<div class="mt-4">
+						<textarea id="summernote" name="contents"></textarea>
 					</div>
-
 				</div>
-
+				</form>
 
 			</div>
 		</div>
 		<div id="footer" class="pt-4">footer</div>
 	</div>
+	
 	<script>
 		$(document).ready(function() {
 			$('#summernote').summernote({
 				placeholder : '내용을 입력해주세요.',
 				tabsize : 2,
-				height : 100
+				height : 400,
+				callbacks: {
+	           		onImageUpload:function(files){ 
+	           			
+	           			let formData = new FormData(); 
+	           			formData.append("image",files[0]); 
+	           			
+	           			$.ajax({
+	           				url:"/upload.file",
+	           				method:"post",
+	           				data:formData,
+	           				processData:false, 
+	           				contentType:false, 
+	           			}).done(function(resp){
+							console.log(resp.split("/files"));
+	           				for(let i=0;i<files.length;i++){
+	           					let img = $("<img>");
+		           				img.attr("src","/files"+resp.split("/files")[i+1]);
+	           					$("#board-contents").summernote('insertNode', img[0]);
+	           					let paragraph = $("<p><br></p>");
+	           			        $("#board-contents").summernote('insertNode', paragraph[0]);
+		           			} 
+	           				
+	           			})
+	           			
+	           		}
+	            }
 			});
 		});
 	</script>
 
-	</script>
 
 </body>
 
