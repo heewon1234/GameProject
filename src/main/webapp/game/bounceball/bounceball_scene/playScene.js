@@ -53,19 +53,19 @@ class PlayScene extends Phaser.Scene {
         this.load.image("delBlock_h8","/game/bounceball/img/delBLock_h8.png");
 
         // jump
-        this.load.image("jump","/img/jump.png");
+        this.load.image("jump","/game/bounceball/img/jump.png");
 
         // leftBoost
-        this.load.image("leftBoost","/img/leftBoost.png");
+        this.load.image("leftBoost","/game/bounceball/img/leftBoost.png");
 
         // rightBoost
-        this.load.image("rightBoost","/img/rightBoost.png");
+        this.load.image("rightBoost","/game/bounceball/img/rightBoost.png");
 
         // ball
-        this.load.image("ball","/img/ball.png");
+        this.load.image("ball","/game/bounceball/img/ball.png");
 
         // star
-        this.load.image("star","/img/star.png");
+        this.load.image("star","/game/bounceball/img/star.png");
     }
 
     bounceBallBlock(){
