@@ -87,10 +87,14 @@
 					style="background-color: #FFF9B0; text-align: center;">
 					<ul class="nav nav-pills nav-fill"
 						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-						<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/members/myPage.jsp">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/gameBoard.jsp">게임</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/freeboard.jsp">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 					</ul>
 				</div>
 
@@ -101,13 +105,12 @@
 						style="background-color: white; border-radius: 5px; display: flex; align-items: center;">
 						<div class="p-2" style="width: 20%; font-size: 2.5rem">글쓰기</div>
 						<form class="d-flex" role="search"
-							style="width: 80%; justify-content: flex-end;">
+							style="width: 80%; justify-content: flex-end;" action="/insert.board">
 							<button class="btn btn-outline-success" type="submit">등록</button>
-						</form>
 					</div>
 					<div class="mt-4" style="display: flex; align-items: center;">
 						<select class="form-select" aria-label="Default select example"
-							style="max-width: 200px">
+							style="max-width: 200px" name="game_name">
 							<option selected>게임선택</option>
 							<option value="1">지뢰찾기</option>
 							<option value="2">드래곤플라이트</option>
@@ -119,14 +122,14 @@
 					</div>
 					<div class="mt-4" style="align-items: center;">
 						<input class="form-control me-2" type="search"
-							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%" name="title">
+							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%"
+							name="title">
 					</div>
-					<div class="mt-4" >
+					<div class="mt-4">
 						<textarea id="summernote" name="contents"></textarea>
 					</div>
-
 				</div>
-
+				</form>
 
 			</div>
 		</div>
@@ -137,7 +140,27 @@
 			$('#summernote').summernote({
 				placeholder : '내용을 입력해주세요.',
 				tabsize : 2,
-				height : 100
+				height : 400,
+				callbacks: {
+	           		onImageUpload:function(files){ // 이미지 파일 열기 할 때 실행
+	           			
+	           			let formData = new FormData(); // 폼 태그 인스턴스 생성 ( 텅 비어있음 )
+	           			formData.append("image",files[0]); // input type=file 넣기
+	           			
+	           			$.ajax({
+	           				url:"/upload.file",
+	           				method:"post",
+	           				data:formData,
+	           				processData:false, // 인코딩 처리 금지 ( processData, contentType : false = multipart/form-data)
+	           				contentType:false, // 파일 타입 그대로 유지
+	           			}).done(function(resp){
+	           				let img = $("<img>");
+	           				img.attr("src",resp);
+	           				$("#board-contents").summernote('insertNode', img[0]);
+	           			})
+	           			
+	           		}
+	            }
 			});
 		});
 	</script>
