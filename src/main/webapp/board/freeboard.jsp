@@ -120,9 +120,15 @@
 												<td>${list.write_date}</td>
 											</tr>
 										</c:forEach>
+										<tr>
+											<td colspan="6" style="text-align: right;">
+												<input type="button" class="btn btn-primary" id="write_btn" value="작성하기">
+												<input type="button" class="btn btn-primary" id="home_btn" value="홈으로">
+											</td>
+										</tr>
 									</tbody>
 								</table>
-								<div id="nav" style="display: flex; justify-content: center; align-items: center;">
+								<!-- <div id="nav" style="display: flex; justify-content: center; align-items: center;">
 									<nav aria-label="Page navigation example" class="pt-3">
 										<ul class="pagination">
 											<li class="page-item"><a class="page-link" href="#" aria-label="Previous">
@@ -136,14 +142,58 @@
 												</a></li>
 										</ul>
 									</nav>
+								</div> -->
+								<div id="navi">
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- <div style="background-color: #D2DAFF; height: 20px"></div> -->
 				<div id="footer" class="pt-4">footer</div>
 			</div>
+			<script>
+				// 페이지네이션(지금은 데이터가 없어서 오류 나기 때문에 주석 처리 했습니다.)
+				// let recordTotalCount = ${ recordTotalCount };
+				// let recordCountPerPage = ${ recordCountPerPage };
+				// let naviCountPerPage = ${ naviCountPerPage };
+
+				// // 총 페이지 개수
+				// let pageTotalCount = 0;
+				// let latestPage = ${ latestPage };
+
+				// if (recordTotalCount % recordCountPerPage > 0) {
+				// 	pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage)) + 1;
+				// } else {
+				// 	pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage));
+				// }
+
+				// let startNavi = Math.floor((latestPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+				// let endNavi = startNavi + (naviCountPerPage - 1);
+
+				// if (endNavi > pageTotalCount) {
+				// 	endNavi = pageTotalCount;
+				// }
+
+				// let needPrev = true;
+				// let needNext = true;
+
+				// if (startNavi == 1) { needPrev = false; }
+				// if (endNavi == pageTotalCount) { needNext = false; }
+
+				// if (needPrev) { $("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + (startNavi - 1) + "> < </a> "); }
+				// for (let i = startNavi; i <= endNavi; i++) {
+				// 	$("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + i + ">" + i + "</a> ");
+				// }
+				// if (needNext) { $("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + (endNavi + 1) + ">> </a> "); }
+				// 페이지네이션
+				
+				$("#write_btn").on("click", function () {
+                    location.href = "/board/write.jsp";
+                });
+                $("#home_btn").on("click", function () {
+                    location.href = "/index.jsp";
+                });
+			</script>
 		</body>
 
 		</html>
