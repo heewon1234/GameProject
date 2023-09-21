@@ -33,8 +33,6 @@ public class RankingBoardController extends HttpServlet {
 				request.setAttribute("rankingList", rankingList);
 				request.getRequestDispatcher("/board/rankingBoard.jsp");
 				
-			} else if(cmd.equals("/goToRanking.rankBoard")) { // 랭킹게시판 창으로 이동
-				
 			} else if(cmd.equals("/search.rankBoard")) { // 랭킹 검색 ( 아이디 )
 				
 			}
