@@ -121,7 +121,7 @@
                                     <tbody class="table-group-divider">
                                         <c:forEach var="list" items="${rankingList }">
                                             <tr>
-                                                <td scope="col" class="w-25">${list.seq}</td>
+                                                <th scope="col" class="w-25">${list.seq}</th>
                                                 <td class="w-25">${list.score}</td>
                                                 <td class="w-25">${list.id}</td>
                                             </tr>
