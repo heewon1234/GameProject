@@ -1,0 +1,16 @@
+{
+  "name": "12.color_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "phaser": "^3.60.0",
+    "phaser3-rex-plugins": "^1.60.5"
+  }
+}
