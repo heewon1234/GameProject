@@ -101,23 +101,23 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th scope="col" style="width: 120px">구분</th>
-											<th scope="col" style="width: 120px">카테고리</th>
-											<th scope="col" style="width: 500px">제목</th>
-											<th scope="col" style="width: 120px">조회수</th>
-											<th scope="col" style="width: 120px">작성자</th>
-											<th scope="col" style="width: 120px">작성일</th>
+											<th scope="col" style="width: 40px; text-align: center">번호</th>
+											<th scope="col" style="width: 80px; text-align: center">카테고리</th>
+											<th scope="col" style="width: 400px">제목</th>
+											<th scope="col" style="width: 50px; text-align: center">조회수</th>
+											<th scope="col" style="width: 120px; text-align: center">작성자</th>
+											<th scope="col" style="width: 120px; text-align: center">작성일</th>
 										</tr>
 									</thead>
 									<tbody class="table-group-divider">
-										<c:forEach var="list" items="${boardList }">
+										<c:forEach var="list" items="${listDTO }">
 											<tr>
-												<th scope="row">${list.seq}</th>
-												<td colspan="2">${list.game_name}</td>
+												<th scope="row" style="text-align: center">${list.seq}</th>
+												<td style="text-align: center">${list.game_name}</td>
 												<td>${list.title}</td>
-												<td>${list.view_count}</td>
-												<td>${list.writer}</td>
-												<td>${list.write_date}</td>
+												<td style="text-align: center">${list.view_count}</td>
+												<td style="text-align: center">${list.writer}</td>
+												<td style="text-align: center">${list.timestampToString}</td>
 											</tr>
 										</c:forEach>
 										<tr>
@@ -149,9 +149,13 @@
 						</div>
 					</div>
 				</div>
-				<div id="footer" class="pt-4">footer</div>
+				
 			</div>
+			<div id="footer_container"></div>
 			<script>
+			$(document).ready(function () {
+	            $("#footer_container").load("../commons/footer.html")
+	        });
 				// 페이지네이션(지금은 데이터가 없어서 오류 나기 때문에 주석 처리 했습니다.)
 				// let recordTotalCount = ${ recordTotalCount };
 				// let recordCountPerPage = ${ recordCountPerPage };
