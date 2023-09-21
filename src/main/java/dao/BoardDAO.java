@@ -207,6 +207,31 @@ public class BoardDAO {
 			}
 		}
 	}
+	//index.jsp에서 최근 5개로 불러오는 코드입니다.
+	public List<BoardDTO> selectRecentFive() throws Exception {
+	    List<BoardDTO> list = new ArrayList<>();
+	    String sql = "SELECT * FROM board ORDER BY write_date DESC LIMIT 5;";
+	    
+	    try (
+	        Connection con = this.getConnection();
+	        PreparedStatement pstat = con.prepareStatement(sql);
+	        ResultSet rs = pstat.executeQuery();
+	    ) {
+	        while (rs.next()) {
+	            int seq = rs.getInt("seq");
+	            String writer = rs.getString("writer");
+	            String title = rs.getString("title");
+	            String contents = rs.getString("contents");
+	            Timestamp write_date = rs.getTimestamp("write_date");
+	            int view_count = rs.getInt("view_count");
+	            String game_name = rs.getString("game_name");
+	            list.add(new BoardDTO(seq, writer, title, contents, write_date, view_count, game_name));
+	        }
+	    }
+	    
+	    return list;
+	}
+
 	
 	// board 전체 게시물 불러오기 임시 폐업
 //	public List<BoardDTO> list(int startNum, int endNum) throws Exception{

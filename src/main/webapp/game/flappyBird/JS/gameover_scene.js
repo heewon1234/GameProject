@@ -17,11 +17,14 @@ class GameOverScene extends Phaser.Scene {
 
         // 배경 음악 재생
         if (!this.sound.get('bgm1')) {
-            this.backgroundMusic = this.sound.add('bgm1', { loop: true });
+        this.backgroundMusic = this.sound.add('bgm1', { loop: true });
+        this.backgroundMusic.play();
+    } else {
+        this.backgroundMusic = this.sound.get('bgm1');
+        if (!this.backgroundMusic.isPlaying) {
             this.backgroundMusic.play();
-        } else {
-            this.backgroundMusic = this.sound.get('bgm1');
         }
+    }
         this.back = this.add.tileSprite(0, 0, 800, 500, "background8");
         this.back.setOrigin(0, 0);
         //this.back = this.add.tileSprite(0,0,800,500,"background2");

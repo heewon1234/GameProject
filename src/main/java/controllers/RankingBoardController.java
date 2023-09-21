@@ -21,34 +21,37 @@ public class RankingBoardController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		RankingBoardDAO rnkdao = RankingBoardDAO.getInstance();
 		HttpSession session = request.getSession();
-		
+
 		try {
-			
+
 			if(cmd.equals("/list.rankBoard")) { // 게시물 리스트 가져오기
-				
-				String id = (String)request.getSession().getAttribute("loginID");
+
+				String id = (String)request.getSession().getAttribute("loginID");//?????????????????????????????????????????
 				String gname = request.getParameter("game_name");
 				RankingBoardDTO myRanking = rnkdao.selectByGName(id, gname);
 				List<RankingBoardDTO> rankingList = rnkdao.selectAll(gname);
-				
+
 				request.setAttribute("myRanking", myRanking);
 				request.setAttribute("rankingList", rankingList);
 				request.getRequestDispatcher("/board/rankingBoard.jsp");
-				
+
 			} else if(cmd.equals("/search.rankBoard")) { // 랭킹 검색 ( 아이디 )
-				
-			}
-			
-			else if(cmd.equals("/rankRead.rankBoard")) {
+
+			} else if(cmd.equals("/rankRead.rankBoard")) {
 				System.out.println("점수 확인");
-				
+
 				String score = request.getParameter("score");
 				System.out.println(score);
 				String id = (String) session.getAttribute("loginID");
 				System.out.println(id);
-				
+
+			} else if(cmd.equals("/myRankGames.rankBoard")) {//index.jsp에서 자신의 게임랭킹들을 보여주는 코드입니다.
+				String id = (String) session.getAttribute("loginID");
+				List<RankingBoardDTO> myGameList = rnkdao.selectById(id);
+				request.setAttribute("myGameList", myGameList);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");

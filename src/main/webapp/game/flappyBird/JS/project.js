@@ -32,16 +32,20 @@ class Project extends Phaser.Scene {
         this.registerTexture();
         // 배경 음악 설정
         const prevScene = this.scene.get("startScene");
-        if (prevScene && prevScene.backgroundMusic.isPlaying) {
-            prevScene.backgroundMusic.stop();
-        }
+    if (prevScene && prevScene.backgroundMusic.isPlaying) {
+        prevScene.backgroundMusic.stop();
+    }
 
-        if (!this.sound.get('bgm')) {
-            this.backgroundMusic = this.sound.add('bgm', { loop: true });
+    // 배경 음악 재생
+    if (!this.sound.get('bgm')) {
+        this.backgroundMusic = this.sound.add('bgm', { loop: true });
+        this.backgroundMusic.play();
+    } else {
+        this.backgroundMusic = this.sound.get('bgm');
+        if (!this.backgroundMusic.isPlaying) {
             this.backgroundMusic.play();
-        } else {
-            this.backgroundMusic = this.sound.get('bgm');
         }
+    }
 
         // 게임 요소 초기화
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -144,6 +148,7 @@ class Project extends Phaser.Scene {
 
     gameOver = () => {
         alert(`Time: ${this.elapsedTime} seconds`);
+        this.backgroundMusic.pause(); // 음악 일시 중지
         this.scene.start("GameOverScene");
     }
 
@@ -194,9 +199,5 @@ class Project extends Phaser.Scene {
         }
     }
 
-    shutdown() {
-        if (this.backgroundMusic.isPlaying) {
-            this.backgroundMusic.stop();
-        }
-    }
+
 }

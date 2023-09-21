@@ -17,6 +17,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"
 	integrity="sha512-YQL0GVx/Too3vZjBl9plePRIYsRnd1s8N6QOvXPdZ+JMH2mtRTLQXGUDGjNW6zr1HUgcOIury67IvWe91oeEwQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="/game/flappyBird/JS/project.js"></script>
 <script src="/game/flappyBird/JS/gameover_scene.js"></script>
@@ -32,10 +35,6 @@
 
 #body {
 	background-color: #D2DAFF
-}
-
-#footer {
-	background-color: #B1B2FF
 }
 
 .dropdown:hover .dropdown-menu {
@@ -66,25 +65,30 @@
 							<img src="/UI_img/marvlestudio.jpg">
 						</div>
 
-						<div class="col-md-2 p-0">
+						<div class="col-md-3 p-0">
 							<div class="d-flex align-items-center justify-content-center"
-								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
+								style="height: 40px; width: 200px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
 								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
 								<select class="form-select" aria-label="Default select example"
-									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
-									<option selected>Game</option>
-									<option value="1">1. 지뢰찾기</option>
-									<option value="2">2. 바운스볼</option>
-									<option value="3">3. 플래피버드</option>
-									<option value="4">4. 풀문보트</option>
-									<option value="5">5. 드래곤 플라이트</option>
-									<option value="6">6. 컬러블라인드</option>
+									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
+									onchange="location = this.value;">
+									<option value="#">Game</option>
+									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/bounceball/bounceball_main.jsp">2.
+										바운스볼</option>
+									<option value="/game/flappyBird/flappyBird_main.jsp" selected>3.
+										플래피버드</option>
+									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
+										풀문보트</option>
+									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
+									<option value="#">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
 						<div
-							class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
-							<a class="nav-link" href="/logout.members"><img src="/UI_img/log-out.svg"></a>
+							class="col-md-7 ml-auto d-flex align-items-center justify-content-end p-0">
+							<a class="nav-link" href="/logout.members"><img
+								src="/UI_img/log-out.svg"></a>
 						</div>
 
 					</div>
@@ -122,17 +126,21 @@
 						<ul class="nav nav-pills nav-fill"
 							style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
 							<li class="nav-item dropdown"><button type="button"
-									class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-									지뢰찾기</button>
+									class="btn" data-bs-toggle="dropdown" aria-expanded="false"
+									onclick="/board/gameBoard.jsp">지뢰찾기</button>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">하급</a></li>
 									<li><a class="dropdown-item" href="#">중급</a></li>
 									<li><a class="dropdown-item" href="#">상급</a></li>
 								</ul>
-							<li class="nav-item"><a class="nav-link" href="#">바운스볼</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">플래피버드</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">풀문보트</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">드래곤 플라이트</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/game/bounceball/bounceball_main.jsp">바운스볼</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/game/flappyBird/flappyBird_main.jsp">플래피버드</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀문보트</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/game/dragon/dragon.jsp">드래곤 플라이트</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">컬러블라인드</a></li>
 						</ul>
 					</div>
@@ -149,7 +157,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer" class="pt-4">footer</div>
+		<div id="footer_container"></div>
 	</div>
 	<script>
         let option = {
@@ -167,6 +175,9 @@
             scene: [startScene, Project, GameOverScene]//클래스의 주소
         };
         let game = new Phaser.Game(option);
+        $(document).ready(function() {
+			$("#footer_container").load("/commons/footer.html")
+		});
     </script>
 </body>
 

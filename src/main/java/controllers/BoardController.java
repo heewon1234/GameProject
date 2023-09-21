@@ -132,6 +132,10 @@ public class BoardController extends HttpServlet {
 //				String title = request.getParameter("searchTitle");
 //				List<BoardDTO> list = boardDAO.searchList(title);
 			
+			} else if(cmd.equals("/indexList.board")) { // index에 최근 5개의 게시물을 올리는 코드입니다.
+				List<BoardDTO> selectFive = boardDAO.selectRecentFive();
+				request.setAttribute("selectFive", selectFive);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
