@@ -22,6 +22,7 @@ public class MembersController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
+		System.out.println(cmd);
 
 		MembersDAO membersDAO = MembersDAO.getInstance();
 		Gson gson = new Gson();
@@ -48,14 +49,14 @@ public class MembersController extends HttpServlet {
 				
 				pw.append(gson.toJson(result));
 			} else if(cmd.equals("/goToLogin.members")) { // 로그인 창으로 이동
-
+				
 				response.sendRedirect("/members/login.jsp");
 
 			} else if(cmd.equals("/login.members")){ // 로그인 버튼 클릭 시
 
 				String id = request.getParameter("id");
-				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
-				boolean result = membersDAO.isAccountExist(id, password);
+				String pw = EncryptionUtils.getSHA512(request.getParameter("pw"));
+				boolean result = membersDAO.isAccountExist(id, pw);
 
 				if(result) { 
 					request.getSession().setAttribute("loginID", id); // session scope
@@ -68,7 +69,8 @@ public class MembersController extends HttpServlet {
 				request.getSession().invalidate(); // 사용자의 키로 저장되어 있던 정보 다 제거
 				response.sendRedirect("/index.jsp");
 
-			} else if(cmd.equals("/goToSignUp")) { // 회원 가입 페이지 창으로 이동
+			} else if(cmd.equals("/goToSignUp.members")) { // 회원 가입 페이지 창으로 이동
+				response.sendRedirect("/members/register.jsp");
 
 			} else if(cmd.equals("/memberOut.members")) { // 회원 탈퇴 버튼 클릭 시 
 
@@ -82,13 +84,13 @@ public class MembersController extends HttpServlet {
 
 
 			} else if(cmd.equals("/goToIdSearch.members")) {
-				//response.sendRedirect("/");
+				response.sendRedirect("/members/id_Search.jsp");
 			} else if(cmd.equals("/pwSearch.members")) { // 비밀번호 찾기
 
 
 
 			} else if(cmd.equals("/goToPwSearch.members")) {
-				//response.sendRedirect("/");
+				response.sendRedirect("/members/pw_Search.jsp");
 			} else if(cmd.equals("/update.members")) { // 마이페이지 - 내 정보 수정
 
 				request.setCharacterEncoding("utf8");

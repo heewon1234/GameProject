@@ -39,19 +39,21 @@
 	<div class="container">
 		<div id="body">
 			<div id="title">Login</div>
-			<form>
+			<form action="/login.members" method="post"
+				onsubmit="return validateForm();">
 				<div class="row mb-3">
-					<label for="inputId" class="col-sm-4 col-form-label" ><img
+					<label for="inputId" class="col-sm-4 col-form-label"><img
 						src="/UI_img/user.svg" alt="userImg"> 아이디</label>
 					<div class="col-sm-8 p-0">
-						<input type="email" class="form-control" id="inputId">
+						<input type="text" class="form-control" id="inputId" name="id">
 					</div>
 				</div>
 				<div class="row mb-3">
-					<label for="inputPassword" class="col-sm-4 col-form-label "><img
+					<label for="inputPassword" class="col-sm-4 col-form-label"><img
 						src="/UI_img/lock.svg" alt="lockImg"> 비밀번호</label>
 					<div class="col-sm-8 p-0">
-						<input type="password" class="form-control" id="inputPassword">
+						<input type="password" class="form-control" id="inputPassword"
+							name="pw">
 					</div>
 				</div>
 
@@ -59,26 +61,71 @@
 					<div class="col-sm-12">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" id="idCheck">
-							<label class="form-check-label" for="idCheck"> 아이디 기억하기 </label>
+							<label class="form-check-label" for="idCheck" id="remID"> 아이디 기억하기 </label>
 						</div>
 					</div>
 				</div>
 				<div class="row mb-3 px-2">
-					<button type="submit" class="btn" style="background-color: #B1B2FF;">로그인</button>
+					<button type="submit" class="btn"
+						style="background-color: #B1B2FF;">로그인</button>
 				</div>
 			</form>
 			<div class="row mb-3">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active px-0"
-						aria-current="page" href="#" style="font-size: medium;">비밀번호 찾기 |&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link px-0" href="#"> 아이디 찾기 |&nbsp;</a></li>
-					<li class="nav-item"><a class="nav-link px-0" href="#"> 회원가입</a></li>
+						aria-current="page" href="/goToPwSearch.members" style="font-size: medium;">비밀번호
+							찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0" href="/goToIdSearch.members">
+							아이디 찾기 |&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link px-0" href="/goToSignUp.members">
+							회원가입</a></li>
 				</ul>
 			</div>
-			<div id="footer" style="text-align: center; ">
+			<div id="footer" style="text-align: center;">
 				<img src="/UI_img/marvlestudio.jpg" width="150" height="auto">
 			</div>
 		</div>
 	</div>
+	<script>
+		function validateForm() {
+			var idField = document.getElementById("inputId");
+			var pwField = document.getElementById("inputPassword");
+
+			if (idField.value.trim() === "") {
+				alert("아이디를 입력하세요.");
+				idField.focus(); 
+				return false;
+			}
+
+			if (pwField.value.trim() === "") {
+				alert("비밀번호를 입력하세요.");
+				pwField.focus(); 
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+	<script>
+        let inputID = document.getElementById("inputId");
+        let remID = document.getElementById("remID");
+
+        let userID = Cookies.get("remid");
+        if(userID){
+            inputID.value = userID;
+            remID.checked = true;
+        }
+        inputID.oninput = function() {
+            remID.checked = false;
+        };
+        remID.onchange = function(){
+            if(remID.checked){
+                let id = inputID.value;
+                Cookies.set("remid",id,{expires:7});
+            }else{
+                Cookies.remove("remid")
+            }
+        }
+    </script>
 </body>
 </html>
