@@ -240,14 +240,14 @@
 								</c:when>
 								<c:otherwise>
 									<div id="profile"
-										style="border: 2px solid #000; border-radius: 15px; padding: 25px; padding-top: 20px; background-color: #C9CFFF; width: 392px;">
+										style="border: 2px solid #000; border-radius: 15px; padding: 25px; padding-top: 20px; background-color: #C9CFFF;">
 										<div id="user" class="p-2" style="display: flex;">
 											<div id="userIcon" style="font-size: 3rem">
 												<i class="fa-solid fa-user"></i>
 											</div>
 											<div class="mt-3 mx-4">
-												<div id="user">user</div>
-												<div id="email">user@naver.com</div>
+												<div id="user">${loginID }</div>
+												<div id="email">${email }</div>
 											</div>
 											<div class="mt-3 mx-4" style="cursor: pointer;"
 												onclick="window.location.href='/logout.members';">
