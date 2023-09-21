@@ -73,18 +73,18 @@
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									<option value="1">1. 지뢰찾기</option>
+									<option value="2">2. 바운스볼</option>
+									<option value="3">3. 플래피버드</option>
+									<option value="4">4. 풀문보트</option>
+									<option value="5">5. 드래곤 플라이트</option>
+									<option value="6">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
 						<div
 							class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
-							<a class="nav-link" href="#"><img src="/UI_img/log-out.svg"></a>
+							<a class="nav-link" href="/logout.members"><img src="/UI_img/log-out.svg"></a>
 						</div>
 
 					</div>
@@ -130,10 +130,10 @@
 									<li><a class="dropdown-item" href="#">상급</a></li>
 								</ul>
 							<li class="nav-item"><a class="nav-link" href="#">바운스볼</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">게임 3</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">게임 4</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">게임 5</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">게임 6</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">플래피버드</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">풀문보트</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">드래곤 플라이트</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">컬러블라인드</a></li>
 						</ul>
 					</div>
 					<h3 style="margin-top: 20px;">플래피버드</h3>
@@ -142,9 +142,9 @@
 						<input id="score">
 					</div>
 					<div class="alert alert-light">
-						<h4 class="alert-heading">바운스볼</h4>
+						<h4 class="alert-heading">플래피버드</h4>
 						<hr>
-						<p class="mb-0">설명입니다.</p>
+						<p class="mb-0">게임은 스페이스바 만을 이용해서 합니다.</p>
 					</div>
 				</div>
 			</div>
