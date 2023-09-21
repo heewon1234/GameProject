@@ -140,14 +140,19 @@
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="email2" name="email2"
                                     value="${mypageList.email2}" readonly>
-                                <select class="form-select" id="email2_dropdown" name="email2" style="display: none;">
+                                <select class="form-select" id="email2_dropdown" style="display: none;">
                                     <option selected>선택하세요</option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="gmail.com">gmail.com</option>
                                     <option value="hanmail.com">hanmail.com</option>
                                     <option value="">직접입력</option>
                                 </select>
+                                
                             </div>
+                            <div class="row g-0 row-alert">
+                                    <div class="col-6 sign-header"></div>
+                                    <div class="col-6 sign-body email-alert alert"></div>
+                                </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="postcode" class="col-sm-3 col-form-label">우편번호</label>
@@ -195,6 +200,8 @@
             let inputPhoneHead = document.getElementById("phone_head");
             let inputPhoneBody = document.getElementById("phone_body");
             let inputPhoneTail = document.getElementById("phone_tail");
+            let inputEmail1 = document.getElementById("email1");
+            let inputEmail2 = document.getElementById("email2");
 
             //Email Dropdown
             $("#email2_dropdown").on("change", function () {
@@ -209,7 +216,25 @@
                     $("#email2").val($(this).val());
                     $("#email2").css("display", "none");
                 }
-            })
+                
+                let mailValue = inputEmail1.value + "@" +inputEmail2.value;
+                let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
+                
+                if (mailValue == "") {
+                    rowAlert[4].setAttribute("style", "display:none");
+                    emailAlert.innerHTML = "";
+                } else {
+                    rowAlert[4].setAttribute("style", "display: flex")
+                    if (!emailRegExr.test(mailValue)) {
+                        emailAlert.setAttribute("style", "color: red;");
+                        emailAlert.innerHTML = "올바르지 않은 이메일 형식입니다.";
+                    } else {
+                        emailAlert.setAttribute("style", "color: blue;");
+                        emailAlert.innerHTML = "올바른 이메일 형식입니다.";
+                    }
+                }
+                
+            });
 
             // 취소 버튼 클릭
             $("#cancle_btn").on("click", function () {
@@ -299,6 +324,43 @@
                 }
             }
 
+            // 이메일 입력 시 유효성 검사
+            let emailAlert = document.getElementsByClassName("email-alert")[0];
+            inputEmail1.onkeyup = function (e) {
+                let mailValue = inputEmail1.value + "@" + inputEmail2.value;
+                let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
+                if (mailValue == "") {
+                    rowAlert[4].setAttribute("style", "display:none");
+                    emailAlert.innerHTML = "";
+                } else {
+                    rowAlert[4].setAttribute("style", "display: flex")
+                    if (!emailRegExr.test(mailValue)) {
+                        emailAlert.setAttribute("style", "color: red;");
+                        emailAlert.innerHTML = "올바르지 않은 이메일 형식입니다.";
+                    } else {
+                        emailAlert.setAttribute("style", "color: blue;");
+                        emailAlert.innerHTML = "올바른 이메일 형식입니다.";
+                    }
+                }
+            }
+            inputEmail2.onkeyup = function (e) {
+                let mailValue = inputEmail1.value + "@" + inputEmail2.value;
+                let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
+                if (mailValue == "") {
+                    rowAlert[4].setAttribute("style", "display:none");
+                    emailAlert.innerHTML = "";
+                } else {
+                    rowAlert[4].setAttribute("style", "display: flex")
+                    if (!emailRegExr.test(mailValue)) {
+                        emailAlert.setAttribute("style", "color: red;");
+                        emailAlert.innerHTML = "올바르지 않은 이메일 형식입니다.";
+                    } else {
+                        emailAlert.setAttribute("style", "color: blue;");
+                        emailAlert.innerHTML = "올바른 이메일 형식입니다.";
+                    }
+                }
+            }
+
             // submit 버튼 클릭시
             let frm = document.getElementById("mypage_form");
             frm.onsubmit = function () {
@@ -320,7 +382,7 @@
                 } else if (!phoneHeadRegExr.test(inputPhoneHead.value) || !phoneRegExr.test(inputPhoneBody.value) || !phoneRegExr.test(inputPhoneTail.value)) {
                     alert("전화번호를 확인 해주십시오.")
                     return false;
-                } else if ($("#email1").val() == "") {
+                } else if (!emailRegExr.test(inputEmail1.value + "@" + inputEmail2.value)) {
                     alert("이메일 주소를 확인 해주십시오.")
                     return false;
                 } else if ($("#address").val() == "" || $("#detailaddress").val() == "") {
