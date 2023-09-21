@@ -11,7 +11,7 @@ class StartScene extends Phaser.Scene{
 
     create(){
         
-        this.background = this.add.tileSprite(0,0,1600,1200,"background").setOrigin(0,0);
+        this.background = this.add.tileSprite(0,0,800,600,"background").setOrigin(0,0);
 
         this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2-100,"logo").setOrigin(0.5).setScale(0.5);
         let playBtn = this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2+100,"playBtn").setOrigin(0.5).setScale(0.5).setInteractive();

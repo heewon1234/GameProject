@@ -4,14 +4,14 @@ class GameClearScene extends Phaser.Scene {
     }
 
     preload(){
-        this.load.image("background3","/img/bg.jpg");
-        this.load.image("replay","/img/replay.png");
-        this.load.image("gameclear","/img/gameclear.png");
+        this.load.image("background3","/game/bounceball/img/bg.jpg");
+        this.load.image("replay","/game/bounceball/img/replay.png");
+        this.load.image("gameclear","/game/bounceball/img/gameclear.png");
     }
 
     create(){
         let score = document.getElementById("score");
-        this.background = this.add.tileSprite(0,0,1600,1200,"background3");
+        this.background = this.add.tileSprite(0,0,800,600,"background3");
         this.background.setOrigin(0,0);
 
         this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2-100,"gameclear").setOrigin(0.5).setScale(0.5);

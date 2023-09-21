@@ -11,7 +11,7 @@ class GameOverScene extends Phaser.Scene{
 
     create(){
 
-        this.background = this.add.tileSprite(0,0,1600,1200,"background2");
+        this.background = this.add.tileSprite(0,0,800,600,"background2");
         this.background.setOrigin(0,0);
 
         this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2-100,"gameover").setOrigin(0.5).setScale(0.5);
