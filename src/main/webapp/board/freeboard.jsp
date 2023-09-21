@@ -13,7 +13,7 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	rel="stylesheet">
@@ -83,10 +83,10 @@
 					style="background-color: #FFF9B0; text-align: center;">
 					<ul class="nav nav-pills nav-fill"
 						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-						<li class="nav-item"><a class="nav-link" href="#">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">게임</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">랭킹게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 					</ul>
 				</div>
 

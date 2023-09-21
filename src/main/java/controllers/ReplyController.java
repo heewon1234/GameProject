@@ -26,7 +26,7 @@ public class ReplyController extends HttpServlet {
 //				response.setContentType("text/html; charset=utf8");
 //				Gson gson = new Gson();
 //				int parent_seq = Integer.parseInt(request.getParameter("parent_seq"));
-//				List<ReplyDTO> replyList = replyDAO.selectAll(parent_seq);
+//				List<ReplyDTO> replyList = replyDAO.selectByParent(parent_seq);
 //				PrintWriter pw = response.getWriter();
 //				pw.append(gson.toJson(replyList));
 				

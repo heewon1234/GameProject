@@ -1,4 +1,4 @@
-package controllers;
+ package controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +76,7 @@ public class BoardController extends HttpServlet {
 //				String title = multi.getParameter("title");
 //				String contents = multi.getParameter("contents");
 //				String game_name = multi.getParameter("game_name");
-//				int result = boardDAO.insert(title, contents,game_name,seq);		
+//				int result = boardDAO.update(title, contents,game_name,seq);		
 //
 //				Enumeration<String> fileNames = multi.getFileNames();
 //
@@ -88,8 +88,7 @@ public class BoardController extends HttpServlet {
 //						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
 //					}
 //				}
-				
-//				int result = boardDAO.update();
+
 			
 			} else if(cmd.equals("/goToWrite.board")) { // 글쓰기 창으로 이동
 //				response.sendRedirect("/");

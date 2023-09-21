@@ -4,12 +4,32 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>랭킹게시판</title>
+        <title>게임 게시판</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+        <script>
+            var gameProperties = {
+                screenWidth: 1200,
+                screenHeight: 600,
+
+                tileWidth: 25.6,
+                tileHeight: 25.6,
+
+                boardWidth: 9,
+                boardHeight: 9,
+
+                totalMines: 10
+            };
+        </script>
+        <script src="/game/minesweeper/js/phaser.min.js"></script>
+        <script src="/game/minesweeper/js/game.js"></script>
+        <script src="/game/minesweeper/js/tile.js"></script>
+        <script src="/game/minesweeper/js/board.js"></script>
+        <script src="/game/minesweeper/js/timer.js"></script>
+        <script src="/game/minesweeper/js/counter.js"></script>
         <style>
             * {
                 box-sizing: border-box;
@@ -25,6 +45,11 @@
 
             #footer {
                 background-color: #B1B2FF
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
             }
         </style>
     </head>
@@ -74,9 +99,9 @@
                         <ul class="nav nav-pills nav-fill"
                             style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
                             <li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
                         </ul>
                     </div>
 
@@ -87,7 +112,15 @@
                             style="background-color: white; display: flex; justify-content: space-between; align-items: center;">
                             <ul class="nav nav-pills nav-fill"
                                 style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-                                <li class="nav-item"><a class="nav-link" href="#">게임 1</a></li>
+                                <li class="nav-item dropdown"><button type="button" class="btn" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        지뢰찾기
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">하급</a></li>
+                                        <li><a class="dropdown-item" href="#">중급</a></li>
+                                        <li><a class="dropdown-item" href="#">상급</a></li>
+                                    </ul>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 2</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 3</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">게임 4</a></li>
@@ -95,81 +128,13 @@
                                 <li class="nav-item"><a class="nav-link" href="#">게임 6</a></li>
                             </ul>
                         </div>
-                        <h3 style="margin-top: 20px;">내 랭킹</h3>
-                        <div id="title" class="mt-4">
-                            <table class="table">
-                                <tbody class="table">
-                                    <tr>
-                                        <th scope="col" class="w-25">1위</th>
-                                        <td class="w-25">3000점</td>
-                                        <td class="w-25">Otto</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="contents" class="mt-4">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="w-25">순위</th>
-                                        <th scope="col" class="w-25">점수</th>
-                                        <th scope="col" class="w-25">닉네임</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <h3 style="margin-top: 20px;">지뢰찾기 중급</h3>
+                        <hr>
+                        <div id="wrapper" align="center"></div>
+                        <div class="alert alert-light">
+                            <h4 class="alert-heading">지뢰찾기</h4>
+                            <hr>
+                            <p class="mb-0">설명입니다.</p>
                         </div>
                     </div>
                 </div>
