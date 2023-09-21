@@ -62,12 +62,12 @@
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									<option value="1">1.지뢰찾기</option>
+									<option value="2">2.바운스볼</option>
+									<option value="3">3.플래피버드</option>
+									<option value="4">4.풀문보트</option>
+									<option value="5">5.드래곤플라이트</option>
+									<option value="6">6.컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -113,11 +113,11 @@
 							style="max-width: 200px" name="game_name">
 							<option selected>게임선택</option>
 							<option value="1">지뢰찾기</option>
-							<option value="2">드래곤플라이트</option>
-							<option value="3">ColorBlind</option>
-							<option value="4">FullMoonBoat</option>
-							<option value="5">바운스볼</option>
-							<option value="6">플랫버드</option>
+							<option value="2">바운스볼</option>
+							<option value="3">플래피버드</option>
+							<option value="4">풀문보트</option>
+							<option value="5">드래곤 플라이트</option>
+							<option value="6">컬러블라인드</option>
 						</select>
 					</div>
 					<div class="mt-4" style="align-items: center;">
@@ -135,6 +135,7 @@
 		</div>
 		<div id="footer" class="pt-4">footer</div>
 	</div>
+	
 	<script>
 		$(document).ready(function() {
 			$('#summernote').summernote({
@@ -142,21 +143,27 @@
 				tabsize : 2,
 				height : 400,
 				callbacks: {
-	           		onImageUpload:function(files){ // 이미지 파일 열기 할 때 실행
+	           		onImageUpload:function(files){ 
 	           			
-	           			let formData = new FormData(); // 폼 태그 인스턴스 생성 ( 텅 비어있음 )
-	           			formData.append("image",files[0]); // input type=file 넣기
+	           			let formData = new FormData(); 
+	           			formData.append("image",files[0]); 
 	           			
 	           			$.ajax({
 	           				url:"/upload.file",
 	           				method:"post",
 	           				data:formData,
-	           				processData:false, // 인코딩 처리 금지 ( processData, contentType : false = multipart/form-data)
-	           				contentType:false, // 파일 타입 그대로 유지
+	           				processData:false, 
+	           				contentType:false, 
 	           			}).done(function(resp){
-	           				let img = $("<img>");
-	           				img.attr("src",resp);
-	           				$("#board-contents").summernote('insertNode', img[0]);
+							console.log(resp.split("/files"));
+	           				for(let i=0;i<files.length;i++){
+	           					let img = $("<img>");
+		           				img.attr("src","/files"+resp.split("/files")[i+1]);
+	           					$("#board-contents").summernote('insertNode', img[0]);
+	           					let paragraph = $("<p><br></p>");
+	           			        $("#board-contents").summernote('insertNode', paragraph[0]);
+		           			} 
+	           				
 	           			})
 	           			
 	           		}
@@ -165,7 +172,6 @@
 		});
 	</script>
 
-	</script>
 
 </body>
 
