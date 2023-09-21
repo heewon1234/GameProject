@@ -23,7 +23,8 @@ public class ReplyDAO {
 		}
 		return instance;
 	}
-
+	private ReplyDAO() {
+	}
 	private Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
@@ -31,7 +32,7 @@ public class ReplyDAO {
 
 	}
 
-	public List<ReplyDTO> replySelectRead(int seq) throws Exception{
+	public List<ReplyDTO> selectByParent(int pseq) throws Exception{
 		String sql = "select * from reply where parent_seq = ?;";
 
 		try(
@@ -39,7 +40,7 @@ public class ReplyDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
 
-			pstat.setInt(1, seq);
+			pstat.setInt(1, pseq);
 			try(ResultSet rs = pstat.executeQuery()){
 				List<ReplyDTO> list = new ArrayList<>();
 
@@ -54,5 +55,42 @@ public class ReplyDAO {
 				}return list;
 			}
 		} 
+	}
+	public int insert(ReplyDTO dto) throws Exception {
+		String sql = "insert into reply (writer, contents, parent_seq) values (?, ?, ?)";
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, dto.getWriter());
+			pstat.setString(2, dto.getContents());
+			pstat.setInt(3, dto.getParent_seq());
+			int result = pstat.executeUpdate();
+			
+			return result;
+		}
+	}
+	public int update(ReplyDTO rdto) throws Exception {
+		String sql = "UPDATE reply SET contents=? where seq = ?";
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, rdto.getContents());
+			pstat.setInt(2, rdto.getSeq());
+			int result = pstat.executeUpdate();
+			return result;
+		}
+	}
+	public int delete(int seq)throws Exception{
+		String sql = "delete from reply where seq = ?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			return result;
+		}
 	}
 }
