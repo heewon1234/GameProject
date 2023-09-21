@@ -35,6 +35,18 @@
                 text-decoration-line: none;
                 color: black;
             }
+
+            .row-alert {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                display: none;
+            }
+
+            .row-alert>div {
+                font-size: small;
+                padding: 0px;
+                display: flex;
+            }
         </style>
     </head>
 
@@ -69,12 +81,19 @@
                                 <input type="password" class="form-control update_list" id="password" name="password"
                                     readonly>
                             </div>
+                            <div class="row g-0 row-alert">
+                                <div class="col-6 sign-header"></div>
+                                <div class="col-6 sign-body pw-alert alert"></div>
+                            </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="verifyPassword" class="col-sm-3 col-form-label">Password 재입력</label>
                             <div class="col-sm-9">
-                                <input type="password" class="form-control update_list" id="verifyPassword"
-                                    name="verifyPassword" readonly>
+                                <input type="password" class="form-control update_list" id="verifyPassword" readonly>
+                            </div>
+                            <div class="row g-0 row-alert">
+                                <div class="col-6 sign-header"></div>
+                                <div class="col-6 sign-body verify-pw-alert alert"></div>
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -83,21 +102,30 @@
                                 <input type="text" class="form-control update_list" id="name" name="name"
                                     value="${mypageList.name}" readonly>
                             </div>
+                            <div class="row g-0 row-alert">
+                                <div class="col-6 sign-header"></div>
+                                <div class="col-6 sign-body name-alert alert"></div>
+                            </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="phone" class="col-sm-3 col-form-label">전화번호</label>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control update_list" id="phone1" name="phone1"
-                                    value="${mypageList.phone1}" readonly>
+
+                                <input type="text" class="form-control update_list" id="phone_head" name="phone_head"
+                                    value="${mypageList.phone1}" pattern="\d*" maxlength="3" readonly>
                             </div>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control update_list" id="phone2" name="phone2"
-                                    value="${mypageList.phone2}" readonly>
+                                <input type="text" class="form-control update_list" id="phone_body" name="phone_body"
+                                    value="${mypageList.phone2}" pattern="\d*" maxlength="4" readonly>
                             </div>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control update_list" id="phone3" name="phone3"
-                                    value="${mypageList.phone3}" readonly>
+                                <input type="text" class="form-control update_list" id="phone_tail" name="phone_tail"
+                                    value="${mypageList.phone3}" pattern="\d*" maxlength="4" readonly>
                             </div>
+                        </div>
+                        <div class="row g-0 row-alert">
+                            <div class="col-6 sign-header"></div>
+                            <div class="col-6 sign-body phone-alert alert"></div>
                         </div>
                         <div class="mb-3 row">
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
@@ -135,14 +163,14 @@
                         <div class="mb-3 row">
                             <label for="address1" class="col-sm-3 col-form-label">주소</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control update_list" id="address1" name="address1"
+                                <input type="text" class="form-control update_list" id="address" name="address1"
                                     value="${mypageList.address1}" readonly>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label for="address2" class="col-sm-3 col-form-label">상세주소</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control update_list" id="address2" name="address2"
+                                <input type="text" class="form-control update_list" id="detailAddress" name="address2"
                                     value="${mypageList.address2}" readonly>
                             </div>
                         </div>
@@ -161,6 +189,13 @@
             </div>
         </div>
         <script>
+            let inputPW = document.getElementById("password");
+            let inputPWC = document.getElementById("verifyPassword");
+            let inputName = document.getElementById("name");
+            let inputPhoneHead = document.getElementById("phone_head");
+            let inputPhoneBody = document.getElementById("phone_body");
+            let inputPhoneTail = document.getElementById("phone_tail");
+
             //Email Dropdown
             $("#email2_dropdown").on("change", function () {
                 // 직접입력 선택
@@ -171,6 +206,7 @@
                 }
                 // 그 외 선택
                 else {
+                    $("#email2").val($(this).val());
                     $("#email2").css("display", "none");
                 }
             })
@@ -200,11 +236,101 @@
                 location.href = "/index.jsp";
             });
 
-            $(".mypage_form").submit(function () {
+            // rowAlert 배열
+            let rowAlert = document.getElementsByClassName("row-alert");
 
-                // 유효성 검사
-                //
-            });
+            // password 입력 시 유효성 검사
+            let pwAlert = document.getElementsByClassName("pw-alert")[0];
+            inputPW.onkeyup = function (e) {
+                let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
+                let pwRegExr2 = /[0-9]+/;
+                if (inputPW.value == "") {
+                    rowAlert[0].setAttribute("style", "display:none");
+                    pwAlert.innerHTML = "";
+                } else {
+                    rowAlert[0].setAttribute("style", "display: flex")
+                    if (!(pwRegExr.test(inputPW.value) && pwRegExr2.test(inputPW.value))) {
+                        pwAlert.setAttribute("style", "color: red;");
+                        pwAlert.innerHTML = "올바르지 않은 비밀번호 형식입니다.";
+                    } else {
+                        pwAlert.setAttribute("style", "color: blue;");
+                        pwAlert.innerHTML = "올바른 비밀번호 형식입니다.";
+                    }
+                }
+            }
+
+            // password 확인 입력 시 유효성 검사
+            let pwcAlert = document.getElementsByClassName("verify-pw-alert")[0];
+            let ispwcPassed = false;
+            inputPWC.onkeyup = function (e) {
+                if (inputPWC.value == "") {
+                    rowAlert[1].setAttribute("style", "display:none");
+                    pwcAlert.innerHTML = "";
+                } else {
+                    rowAlert[1].setAttribute("style", "display: flex")
+                    if (inputPW.value != inputPWC.value) {
+                        pwcAlert.setAttribute("style", "color: red;");
+                        pwcAlert.innerHTML = "비밀번호가 다릅니다.";
+                        ispwcPassed = false;
+                    } else {
+                        pwcAlert.setAttribute("style", "color: blue;");
+                        pwcAlert.innerHTML = "비밀번호와 일치합니다.";
+                        ispwcPassed = true;
+                    }
+                }
+            }
+
+            // 이름 입력 시 유효성 검사
+            let nameAlert = document.getElementsByClassName("name-alert")[0];
+            inputName.onkeyup = function (e) {
+                let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+                if (inputName.value == "") {
+                    rowAlert[2].setAttribute("style", "display:none");
+                    nameAlert.innerHTML = "";
+                } else {
+                    rowAlert[2].setAttribute("style", "display: flex")
+                    if (!nameRegExr.test(inputName.value)) {
+                        nameAlert.setAttribute("style", "color: red;");
+                        nameAlert.innerHTML = "올바르지 않은 이름 형식입니다.";
+                    } else {
+                        nameAlert.setAttribute("style", "color: blue;");
+                        nameAlert.innerHTML = "올바른 이름 형식입니다.";
+                    }
+                }
+            }
+
+            // submit 버튼 클릭시
+            let frm = document.getElementById("mypage_form");
+            frm.onsubmit = function () {
+                let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
+                let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+                let phoneHeadRegExr = /[0-9]{3}$/;
+                let phoneRegExr = /[0-9]{4}$/;
+                let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
+
+                if (!pwRegExr.test(inputPW.value)) {
+                    alert("비밀번호를 확인 해주십시오.")
+                    return false;
+                } else if (!ispwcPassed) {
+                    alert("비밀번호 재입력 칸을 확인 해주십시오.")
+                    return false;
+                } else if (!nameRegExr.test(inputName.value)) {
+                    alert("이름을 확인 해주십시오.")
+                    return false;
+                } else if (!phoneHeadRegExr.test(inputPhoneHead.value) || !phoneRegExr.test(inputPhoneBody.value) || !phoneRegExr.test(inputPhoneTail.value)) {
+                    alert("전화번호를 확인 해주십시오.")
+                    return false;
+                } else if ($("#email1").val() == "") {
+                    alert("이메일 주소를 확인 해주십시오.")
+                    return false;
+                } else if ($("#address").val() == "" || $("#detailaddress").val() == "") {
+                    alert("주소를 확인 해주십시오.")
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
 
             // Kakao Post API
             function execDaumPostcode() {

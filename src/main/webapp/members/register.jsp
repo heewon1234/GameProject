@@ -60,13 +60,14 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
     </style>
 </head>
 
 <body>
     <div class="container g-0">
         <div class="signup_container mt-4 mb-4">
-            <form action="/register.members" id="sign-form" method="post">
+            <form action="/insert.members" id="sign-form" method="post">
                 <div class="row g-0">
                     <div class="col-12 d-flex justify-content-center align-items-center">
                         <div class="signup_title mt-5 mb-5">환영합니다.</div>
@@ -90,7 +91,7 @@
                     <div class="col-4"></div>
                     <div class="col-2 sign-header">비밀번호</div>
                     <div class="col-6 sign-body">
-                        <input type="password" class="form-control" id="input-pw" placeholder="비밀번호" name="pw">
+                        <input type="password" class="form-control" id="input-pw" placeholder="비밀번호" name="password">
                     </div>
                 </div>
 
@@ -160,7 +161,7 @@
                     <div class="col-4"></div>
                     <div class="col-2 sign-header">우편번호</div>
                     <div class="col-6 sign-body d-flex">
-                        <input type="text" class="form-control me-2" placeholder="우편번호" id="input-post" name="post"
+                        <input type="text" class="form-control me-2" placeholder="우편번호" id="input-post" name="zipcode"
                             readonly>
                         <input type="button" class="btn btn-outline-primary" value="찾기" id="btn-post-api">
                     </div>
@@ -170,7 +171,7 @@
                     <div class="col-4"></div>
                     <div class="col-2 sign-header">주소1</div>
                     <div class="col-6 sign-body">
-                        <input type="text" class="form-control" placeholder="주소1" id="input-addr-1" name="addr1"
+                        <input type="text" class="form-control" placeholder="주소1" id="input-addr-1" name="address1"
                             readonly>
                     </div>
                 </div>
@@ -179,7 +180,7 @@
                     <div class="col-4"></div>
                     <div class="col-2 sign-header">주소2</div>
                     <div class="col-6 sign-body">
-                        <input type="text" class="form-control" placeholder="주소2" id="input-addr-2" name="addr2">
+                        <input type="text" class="form-control" placeholder="주소2" id="input-addr-2" name="address2">
                     </div>
                 </div>
 
@@ -192,12 +193,21 @@
             </form>
         </div>
     </div>
+    
+    <div id="footer_container">
+        
+    </div>
 
     <script>
+    	$(document).ready(function() {
+        	$("#footer_container").load("../commons/footer.html")
+    	});
+    	
         function inputNum(id) {
             let element = document.getElementById(id);
             element.value = element.value.replace(/[^0-9]/gi, "");
         }
+        
         var duplCheck = false;
         $("#input-id").on("input", function () {
             duplCheck = false;
@@ -426,7 +436,7 @@
             // 창 띄우기 명령어. ("원하는 링크", "새 창의 이름", ,"크기 지정시 새창으로 뜸, 기본은 새 탭") 
             // window.open("/idCheck.members?id=" + $("#input-id").val(), "", "width=300, height=500");
             $.ajax({
-                url: "/idCheck.members",
+                url: "/idDupleCheck.members",
                 data: {
                     id: $("#input-id").val()
                 },
@@ -442,7 +452,7 @@
                     idAlert.setAttribute("style", "color: blue;");
                     idAlert.innerHTML = "사용 가능한 아이디 입니다.";
                     duplCheck = true;
-                    $("#input-id").attr("readonly", "true").css("background-color", "gray");
+                    $("#input-id").attr("readonly", "true").css("background-color", "#D5D5D5");
 
                 }
             })
