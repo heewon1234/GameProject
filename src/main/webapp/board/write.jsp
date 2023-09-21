@@ -109,20 +109,20 @@
 						<select class="form-select" aria-label="Default select example"
 							style="max-width: 200px">
 							<option selected>게임선택</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-							<option value="4">Four</option>
-							<option value="5">Five</option>
-							<option value="6">Six</option>
+							<option value="1">지뢰찾기</option>
+							<option value="2">드래곤플라이트</option>
+							<option value="3">ColorBlind</option>
+							<option value="4">FullMoonBoat</option>
+							<option value="5">바운스볼</option>
+							<option value="6">플랫버드</option>
 						</select>
 					</div>
 					<div class="mt-4" style="align-items: center;">
 						<input class="form-control me-2" type="search"
-							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%">
+							placeholder="제목을 입력해주세요." aria-label="Search" style="width: 100%" name="title">
 					</div>
 					<div class="mt-4" >
-						<textarea id="summernote" ></textarea>
+						<textarea id="summernote" name="contents"></textarea>
 					</div>
 
 				</div>
