@@ -34,8 +34,8 @@ class ColorBlind extends Phaser.Scene {
             let randRed = Math.floor((Math.random() * 20) - 10);
             let randGreen = Math.floor((Math.random() * 20) - 10);
             let randBlue = Math.floor((Math.random() * 20) - 10);
-            if(randRed < 0) { randRed = -5 } else { randRed = 5 }
-            if(randGreen < 0) { randGreen = -5 } else { randGreen = 5 }
+            if(randRed < 0) { randRed = -10 } else { randRed = 10 }
+            if(randGreen < 0) { randGreen = -10 } else { randGreen = 10 }
             if(randBlue < 0) { randBlue = -5 } else { randBlue = 5 }
             
             let defaultRed =  Math.floor((Math.random() * 235) + 10);
