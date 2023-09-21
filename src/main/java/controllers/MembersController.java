@@ -85,11 +85,17 @@ public class MembersController extends HttpServlet {
 				String id = (String)request.getSession().getAttribute("loginID");
 				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 				String name = request.getParameter("name");
-				String phone = request.getParameter("phone");
-				String email = request.getParameter("email");
+				String phone_head = request.getParameter("phone_head");
+				String phone_body = request.getParameter("phone_body");
+				String phone_tail = request.getParameter("phone_tail");
+				String email1 = request.getParameter("email1");
+				String email2 = request.getParameter("email2");
 				String zipcode = request.getParameter("zipcode");
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
+				
+				String phone = phone_head+phone_body+phone_tail;
+				String email = email1 + "@" + email2;
 
 				int result = membersDAO.updateAccount(new MembersDTO(id, password, name, phone, email, zipcode, address1, address2, null, null));
 				response.sendRedirect("/mypage.members");
