@@ -1,12 +1,15 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 
 import commons.EncryptionUtils;
 import dao.MembersDAO;
@@ -21,6 +24,7 @@ public class MembersController extends HttpServlet {
 		String cmd = request.getRequestURI();
 
 		MembersDAO membersDAO = MembersDAO.getInstance();
+		Gson gson = new Gson();
 
 		try {
 			if(cmd.equals("/insert.members")) { // 회원가입
@@ -28,15 +32,21 @@ public class MembersController extends HttpServlet {
 				String id = request.getParameter("id");
 				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 				String name = request.getParameter("name");
-				String phone = request.getParameter("phone");
+				String phone = request.getParameter("phone_head") + request.getParameter("phone_body") + request.getParameter("phone_tail");
 				String email = request.getParameter("email");
 				String zipcode = request.getParameter("zipcode");
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
-				int result = membersDAO.insert(new MembersDTO(id,password,name,phone,email,zipcode,address1,address2,null,"Player"));
+				int result = membersDAO.insert(new MembersDTO(id,password,name,phone,email,zipcode,address1,address2,null,"user"));
 
 				response.sendRedirect("/index.jsp");
 
+			} else if(cmd.equals("/idDupleCheck.members")) {
+				String id = request.getParameter("id");
+				boolean result = membersDAO.isDuplicatedID(id);
+				PrintWriter pw = response.getWriter();
+				
+				pw.append(gson.toJson(result));
 			} else if(cmd.equals("/goToLogin.members")) { // 로그인 창으로 이동
 
 				response.sendRedirect("/members/login.jsp");
