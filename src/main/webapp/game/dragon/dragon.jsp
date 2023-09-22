@@ -79,20 +79,26 @@
 								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
 								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
 								<select class="form-select" aria-label="Default select example"
-									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
-									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
+									onchange="location = this.value;">
+									<option value="#">Game</option>
+									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/bounceball/bounceball_main.jsp">2.
+										바운스볼</option>
+									<option value="/game/flappyBird/flappyBird_main.jsp">3.
+										플래피버드</option>
+									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
+										풀문보트</option>
+									<option value="/game/dragon/dragon.jsp" selected>5. 드래곤 플라이트</option>
+									<option value="/game/colorblind/colorblind.jsp">6.
+										컬러블라인드</option>
 								</select>
 							</div>
 						</div>
 						<div
-							class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
-							<a class="nav-link" href="#"><img src="/UI_img/log-out.svg"></a>
+							class="col-md-7 ml-auto d-flex align-items-center justify-content-end p-0">
+							<a class="nav-link" href="/logout.members"><img
+								src="/UI_img/log-out.svg"></a>
 						</div>
 
 					</div>
