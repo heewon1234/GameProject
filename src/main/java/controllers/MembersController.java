@@ -230,7 +230,7 @@ public class MembersController extends HttpServlet {
 
 				String id = (String)request.getSession().getAttribute("loginID");
 				MembersDTO list = membersDAO.mypage(id);
-				request.setAttribute("list", list);
+				request.setAttribute("mypageList", list);
 				request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
 
 			}
