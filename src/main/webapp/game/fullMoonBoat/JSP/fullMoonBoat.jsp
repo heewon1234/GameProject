@@ -151,13 +151,13 @@
 							<li class="nav-item"><a class="nav-link" href="/game/colorblind/colorblind.jsp">컬러블라인드</a></li>
 						</ul>
 					</div>
-                        <h3 style="margin-top: 20px;">바운스볼</h3>
+                        <h3 style="margin-top: 20px;">풀문 보트</h3>
                         <hr>
                         <div id="wrapper" align="center">
                         <div id="point"></div>
                         </div>
                         <div class="alert alert-light">
-                            <h4 class="alert-heading">바운스볼</h4>
+                            <h4 class="alert-heading">풀문 보트</h4>
                             <hr>
                             <p class="mb-0">설명입니다.</p>
                         </div>

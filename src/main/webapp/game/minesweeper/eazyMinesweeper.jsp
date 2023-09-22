@@ -157,7 +157,8 @@
 					<div class="alert alert-light">
 						<h4 class="alert-heading">지뢰찾기</h4>
 						<hr>
-						<p class="mb-0">설명입니다.</p>
+						<p class="mb-0">지뢰 찾기는 기억력과 추리력을 요하는 겉보기에 간단한 게임으로, 지금까지 어떤 Windows 게임보다도 많은 인기를 누리고 있습니다.
+						<br>지뢰를 피해 빈 사각형을 찾는 것이 이 게임의 목표입니다.</p>
 					</div>
 				</div>
 			</div>
