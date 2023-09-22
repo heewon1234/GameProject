@@ -33,6 +33,20 @@
 .gtext {
 	color: navy;
 }
+
+.figure {
+	position : relative;
+}
+
+.figure>img {
+	width : 100%;
+	aspect-ratio : 4/3;
+	object-fit : cover;
+
+}
+.figure>img:hover {
+	cursor: pointer;
+}
 </style>
 </head>
 
@@ -77,15 +91,15 @@
 					data-bs-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="1"
+							<img src="/UI_img/Logo_bird.png" class="d-block w-100" alt="1"
 								style="max-height: 350px">
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="2"
+							<img src="/UI_img/Logo_bouncy.png" class="d-block w-100" alt="2"
 								style="max-height: 350px">
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/어벤져스.jpg" class="d-block w-100" alt="3"
+							<img src="/UI_img/Logo_color.png" class="d-block w-100" alt="3"
 								style="max-height: 350px">
 						</div>
 					</div>
@@ -113,7 +127,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg"
+												<img src="/game/gameUI/bounceball.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
 													<a class="gtext" href="/game/bounceball/bounceball_main.jsp" style="text-decoration: none;">바운스볼</a>
@@ -124,7 +138,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg"
+												<img src="/game/gameUI/flappybird.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
 													<a class="gtext" href="/game/flappyBird/flappyBird_main.jsp" style="text-decoration: none;">플래피버드</a>
@@ -157,7 +171,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/UI_img/캡틴.jpg"
+												<img src="/game/gameUI/Colorblind.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
 													<a class="gtext" href="/game/colorblind/colorblind.jsp" style="text-decoration: none;">컬러블라인드</a>
@@ -299,6 +313,7 @@
 		$(document).ready(function() {
 			$("#footer_container").load("../commons/footer.html")
 		});
+
 	</script>
 </body>
 </html>
