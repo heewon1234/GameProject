@@ -150,7 +150,7 @@ public class BoardDAO {
 	}
 
 	// board 게시물 읽기 showContents
-	public List<BoardDTO> showContents(BoardDTO dto) throws Exception {
+	public BoardDTO showContents(int num) throws Exception {
 		String sql = "select * from board where seq=?" ;
 
 		try(
@@ -158,11 +158,9 @@ public class BoardDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
 
-			pstat.setInt(1, dto.getSeq());
-			List<BoardDTO> list = new ArrayList<>();
-			ResultSet rs = pstat.executeQuery();
-
-			while(rs.next()) {
+			pstat.setInt(1, num);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
 				int seq = rs.getInt("seq");
 				String writer = rs.getString("writer");
 				String title = rs.getString("title");
@@ -170,9 +168,10 @@ public class BoardDAO {
 				Timestamp write_date = rs.getTimestamp("write_date");
 				int view_count = rs.getInt("view_count");
 				String game_name = rs.getString("game_name");
+				
+				return new BoardDTO(seq,writer,title,contents,write_date,view_count,game_name);
+			}
 
-				list.add(new BoardDTO(seq, writer, title, contents, write_date, view_count, game_name));
-			}return list;
 		} 
 	}
 	
