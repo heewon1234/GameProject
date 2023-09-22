@@ -23,7 +23,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/phaser3-rex-plugins@1.60.5/dist/rexvirtualjoystickplugin.min.js"></script>
 
-<script type="module" src="main.js"></script>
+
 
 <style>
 * {
@@ -150,6 +150,7 @@
 				<h3 style="margin-top: 20px;">ColorBlind</h3>
 								<hr>
 					<div id="wrapper" align="center"></div>
+					<div id="point"></div>
 					<div class="alert alert-light">
 						<h4 class="alert-heading">ColorBlind</h4>
 						<hr>
@@ -163,6 +164,7 @@
 		</div>
 		<div id="footer_container"></div>
 	</div>
+	<script type="module" src="main.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#footer_container").load("/commons/footer.html")
