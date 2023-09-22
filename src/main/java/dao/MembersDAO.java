@@ -159,5 +159,23 @@ public class MembersDAO {
 	        }
 	    }
 	}
+   
+    public String getPassword(String loginID) throws Exception {
+    	String sql = "SELECT PW FROM MEMBERS WHERE ID = ?";
+    	
+    	try (Connection con = this.getConnection();
+   	         PreparedStatement pstat = con.prepareStatement(sql);) {
+   	        pstat.setString(1, loginID);
+
+   	        try (ResultSet rs = pstat.executeQuery();) {
+   	            if (rs.next()) {
+   	                return rs.getString("PW");
+   	            } else {
+   	                // 해당 ID에 대한 사용자가 없을 경우 처리할 내용을 추가할 수 있습니다.
+   	                return null;
+   	            }
+   	        }
+   	    }
+    }
 
 }
