@@ -59,7 +59,6 @@ public class BoardDAO {
 	
 	// board 제목, 내용, 작성자 중 키워드 검색
 	public List<BoardDTO> selectBy(int start, int end, String searchText) throws Exception{
-		BoardDTO dto = new BoardDTO();
 		List<BoardDTO> list = new ArrayList<>();
 		String sql = "select * from (select row_number() over(order by seq desc) as rn, board.* from board where contents like ? or title like ? or writer like ?) as sub where rn between ? and ?";
 		try(Connection con = this.getConnection();

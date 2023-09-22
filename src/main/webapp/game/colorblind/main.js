@@ -6,7 +6,7 @@ import ColorBlind from "./ColorBlind.js";
 // import ScalePlugin from './rexScale.js'
 let option = {
     type: Phaser.AUTO, // 컴퓨터의 상황에 맞는 Game Component 선택
-    parent: "container", // 게임을 구동 시킬 구역의 id
+    parent: "wrapper", // 게임을 구동 시킬 구역의 id
     width: "100%",
     height: "100%",
     backgroundColor: "#FFFFFF",
