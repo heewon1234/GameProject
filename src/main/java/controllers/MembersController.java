@@ -231,7 +231,7 @@ public class MembersController extends HttpServlet {
 				String id = (String)request.getSession().getAttribute("loginID");
 				MembersDTO list = membersDAO.mypage(id);
 				request.setAttribute("mypageList", list);
-				request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
+				request.getRequestDispatcher("/members/myPage.jsp").forward(request, response);
 
 			}
 
