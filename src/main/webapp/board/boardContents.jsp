@@ -141,6 +141,7 @@
 										댓글이 없습니다.
 									</c:otherwise>
 								</c:choose>
+								<div id="replyFooter"></div>
 							</div>
 						</div>
 				</div>
@@ -274,6 +275,42 @@
 
 				
 			});
+			let replyFooter = document.getElementById("replyFooter");
+			let recordTotalCount = ${recordTotalCount};
+			let recordCountPerPage = ${recordCountPerPage};
+			let naviCountPerPage = ${naviCountPerPage};
+			let currentReplyPage = ${currentReplyPage};
+			let pageTotalCount = 0;
+			if((recordTotalCount%recordCountPerPage)>0){
+				pageTotalCount = Math.floor( recordTotalCount/recordCountPerPage ) + 1;
+			} else {
+				pageTotalCount =  recordTotalCount/ recordCountPerPage;
+			}
+			
+			if(currentReplyPage<1){currenPage=1;}
+			else if(currentReplyPage>pageTotalCount){currentReplyPage=pageTotalCount;}
+			
+			let startNavi = Math.floor(( currentReplyPage - 1 ) / naviCountPerPage) * naviCountPerPage + 1;
+			let endNavi = startNavi + naviCountPerPage - 1;
+			if(endNavi > pageTotalCount) {endNavi = pageTotalCount;}
+			
+			let needPrev = true;
+			let needNext = true;
+			
+			if( startNavi == 1 ) { needPrev=false; }
+			if( endNavi == pageTotalCount ) { needNext = false; }
+			
+			if(needPrev) {
+				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(startNavi-1)+"'>"+ "<<"+ "</a>");
+			}
+			for(let i = startNavi; i<=endNavi; i++) {
+				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+ i +"' class='naviNum'>" + i + "</a>");
+			}
+			if(needNext) {$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(endNavi+1)+"'>"+ ">>"+ "</a>");}
+			
+			let childNum = currentReplyPage;
+			if(childNum>10){childNum = childNum-9;}
+			$(".naviNum:nth-child("+childNum+")").css("color","red").css("text-decoration","underline");
 	});
 	</script>
 </body>
