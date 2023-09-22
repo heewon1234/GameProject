@@ -23,9 +23,9 @@ public class RankingBoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try {
-			
+			 
 			if(cmd.equals("/list.rankBoard")) { // 게시물 리스트 가져오기
-				
+				//?????????????????????????????????????????
 				String id = (String)request.getSession().getAttribute("loginID");
 				String gname = request.getParameter("game_name");
 				RankingBoardDTO myRanking = rnkdao.selectByGName(id, gname);
@@ -40,9 +40,6 @@ public class RankingBoardController extends HttpServlet {
 			}
 			
 			else if(cmd.equals("/rankReadPoint.rankBoard")) {
-				
-				
-				
 				String score = request.getParameter("score");
 				String game_name = request.getParameter("game_name");
 				System.out.println(score);
@@ -52,6 +49,13 @@ public class RankingBoardController extends HttpServlet {
 				// RankingBoardDAO.rankUpdatePoint(score, loginID);
 				
 			}
+			
+			else if(cmd.equals("/myRankGames.rankBoard")) {//index.jsp에서 자신의 게임랭킹들을 보여주는 코드입니다.
+	            String id = (String) session.getAttribute("loginID");
+	            List<RankingBoardDTO> myGameList = rnkdao.selectById(id);
+	            request.setAttribute("myGameList", myGameList);
+	            request.getRequestDispatcher("/index.jsp").forward(request, response);
+	         }
 			
 		} catch(Exception e) {
 			e.printStackTrace();
