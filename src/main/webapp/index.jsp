@@ -43,7 +43,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-2">
-							<img src="/UI_img/marvlestudio.jpg">
+							<a href="/index.jsp"><img src="/UI_img/marvlestudio.jpg"></a>
 						</div>
 						<div class="col-md-3 p-0">
 							<div class="d-flex align-items-center justify-content-center"
@@ -61,7 +61,7 @@
 									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
 										풀문보트</option>
 									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
-									<option value="#">6. 컬러블라인드</option>
+									<option value="/game/colorblind/colorblind.jsp">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -160,7 +160,7 @@
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="#" style="text-decoration: none;">컬러블라인드</a>
+													<a class="gtext" href="/game/colorblind/colorblind.jsp" style="text-decoration: none;">컬러블라인드</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -258,7 +258,7 @@
 							<!-- ---------------------------------------------------- -->
 							<div id="ranking" class="mt-4"
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;">
-								<h5 style="color: white">내 랭킹 ></h5>
+								<h5><a href="/list.rankBoard" style="color: white; text-decoration: none">내 랭킹 ></a></h5>
 								<table class="table mt-4">
 									<thead>
 										<tr>
