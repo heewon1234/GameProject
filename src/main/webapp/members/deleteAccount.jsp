@@ -84,9 +84,9 @@
                 let con_result = confirm("정말로 회원 탈퇴 하시겠습니까?");
 
                 if (con_result == true) {
-
+                    location.href = "/memberOut.members";
                 } else {
-
+                	return false;
                 }
             });
 
