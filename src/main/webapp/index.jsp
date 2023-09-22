@@ -30,8 +30,8 @@
 	background-color: #D2DAFF
 }
 
-#footer {
-	background-color: #B1B2FF
+.gtext {
+	color: navy;
 }
 </style>
 </head>
@@ -45,19 +45,23 @@
 						<div class="col-md-2">
 							<img src="/UI_img/marvlestudio.jpg">
 						</div>
-						<div class="col-md-2 p-0">
+						<div class="col-md-3 p-0">
 							<div class="d-flex align-items-center justify-content-center"
-								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
+								style="height: 40px; width: 200px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
 								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
 								<select class="form-select" aria-label="Default select example"
-									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
-									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
+									onchange="location = this.value;">
+									<option value="#" selected>Game</option>
+									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/bounceball/bounceball_main.jsp">2.
+										바운스볼</option>
+									<option value="/game/flappyBird/flappyBird_main.jsp">3.
+										플래피버드</option>
+									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
+										풀문보트</option>
+									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
+									<option value="#">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -100,7 +104,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임1</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="/board/gameBoard.jsp" style="text-decoration: none;">지뢰찾기</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -109,7 +115,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임2</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="/game/bounceball/bounceball_main.jsp" style="text-decoration: none;">바운스볼</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -118,7 +126,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임3</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="/game/flappyBird/flappyBird_main.jsp" style="text-decoration: none;">플래피버드</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -127,7 +137,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임4</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp" style="text-decoration: none;">풀문보트</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -136,7 +148,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임5</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="/game/dragon/dragon.jsp" style="text-decoration: none;">드래곤 플라이트</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -145,7 +159,9 @@
 											<figure class="figure">
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
-												<figcaption class="figure-caption text-center">게임6</figcaption>
+												<figcaption class="figure-caption text-center">
+													<a class="gtext" href="#" style="text-decoration: none;">컬러블라인드</a>
+												</figcaption>
 											</figure>
 										</div>
 									</div>
@@ -160,50 +176,25 @@
 								<table class="table mt-4">
 									<thead>
 										<tr>
-											<th scope="col">#</th>
-											<th scope="col">First</th>
-											<th scope="col">Last</th>
-											<th scope="col">Handle</th>
+											<th scope="col">번호</th>
+											<th scope="col">카테고리</th>
+											<th scope="col">제목</th>
+											<th scope="col">조회수</th>
+											<th scope="col">작성자</th>
+											<th scope="col">작성일</th>
 										</tr>
 									</thead>
 									<tbody class="table-group-divider">
-										<tr>
-											<th scope="row">1</th>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
+										<c:forEach var="list" items="${myGameList }">
+											<tr>
+												<th scope="row" style="text-align: center">${list.seq}</th>
+												<td style="text-align: center">${list.game_name}</td>
+												<td>${list.title}</td>
+												<td style="text-align: center">${list.view_count}</td>
+												<td style="text-align: center">${list.writer}</td>
+												<td style="text-align: center">${list.timestampToString}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -272,29 +263,20 @@
 									<thead>
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">First</th>
-											<th scope="col">Last</th>
-											<th scope="col">Handle</th>
+											<th scope="col">game_name</th>
+											<th scope="col">score</th>
+											<th scope="col">rank_date</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>@mdo</td>
-										</tr>
-										<tr>
-											<th scope="row">2</th>
-											<td>Jacob</td>
-											<td>Thornton</td>
-											<td>@fat</td>
-										</tr>
-										<tr>
-											<th scope="row">3</th>
-											<td colspan="2">Larry the Bird</td>
-											<td>@twitter</td>
-										</tr>
+										<c:forEach var="list" items="${myGameList }">
+											<tr>
+												<th scope="row" style="text-align: center">${list.seq}</th>
+												<td style="text-align: center">${list.game_name}</td>
+												<td style="text-align: center">${list.score}</td>
+												<td style="text-align: center">${list.rank_date}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -303,8 +285,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div style="background-color: #D2DAFF; height: 20px"></div> -->
-		<div id="footer" class="pt-4">footer</div>
+		<div id="footer_container"></div>
 
 	</div>
 
@@ -314,6 +295,9 @@
 			$("#loginButton").on("click", function() {
 				location.href = "/goToLogin.members";
 			})
+		});
+		$(document).ready(function() {
+			$("#footer_container").load("../commons/footer.html")
 		});
 	</script>
 </body>
