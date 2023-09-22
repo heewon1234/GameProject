@@ -14,7 +14,7 @@ class GameOverScene extends Phaser.Scene {
             url: "/rankReadPoint.rankBoard",
             data: {
                 score: $("#point").html(),
-                game_name: "fullMoonBoat",
+                game_name: "dragon",
                 rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
             },
             method: "GET"
