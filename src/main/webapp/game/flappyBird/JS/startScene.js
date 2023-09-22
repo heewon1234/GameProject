@@ -49,6 +49,7 @@ class startScene extends Phaser.Scene {
             this.scene.start("Project");
         });
     }
+    
     update() {
         this.back.tilePositionX += 1;
     }

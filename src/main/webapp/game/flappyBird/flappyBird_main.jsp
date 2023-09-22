@@ -69,6 +69,7 @@
 							<div class="d-flex align-items-center justify-content-center"
 								style="height: 40px; width: 200px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
 								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
+							
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">

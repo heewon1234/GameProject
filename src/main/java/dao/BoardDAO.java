@@ -107,6 +107,7 @@ public class BoardDAO {
 		}
 	}
 
+	
 	// board 게시물 삭제
 	public int delContents(BoardDTO dto) throws Exception {
 		String sql = "delete from board where seq = ?" ;
