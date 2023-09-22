@@ -75,7 +75,7 @@
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">
 									<option value="#">Game</option>
-									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</option>
 									<option value="/game/bounceball/bounceball_main.jsp">2.
 										바운스볼</option>
 									<option value="/game/flappyBird/flappyBird_main.jsp" selected>3.
@@ -131,9 +131,9 @@
 									class="btn" data-bs-toggle="dropdown" aria-expanded="false"
 									onclick="/board/gameBoard.jsp">지뢰찾기</button>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">하급</a></li>
-									<li><a class="dropdown-item" href="#">중급</a></li>
-									<li><a class="dropdown-item" href="#">상급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">초급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/normalMinesweeper.jsp">중급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/hardMinesweeper.jsp">고급</a></li>
 								</ul>
 							<li class="nav-item"><a class="nav-link"
 								href="/game/bounceball/bounceball_main.jsp">바운스볼</a></li>
