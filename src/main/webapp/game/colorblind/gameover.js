@@ -14,7 +14,16 @@ class Gameover extends Phaser.Scene {
 
     }
     create() {
-        
+
+        $.ajax({
+            url: "/rankReadPoint.rankBoard",
+            data: {
+                score: this.finalScore,
+                game_name: "colorblind",
+                rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+            },
+            method: "GET"
+        });
     
         this.events.on('transitioncomplete', () => {
             let ls = this.add.rectangle(this.cameras.main.x / 3, this.cameras.main.y, this.cameras.main.x / 3, this.cameras.main.y)
