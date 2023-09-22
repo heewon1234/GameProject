@@ -49,12 +49,12 @@
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-									<option value="4">Four</option>
-									<option value="5">Five</option>
-									<option value="6">Six</option>
+									<option value="1">1.지뢰찾기</option>
+									<option value="2">2.바운스볼</option>
+									<option value="3">3.플래피버드</option>
+									<option value="4">4.풀문보트</option>
+									<option value="5">5.드래곤플라이트</option>
+									<option value="6">6.컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 					<div id="title" style="color: white;">자유 게시판 ></div>
 					<!-- DB에서 가져와야함 ( title )-->
 					<div class="p-2 mt-2" style="background-color: white;">
-						<h5>Board Title</h5>
+						<h5>${dto.title }</h5>
 					</div>
 					<!-- DB에서 가져와야함 ( user, write_date )-->
 					<div id="user" class="p-2" style="display: flex;">
@@ -92,13 +92,21 @@
 							<i class="fa-solid fa-user"></i>
 						</div>
 						<div class="mt-3 mx-4">
-							<div id="writer">user</div>
-							<div id="write_date">2023.09.19</div>
+							<div id="writer">${dto.writer }</div>
+							<div id="write_date">${dto.write_date }</div>
 						</div>
 					</div>
 					<hr>
 					<div class="mb-2">
-						<h6>board contents</h6>
+						<h6>${dto.contents }</h6>
+					</div>
+					<div class="mb-2">
+						<c:if test="${loginID eq dto.writer }">
+							<button id="backBtn">뒤로가기</button>
+							<button id="edit">수정하기</button>
+							<button id="delBtn">삭제</button>
+						</c:if>
+						
 					</div>
 					<hr>
 					<!-- reply -->
@@ -122,12 +130,188 @@
 								</div>
 							</form>
 							<hr>
-							<div id="replyListContainer"></div>
+							<div id="replyListContainer">
+								<c:choose>
+									<c:when test="${replyList.size()>0 }">
+										<form action="/update.reply" method="post" id="replyForm">
+										
+										</form>
+									</c:when>
+									<c:otherwise>
+										댓글이 없습니다.
+									</c:otherwise>
+								</c:choose>
+								<div id="replyFooter"></div>
+							</div>
 						</div>
 				</div>
 			</div>
 		</div>
 		<div id="footer" class="pt-4">footer</div>
 	</div>
+	
+	<script>
+	$(document).ready(function() {
+		let updateSuccess = true;
+		$("#backBtn").on("click", function() {
+			//location.href = "/list.board?currentPage=${latestPageNum}";
+		});
+
+		$("#edit").on("click", function() {
+
+
+		});
+		
+		$("#delBtn").on("click",function() {
+			//window.open("/board/isDelContents.jsp", "","width=300,height=200");
+		});
+		
+		$(function(){
+			$.ajax({
+				url:"/list.reply?parent_seq=${dto.seq}",
+				dataType:"json"
+			}).done(function(resp){
+				for(let i=0;i<resp.length;i++){
+
+					let replies = $("<div>");
+					replies.addClass("replies");
+					
+					let replyHeader = $("<div>");
+					replyHeader.append(resp[i].writer);
+					$(replies).append(replyHeader);
+					
+					let replyWrite_date = $("<div>");
+					replyWrite_date.append(resp[i].write_date);
+					$(replies).append(replyWrite_date);
+					
+					let replyBody = $("<div>");
+					replyBody.addClass("reply-body");
+					replyBody.append(resp[i].contents);
+					$(replies).append(replyBody);
+					
+					let replyBtns = $("<div>");
+					replyBtns.addClass("reply-btns");
+
+					if(resp[i].writer == "${loginID}"){
+	
+						let deleteReply = $("<button>");
+						deleteReply.addClass("deleteReply");
+						deleteReply.attr("type","button");
+						deleteReply.attr("seq",resp[i].seq);
+						deleteReply.attr("parent_seq",resp[i].parent_seq);
+						deleteReply.append("삭제");
+						$(replyBtns).append(deleteReply);
+						
+						let updateReply = $("<button>");
+						updateReply.addClass("updateReply");
+						updateReply.attr("type","button");
+						updateReply.append("수정");
+						$(replyBtns).append(updateReply);
+					}
+
+					let cancelReply = $("<button>");
+					cancelReply.addClass("cancelReply");
+					cancelReply.attr("type","button");
+					cancelReply.append("취소");
+					$(replyBtns).append(cancelReply);
+					
+					let seqInput = $("<input>");
+					seqInput.val(resp[i].seq);
+					seqInput.attr("name","seq");
+					seqInput.attr("type","hidden");
+					seqInput.addClass("seqInput");
+					$(replyBtns).append(seqInput);
+					
+					let parentInput = $("<input>");
+					parentInput.val(resp[i].parent_seq);
+					parentInput.attr("name","parent_seq");
+					parentInput.attr("type","hidden");
+					parentInput.addClass("parentInput");
+					$(replyBtns).append(parentInput);
+					
+					let completeReply = $("<button>");
+					completeReply.addClass("completeReply");
+					completeReply.append("수정완료");
+					$(replyBtns).append(completeReply);
+					
+					$(replies).append(replyBtns);
+					
+					$("#replyForm").append(replies);
+
+				}
+				
+				$(".deleteReply").on("click",function(){
+					$(this).siblings(".seqInput").attr("id","seq");
+					$(this).siblings(".parentInput").attr("id","parent_seq");
+					//window.open("/reply/isDelReply.jsp","","width=300,height=200");
+	
+				});
+				
+				$(".cancelReply").on("click",function(){
+					location.reload();
+				});
+				
+				$(".updateReply").on("click",function() {
+					
+					if(!updateSuccess){
+						alert("댓글 수정완료 하고 눌러주세요");
+						return;
+					}
+
+					updateSuccess = false;
+					let value = $(this).parent(".reply-btns").siblings(".reply-body").html().trim();
+					$(this).parent(".reply-btns").siblings(".reply-body").html("");
+					let contentsInput = $("<input>");
+					contentsInput.attr("name", "contents");
+					contentsInput.attr("value", value);
+					contentsInput.addClass("input");
+					$(this).parent(".reply-btns").siblings(".reply-body").append(contentsInput);
+					$(this).css("display", "none");
+					$(this).siblings(".deleteReply").css("display","none");
+					$(this).siblings(".cancelReply").css("display","inline");
+					$(this).siblings(".completeReply").css("display","inline");
+					
+				});
+
+				
+			});
+			let replyFooter = document.getElementById("replyFooter");
+			let recordTotalCount = ${recordTotalCount};
+			let recordCountPerPage = ${recordCountPerPage};
+			let naviCountPerPage = ${naviCountPerPage};
+			let currentReplyPage = ${currentReplyPage};
+			let pageTotalCount = 0;
+			if((recordTotalCount%recordCountPerPage)>0){
+				pageTotalCount = Math.floor( recordTotalCount/recordCountPerPage ) + 1;
+			} else {
+				pageTotalCount =  recordTotalCount/ recordCountPerPage;
+			}
+			
+			if(currentReplyPage<1){currenPage=1;}
+			else if(currentReplyPage>pageTotalCount){currentReplyPage=pageTotalCount;}
+			
+			let startNavi = Math.floor(( currentReplyPage - 1 ) / naviCountPerPage) * naviCountPerPage + 1;
+			let endNavi = startNavi + naviCountPerPage - 1;
+			if(endNavi > pageTotalCount) {endNavi = pageTotalCount;}
+			
+			let needPrev = true;
+			let needNext = true;
+			
+			if( startNavi == 1 ) { needPrev=false; }
+			if( endNavi == pageTotalCount ) { needNext = false; }
+			
+			if(needPrev) {
+				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(startNavi-1)+"'>"+ "<<"+ "</a>");
+			}
+			for(let i = startNavi; i<=endNavi; i++) {
+				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+ i +"' class='naviNum'>" + i + "</a>");
+			}
+			if(needNext) {$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(endNavi+1)+"'>"+ ">>"+ "</a>");}
+			
+			let childNum = currentReplyPage;
+			if(childNum>10){childNum = childNum-9;}
+			$(".naviNum:nth-child("+childNum+")").css("color","red").css("text-decoration","underline");
+	});
+	</script>
 </body>
 </html>
