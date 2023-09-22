@@ -25,6 +25,7 @@
 <script src="/game/flappyBird/JS/gameover_scene.js"></script>
 <script src="/game/flappyBird/JS/startScene.js"></script>
 <style>
+
 * {
 	box-sizing: border-box;
 }

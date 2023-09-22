@@ -25,7 +25,6 @@ class Project extends Phaser.Scene {
         texture.lineStyle(2, 0x000000, 1);//두께,색깔,투명도
         texture.strokeRect(0, 0, 30, 30);//테두리 적용
         texture.generateTexture("box", 30, 30);//디자인을 생성하겠다., 화면에 아직 띄우진 않는다.(key,넓이,높이)
-
     }
 
     create() {

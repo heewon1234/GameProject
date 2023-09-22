@@ -23,6 +23,7 @@ public class BoardDAO {
 		}
 		return instance;
 	}
+	
 
 	private Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();

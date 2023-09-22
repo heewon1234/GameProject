@@ -28,6 +28,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		
+		
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		try {
 			if(cmd.equals("/list.board")) { // 게시물 리스트 가져오기
