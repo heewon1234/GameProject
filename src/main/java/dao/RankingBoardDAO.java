@@ -121,6 +121,34 @@ public class RankingBoardDAO {
 		
 	};
 	
+	   //index.jsp에서 자신의 게임들의 랭킹을 보여주는 코드입니다.
+	   public List<RankingBoardDTO> selectById(String loggedInUserId) throws Exception {
+	       String sql = "SELECT * FROM rankingBoard WHERE id = ? ;";
+
+	       try (
+	           Connection con = this.getConnection();
+	           PreparedStatement pstat = con.prepareStatement(sql);
+	       ) {
+	           pstat.setString(1, loggedInUserId);
+
+	           try (ResultSet rs = pstat.executeQuery()) {
+	               List<RankingBoardDTO> list = new ArrayList<>();
+
+	               while (rs.next()) {
+	                   int seq = rs.getInt("seq");
+	                   String id1 = rs.getString("id");
+	                   String game_name = rs.getString("game_name");
+	                   int score = rs.getInt("score");
+	                   Timestamp rank_date = rs.getTimestamp("rank_date");
+
+	                   list.add(new RankingBoardDTO(seq, id1, game_name, score, rank_date));
+	               }
+	               return list;
+	           }
+	       }
+	   }
+
+	
 //	public boolean rankUpdatePoint(RankingBoardDTO dto) {
 //		String sql = "update rankingBoard set title=?, contents=?, game_name=? where seq = ?;" ;
 //
