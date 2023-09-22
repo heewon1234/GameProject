@@ -29,7 +29,6 @@
 #body {
 	background-color: #D2DAFF
 }
-
 .gtext {
 	color: navy;
 }
