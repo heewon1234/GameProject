@@ -2,6 +2,7 @@ class GameOverScene extends Phaser.Scene {
     constructor() {
         super({ key: "GameOverScene" });
     }
+    
     preload() {
         //this.load.image("background2", "훈이2.jpg");
         this.load.audio('bgm1', '/game/flappyBird/mp3/game-over.mp3');
@@ -10,6 +11,18 @@ class GameOverScene extends Phaser.Scene {
         this.load.image("startBtn", "/game/flappyBird/img/startBtn.jpg");
     }
     create() {
+	 const pointValue = $("#point").html();
+        console.log(pointValue);
+
+        $.ajax({
+            url: "/rankReadPoint.rankBoard",
+            data: {
+                score: pointValue,
+                game_name: "flappyBird",
+                rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+            },
+            method: "GET"
+        });
         const prevScene = this.scene.get("project");
         if (prevScene && prevScene.backgroundMusic.isPlaying) {
             prevScene.backgroundMusic.stop();
@@ -77,6 +90,7 @@ class GameOverScene extends Phaser.Scene {
         });
     }
     update() {
+	
         this.back.tilePositionX += 1;
     }
     shutdown() {

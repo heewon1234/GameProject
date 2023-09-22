@@ -171,7 +171,7 @@
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;"
 								class="mt-4">
 								<div>
-									<h5 style="color: white">최근 게시물 ></h5>
+									<h5 ><a href="/list.board" style="color: white; text-decoration: none">최근 게시물 ></a></h5>
 								</div>
 								<table class="table mt-4">
 									<thead>
