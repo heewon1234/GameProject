@@ -68,8 +68,10 @@ public class BoardDTO {
 		this.game_name = game_name;
 	}
 	public String getTimestampToString() {
+
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	    return sdf.format(getWrite_date());
+		
 	}
 
 }

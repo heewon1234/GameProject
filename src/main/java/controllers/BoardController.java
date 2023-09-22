@@ -31,14 +31,14 @@ public class BoardController extends HttpServlet {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		try {
 			if(cmd.equals("/list.board")) { // 게시물 리스트 가져오기
-				int currentPage = request.getParameter("cpage")==null ? 1 : Integer.parseInt(request.getParameter("cpage"));
+				int currentPage = request.getParameter("cPage")==null ? 1 : Integer.parseInt(request.getParameter("cPage"));
 				String keyword = request.getParameter("keyword");
 				
 				// 검색어 X, 평상시 게시물 로드
 				if(keyword == null) {
 					List<BoardDTO> listDTO = boardDAO.selectBy(currentPage * Constants.RECORD_COUNT_PER_PAGE - 9, currentPage* Constants.RECORD_COUNT_PER_PAGE);
 					
-					request.getSession().setAttribute("latestPageNum", currentPage);
+					request.getSession().setAttribute("latestPage", currentPage);
 					request.setAttribute("listDTO", listDTO);
 					
 					request.setAttribute("recordTotalCount", boardDAO.getRecordCount());
@@ -47,7 +47,15 @@ public class BoardController extends HttpServlet {
 				} 
 				// 검색어 O, 해당 게시물만 로드
 				else {
+					List<BoardDTO> listDTO = boardDAO.selectBy(currentPage * Constants.RECORD_COUNT_PER_PAGE - 9, currentPage* Constants.RECORD_COUNT_PER_PAGE, keyword);
 					
+					request.getSession().setAttribute("latestPage", currentPage);
+					request.setAttribute("listDTO", listDTO);
+					request.setAttribute("keyword", keyword);
+					
+					request.setAttribute("recordTotalCount", boardDAO.getRecordCountOnSearch(keyword));
+					request.setAttribute("recordCountPerPage", Constants.RECORD_COUNT_PER_PAGE);
+					request.setAttribute("naviCountPerPage", Constants.NAVI_COUNT_PER_PAGE);
 				}
 				
 				request.getRequestDispatcher("/board/freeboard.jsp").forward(request, response);

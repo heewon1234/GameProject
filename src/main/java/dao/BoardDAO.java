@@ -208,6 +208,29 @@ public class BoardDAO {
 		}
 	}
 	
+	// 검색시 레코드 개수 반환
+	public int getRecordCountOnSearch(String keyword) throws Exception {
+		keyword = "%" + keyword + "%";
+		String qry  = "select count(*) as cnt from board where title like ? or writer like ? or contents like ?;";
+
+		try(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(qry);
+			) {
+			pstat.setString(1, keyword);
+			pstat.setString(2, keyword);
+			pstat.setString(3, keyword);
+			try(
+					ResultSet rs = pstat.executeQuery();
+					){
+					rs.next();
+					int result = rs.getInt("cnt");
+					return result;
+					// return rs.getInt(1);
+			}
+		}
+	}
+	
 	// board 전체 게시물 불러오기 임시 폐업
 //	public List<BoardDTO> list(int startNum, int endNum) throws Exception{
 //		String sql = "SELECT * FROM (SELECT row_number() over(order by seq desc) as rn, board.* FROM board) AS rn WHERE rn BETWEEN ? AND ?;";
