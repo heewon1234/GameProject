@@ -41,14 +41,11 @@ public class RankingBoardController extends HttpServlet {
 				
 			}
 			
-			else if(cmd.equals("/rankReadPoint.rankBoard")) {
-				
+			else if(cmd.equals("/rankReadPoint.rankBoard")) {			
 				 int newScore = Integer.parseInt(request.getParameter("score"));
 				 String game_name = request.getParameter("game_name");
 				 String rank_type = request.getParameter("rank_type");
-				 String id = "testEC";
-				 
-				 // String id = (String) session.getAttribute("loginID");
+				 String id = (String) session.getAttribute("loginID");
 				
 //				int newScore = 5;
 //				String game_name = "fullMoonBoat";
