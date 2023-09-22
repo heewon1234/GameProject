@@ -1,4 +1,4 @@
-class MainScene extends Phaser.Scene {
+	class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
     }
@@ -52,7 +52,7 @@ class MainScene extends Phaser.Scene {
             repeat: -1
         });
 
-        let bottomBoundary = this.add.rectangle(0, this.cameras.main.height - 20, this.cameras.main.width, 2, 0xFFFFFF);
+        let bottomBoundary = this.add.rectangle(0, this.cameras.main.height + 20, this.cameras.main.width, 2, 0xFFFFFF);
         bottomBoundary.setOrigin(0, 0);
 
         this.physics.add.existing(bottomBoundary, true);
@@ -60,7 +60,7 @@ class MainScene extends Phaser.Scene {
             enemy.destroy();
         });
 
-        let topBoundary = this.add.rectangle(0, this.cameras.main.height - 480, this.cameras.main.width, 2, 0xFFFFFF);
+        let topBoundary = this.add.rectangle(0, this.cameras.main.height - 520, this.cameras.main.width, 2, 0xFFFFFF);
         topBoundary.setOrigin(0, 0);
 
         this.physics.add.existing(topBoundary, true);
