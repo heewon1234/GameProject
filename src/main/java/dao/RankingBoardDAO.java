@@ -109,14 +109,15 @@ public class RankingBoardDAO {
 	};
 
 	// 기존에 기록이 있을 때 신기록을 변경하는 코드
-	public int update(int newScore, String ID) throws Exception {
-		String sql = "UPDATE rankingBoard SET score = ? WHERE id = ?;";
+	public int update(int newScore, String ID, String game_name) throws Exception {
+		String sql = "UPDATE rankingBoard SET score = ?, rank_date = NOW() WHERE id like ? and game_name like ?;";
 		try (
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
 			pstat.setInt(1, newScore);
 			pstat.setString(2, ID);
+			pstat.setString(3, game_name);
 			int result = pstat.executeUpdate();
 			return result;
 		}
