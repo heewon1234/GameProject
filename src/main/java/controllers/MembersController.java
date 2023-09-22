@@ -63,6 +63,11 @@ public class MembersController extends HttpServlet {
 			} else if(cmd.equals("/goToSignUp.members")) { // 회원 가입 페이지 창으로 이동
 				response.sendRedirect("/members/register.jsp");
 
+			} else if(cmd.equals("/delAccountPage.members")) { // 회원 탈퇴 페이지로 이동
+				String id = (String)request.getSession().getAttribute("loginID");
+				MembersDTO list = membersDAO.mypage(id);
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
 			} else if(cmd.equals("/memberOut.members")) { // 회원 탈퇴 버튼 클릭 시 
 
 				String id = (String)request.getSession().getAttribute("loginID");

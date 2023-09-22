@@ -24,6 +24,18 @@
                 text-decoration-line: none;
                 color: black;
             }
+
+            .row-alert {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                display: none;
+            }
+
+            .row-alert>div {
+                font-size: small;
+                padding: 0px;
+                display: flex;
+            }
         </style>
     </head>
 
@@ -65,6 +77,10 @@
                                 <input type="password" class="form-control update_list" id="verifyPassword"
                                     name="verifyPassword">
                             </div>
+                            <div class="row g-0 row-alert">
+                                <div class="col-6 sign-header"></div>
+                                <div class="col-6 sign-body verify-pw-alert alert"></div>
+                            </div>
                         </div>
 
                         <div class="mb-3 row">
@@ -78,16 +94,50 @@
             </div>
         </div>
         <script>
+            let inputPW = document.getElementById("password");
+            let inputPWC = document.getElementById("verifyPassword");
+            // rowAlert 배열
+            let rowAlert = document.getElementsByClassName("row-alert");
+
+            // password 확인 입력 시 유효성 검사
+            let pwcAlert = document.getElementsByClassName("verify-pw-alert")[0];
+            let ispwcPassed = false;
+            inputPWC.onkeyup = function (e) {
+                if (inputPWC.value == "") {
+                    rowAlert[0].setAttribute("style", "display:none");
+                    pwcAlert.innerHTML = "";
+                } else {
+                    rowAlert[0].setAttribute("style", "display: flex")
+                    if (inputPW.value != inputPWC.value) {
+                        pwcAlert.setAttribute("style", "color: red;");
+                        pwcAlert.innerHTML = "비밀번호가 다릅니다.";
+                        ispwcPassed = false;
+                    } else {
+                        pwcAlert.setAttribute("style", "color: blue;");
+                        pwcAlert.innerHTML = "비밀번호와 일치합니다.";
+                        ispwcPassed = true;
+                    }
+                }
+            }
 
             // 회원탈퇴 버튼 클릭
             $("#delete_btn").on("click", function () {
-                let con_result = confirm("정말로 회원 탈퇴 하시겠습니까?");
-
-                if (con_result == true) {
-                    location.href = "/memberOut.members";
+                if (inputPW.value != "${loginPassword}") {
+                    alert("비밀번호를 확인 해주십시오.")
+                    return false;
+                } else if (!ispwcPassed) {
+                    alert("비밀번호 재입력 칸을 확인 해주십시오.")
+                    return false;
                 } else {
-                	return false;
+                    let con_result = confirm("정말로 회원 탈퇴 하시겠습니까?");
+                    if (con_result == true) {
+                        location.href = "/memberOut.members";
+                    } else {
+                        return false;
+                    }
                 }
+
+
             });
 
             // 뒤로가기 버튼 클릭
