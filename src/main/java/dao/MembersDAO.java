@@ -128,7 +128,7 @@ public class MembersDAO {
 
             rs.next();
             String id = rs.getString("ID");
-            String password = rs.getString("PW");
+            String password = rs.getString("PASSWORD");
             String name = rs.getString("NAME");
             String phone = rs.getString("PHONE");
             String email = rs.getString("EMAIL");
@@ -161,7 +161,7 @@ public class MembersDAO {
 	}
    
     public String getPassword(String loginID) throws Exception {
-    	String sql = "SELECT PW FROM MEMBERS WHERE ID = ?";
+    	String sql = "SELECT PASSWORD FROM MEMBERS WHERE ID = ?";
     	
     	try (Connection con = this.getConnection();
    	         PreparedStatement pstat = con.prepareStatement(sql);) {
@@ -169,7 +169,7 @@ public class MembersDAO {
 
    	        try (ResultSet rs = pstat.executeQuery();) {
    	            if (rs.next()) {
-   	                return rs.getString("PW");
+   	                return rs.getString("PASSWORD");
    	            } else {
    	                // 해당 ID에 대한 사용자가 없을 경우 처리할 내용을 추가할 수 있습니다.
    	                return null;
