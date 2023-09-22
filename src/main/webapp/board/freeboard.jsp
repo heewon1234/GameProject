@@ -28,6 +28,11 @@
 				#footer {
 					background-color: #B1B2FF
 				}
+				
+				.page {
+					text-decoration: none;
+					color : black;
+				}
 			</style>
 		</head>
 
@@ -143,7 +148,7 @@
 										</ul>
 									</nav>
 								</div> -->
-								<div id="navi">
+								<div class="d-flex justify-content-center" id="navi">
 								</div>
 							</div>
 						</div>
@@ -184,11 +189,11 @@
 				if (startNavi == 1) { needPrev = false; }
 				if (endNavi == pageTotalCount) { needNext = false; }
 
-				if (needPrev) { $("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + (startNavi - 1) + "> < </a> "); }
+				if (needPrev) { $("#navi").append("<a class='page ms-1 me-1' href=/list.board?keyword=${keyword}&cPage=" + (startNavi - 1) + "> < </a> "); }
 				for (let i = startNavi; i <= endNavi; i++) {
-					$("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + i + ">" + i + "</a> ");
+					$("#navi").append("<a class='page ms-1 me-1' href=/list.board?keyword=${keyword}&cPage=" + i + ">" + i + "</a> ");
 				}
-				if (needNext) { $("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + (endNavi + 1) + ">> </a> "); }
+				if (needNext) { $("#navi").append("<a class='page ms-1 me-1' href=/list.board?keyword=${keyword}&cPage=" + (endNavi + 1) + ">> </a> "); }
 				// 페이지네이션 끝
 				
 				$("#write_btn").on("click", function () {
