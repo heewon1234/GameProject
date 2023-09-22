@@ -17,14 +17,26 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"
-	integrity="sha512-YQL0GVx/Too3vZjBl9plePRIYsRnd1s8N6QOvXPdZ+JMH2mtRTLQXGUDGjNW6zr1HUgcOIury67IvWe91oeEwQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/game/bounceball/bounceball_scene/playScene.js"></script>
-<script src="/game/bounceball/bounceball_scene/start.js"></script>
-<script src="/game/bounceball/bounceball_scene/gameover.js"></script>
-<script src="/game/bounceball/bounceball_scene/gameclear.js"></script>
+<script>
+            var gameProperties = {
+                screenWidth: 1200,
+                screenHeight: 600,
+
+                tileWidth: 25.6,
+                tileHeight: 25.6,
+
+                boardWidth: 9,
+                boardHeight: 9,
+
+                totalMines: 10
+            };
+        </script>
+<script src="/game/minesweeper/js/phaser.min.js"></script>
+<script src="/game/minesweeper/js/game.js"></script>
+<script src="/game/minesweeper/js/tile.js"></script>
+<script src="/game/minesweeper/js/board.js"></script>
+<script src="/game/minesweeper/js/timer.js"></script>
+<script src="/game/minesweeper/js/counter.js"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -45,16 +57,6 @@
 .dropdown:hover .dropdown-menu {
 	display: block;
 	margin-top: 0;
-}
-
-#wrapper {
-	width: 800px;
-	height: 600px;
-	margin: auto;
-}
-
-#score {
-	display: none;
 }
 </style>
 </head>
@@ -79,15 +81,15 @@
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">
 									<option value="#">Game</option>
-									<option value="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</option>
-									<option value="/game/bounceball/bounceball_main.jsp" selected>2.
+									<option value="/game/minesweeper/eazyMinesweeper.jsp" selected>1. 지뢰찾기</option>
+									<option value="/game/bounceball/bounceball_main.jsp">2.
 										바운스볼</option>
 									<option value="/game/flappyBird/flappyBird_main.jsp" >3.
 										플래피버드</option>
 									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
 										풀문보트</option>
 									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
-									<option value="/game/colorblind/colorblind.jsp">6. 컬러블라인드</option>
+									<option value="#">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -137,7 +139,7 @@
 									<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">초급</a></li>
 									<li><a class="dropdown-item" href="/game/minesweeper/normalMinesweeper.jsp">중급</a></li>
 									<li><a class="dropdown-item" href="/game/minesweeper/hardMinesweeper.jsp">고급</a></li>
-								</ul>
+									</ul>
 							<li class="nav-item"><a class="nav-link"
 								href="/game/bounceball/bounceball_main.jsp">바운스볼</a></li>
 							<li class="nav-item"><a class="nav-link"
@@ -149,13 +151,11 @@
 							<li class="nav-item"><a class="nav-link" href="/game/colorblind/colorblind.jsp">컬러블라인드</a></li>
 						</ul>
 					</div>
-					<h3 style="margin-top: 20px;">바운스볼</h3>
+					<h3 style="margin-top: 20px;">지뢰찾기 초급</h3>
 					<hr>
-					<div id="wrapper" align="center">
-						<input id="score">
-					</div>
+					<div id="wrapper" align="center"></div>
 					<div class="alert alert-light">
-						<h4 class="alert-heading">바운스볼</h4>
+						<h4 class="alert-heading">지뢰찾기</h4>
 						<hr>
 						<p class="mb-0">설명입니다.</p>
 					</div>
@@ -165,26 +165,10 @@
 		<div id="footer_container"></div>
 	</div>
 	<script>
-            let option = {
-                type:Phaser.AUTO,
-                parent:"wrapper",
-                width:"100%",
-                height:"100%",
-                physics:{
-                    default:"arcade",
-                    arcade:{
-                        gravity:{y:0},
-                        debug:false
-                    }
-                },
-                scene:[StartScene,GameClearScene,PlayScene,GameOverScene]
-            };
-    
-            let game = new Phaser.Game(option);
-            $(document).ready(function() {
-    			$("#footer_container").load("/commons/footer.html")
-    		});
-        </script>
+        $(document).ready(function() {
+			$("#footer_container").load("/commons/footer.html")
+		});
+    </script>
 </body>
 
 </html>

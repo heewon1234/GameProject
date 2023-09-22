@@ -23,7 +23,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/phaser3-rex-plugins@1.60.5/dist/rexvirtualjoystickplugin.min.js"></script>
 
-<script type="module" src="main.js"></script>
+
 
 <style>
 * {
@@ -75,7 +75,7 @@
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">
 									<option value="#">Game</option>
-									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</option>
 									<option value="/game/bounceball/bounceball_main.jsp">2.
 										바운스볼</option>
 									<option value="/game/flappyBird/flappyBird_main.jsp" >3.
@@ -130,9 +130,9 @@
 									class="btn" data-bs-toggle="dropdown" aria-expanded="false">
 									지뢰찾기</button>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">하급</a></li>
-									<li><a class="dropdown-item" href="#">중급</a></li>
-									<li><a class="dropdown-item" href="#">상급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">초급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/normalMinesweeper.jsp">중급</a></li>
+									<li><a class="dropdown-item" href="/game/minesweeper/hardMinesweeper.jsp">고급</a></li>
 								</ul>
 
 								<li class="nav-item"><a class="nav-link"
@@ -150,6 +150,7 @@
 				<h3 style="margin-top: 20px;">ColorBlind</h3>
 								<hr>
 					<div id="wrapper" align="center"></div>
+					<div id="point"></div>
 					<div class="alert alert-light">
 						<h4 class="alert-heading">ColorBlind</h4>
 						<hr>
@@ -163,6 +164,7 @@
 		</div>
 		<div id="footer_container"></div>
 	</div>
+	<script type="module" src="main.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#footer_container").load("/commons/footer.html")

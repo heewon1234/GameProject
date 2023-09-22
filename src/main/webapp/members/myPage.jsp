@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <!DOCTYPE html>
     <html>
 
@@ -60,7 +61,7 @@
                             <h3>
                                 ${mypageList.id}
                             </h3>
-                            ${mypageList.email1}@${mypageList.email2}
+                            ${mypageList.email}
                         </div>
                     </div>
                     <hr>
@@ -110,17 +111,16 @@
                         <div class="mb-3 row">
                             <label for="phone" class="col-sm-3 col-form-label">전화번호</label>
                             <div class="col-sm-3">
-
                                 <input type="text" class="form-control update_list" id="phone_head" name="phone_head"
-                                    value="${mypageList.phone1}" pattern="\d*" maxlength="3" readonly>
+                                    value="${fn:substring(mypageList.phone,0,3) }" pattern="\d*" maxlength="3" readonly>
                             </div>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control update_list" id="phone_body" name="phone_body"
-                                    value="${mypageList.phone2}" pattern="\d*" maxlength="4" readonly>
+                                    value="${fn:substring(mypageList.phone,3,7) }" pattern="\d*" maxlength="4" readonly>
                             </div>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control update_list" id="phone_tail" name="phone_tail"
-                                    value="${mypageList.phone3}" pattern="\d*" maxlength="4" readonly>
+                                    value="${fn:substring(mypageList.phone,7,11) }" pattern="\d*" maxlength="4" readonly>
                             </div>
                         </div>
                         <div class="row g-0 row-alert">
@@ -131,15 +131,16 @@
                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control update_list" id="email1" name="email1"
-                                    value="${mypageList.email1}" readonly>
+                                    value="${fn:split(mypageList.email,'@')[0]}" readonly>
                             </div>
 
                             <div class="col-sm-1">
                                 @
                             </div>
                             <div class="col-sm-4">
+                            
                                 <input type="text" class="form-control" id="email2" name="email2"
-                                    value="${mypageList.email2}" readonly>
+                                    value="${fn:split(mypageList.email,'@')[1]}" readonly>
                                 <select class="form-select" id="email2_dropdown" style="display: none;">
                                     <option selected>선택하세요</option>
                                     <option value="naver.com">naver.com</option>
@@ -157,8 +158,8 @@
                         <div class="mb-3 row">
                             <label for="postcode" class="col-sm-3 col-form-label">우편번호</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="postcode" name="postcode"
-                                    value="${mypageList.postcode}" readonly>
+                                <input type="text" class="form-control" id="postcode" name="zipcode"
+                                    value="${mypageList.zipcode}" readonly>
                             </div>
                             <div class="col-sm-3">
                                 <input type="button" class="btn btn-primary" id="postcode_btn" value="우편번호 찾기"

@@ -1,4 +1,4 @@
-	class MainScene extends Phaser.Scene {
+class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: "MainScene" });
     }
@@ -155,7 +155,7 @@
 
     update() {
         this.frame++;
-    
+
         let elapsedTime = this.time.now - this.startTime;
         let Time = elapsedTime / 1000;
 
@@ -220,6 +220,6 @@
             this.dragon.setVelocityX(250);
         }
 
-$("#point").html(Math.floor(this.score));
+        $("#point").html(Math.floor(this.score));
     }
 }

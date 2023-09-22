@@ -40,6 +40,7 @@ public class MembersController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
+		request.setCharacterEncoding("utf8");
 
 		MembersDAO membersDAO = MembersDAO.getInstance();
 		Gson gson = new Gson();
@@ -231,7 +232,7 @@ public class MembersController extends HttpServlet {
 				String id = (String)request.getSession().getAttribute("loginID");
 				MembersDTO list = membersDAO.mypage(id);
 				request.setAttribute("mypageList", list);
-				request.getRequestDispatcher("/members/mypage.jsp").forward(request, response);
+				request.getRequestDispatcher("/members/myPage.jsp").forward(request, response);
 
 			}
 
