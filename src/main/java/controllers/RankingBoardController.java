@@ -39,13 +39,17 @@ public class RankingBoardController extends HttpServlet {
 				
 			}
 			
-			else if(cmd.equals("/rankRead.rankBoard")) {
-				System.out.println("점수 확인");
+			else if(cmd.equals("/rankReadPoint.rankBoard")) {
+				
+				
 				
 				String score = request.getParameter("score");
+				String game_name = request.getParameter("game_name");
 				System.out.println(score);
 				String id = (String) session.getAttribute("loginID");
 				System.out.println(id);
+				List<RankingBoardDTO> Check = dao.rankThisGameCheck(game_name, id);
+				// RankingBoardDAO.rankUpdatePoint(score, loginID);
 				
 			}
 			
