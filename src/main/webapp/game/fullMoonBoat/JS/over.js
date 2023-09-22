@@ -12,14 +12,14 @@ class Over extends Phaser.Scene {
         console.log($("#point").html());
 
         $.ajax({
-            // url 어디로 갈지를 제일 먼저 ㅇㅇ
-            url: "/rankRead.rankBoard",
+            url: "/rankReadPoint.rankBoard",
+            // Point가 높을때 랭킹이 우선시 되는 경우에는  /rankReadPoint.rankBoard로 이동
+            // Point(Time)이 낮을 때 랭킹이 우선시 되는 경우에는 /rankReadTime.rankBoard으로 이동
 
-            // data에 키 값과 밸류를 넣으면 됨
             data: {
                 score: $("#point").html(),
+                game_name: "fullMoonBoat"
             },
-            // type 어떻게 보낼지 정할 수 있음 get이냐 post냐 안 쓰면 디폴트는 get 방식임
             method: "GET"
         });
 

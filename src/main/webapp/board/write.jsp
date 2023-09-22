@@ -59,6 +59,7 @@
 							<div class="d-flex align-items-center justify-content-center"
 								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
 								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
+								
 								<select class="form-select" aria-label="Default select example"
 									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
 									<option selected>Game</option>
@@ -70,6 +71,10 @@
 									<option value="6">6.컬러블라인드</option>
 								</select>
 							</div>
+						</div>
+						<div
+							class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
+							<a class="nav-link" href="#"><img src="/UI_img/log-out.svg"></a>
 						</div>
 					</div>
 				</div>
