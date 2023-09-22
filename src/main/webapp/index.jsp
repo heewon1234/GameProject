@@ -53,7 +53,7 @@
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">
 									<option value="#" selected>Game</option>
-									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</option>
 									<option value="/game/bounceball/bounceball_main.jsp">2.
 										바운스볼</option>
 									<option value="/game/flappyBird/flappyBird_main.jsp">3.
@@ -105,7 +105,7 @@
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/board/gameBoard.jsp" style="text-decoration: none;">지뢰찾기</a>
+													<a class="gtext" href="/game/minesweeper/eazyMinesweeper.jsp" style="text-decoration: none;">지뢰찾기</a>
 												</figcaption>
 											</figure>
 										</div>
