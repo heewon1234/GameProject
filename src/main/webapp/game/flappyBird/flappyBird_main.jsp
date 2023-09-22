@@ -63,7 +63,7 @@
 					<div class="row">
 						<div
 							class="col-md-2 d-flex align-items-center justify-content-center">
-							<img src="/UI_img/marvlestudio.jpg">
+							<a href="/index.jsp"><img src="/UI_img/marvlestudio.jpg"></a>
 						</div>
 
 						<div class="col-md-3 p-0">
@@ -83,7 +83,7 @@
 									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
 										풀문보트</option>
 									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
-									<option value="#">6. 컬러블라인드</option>
+									<option value="/game/colorblind/colorblind.jsp">6. 컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -114,9 +114,9 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/board/gameBoard.jsp">게임</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/board/freeboard.jsp">자유게시판</a></li>
+							href="/list.board">자유게시판</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+							href="/list.rankBoard">랭킹게시판</a></li>
 					</ul>
 				</div>
 
@@ -143,7 +143,7 @@
 								href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀문보트</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/game/dragon/dragon.jsp">드래곤 플라이트</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">컬러블라인드</a></li>
+							<li class="nav-item"><a class="nav-link" href="/game/colorblind/colorblind.jsp">컬러블라인드</a></li>
 						</ul>
 					</div>
 					<h3 style="margin-top: 20px;">플래피버드</h3>

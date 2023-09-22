@@ -43,7 +43,7 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-md-2 d-flex align-items-center justify-content-center">
-									<img src="/UI_img/marvlestudio.jpg">
+									<a href="/index.jsp"><img src="/UI_img/marvlestudio.jpg"></a>
 								</div>
 
 								<div class="col-md-2 p-0">
@@ -63,7 +63,7 @@
 									</div>
 								</div>
 								<div class="col-md-8 ml-auto d-flex align-items-center justify-content-end p-0">
-									<a class="nav-link" href="#"><img src="/UI_img/log-out.svg"></a>
+									<a class="nav-link" href="/logout.members"><img src="/UI_img/log-out.svg"></a>
 								</div>
 
 							</div>
@@ -82,8 +82,8 @@
 								style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
 								<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-								<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-								<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+								<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
+								<li class="nav-item"><a class="nav-link" href="/list.rankBoard">랭킹게시판</a></li>
 							</ul>
 						</div>
 
