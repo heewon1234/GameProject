@@ -497,6 +497,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			});
 		});
 
+		let isEmailVerified = false;
+
 		// 인증 코드 확인 버튼 클릭 이벤트 핸들러
 		$("#btn-verify-code").on("click", function() {
 			let enteredCode = $("#input-verification-code").val();
@@ -512,14 +514,16 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 					if (data === "success") {
 						// 인증 코드 일치
 						$(".verification-alert").text("인증되었습니다.");
-						// 인증이 성공한 경우 다음 단계로 진행하는 로직을 추가하세요.
+						isEmailVerified = true;
 					} else {
 						// 인증 코드 불일치
 						$(".verification-alert").text("인증 코드가 일치하지 않습니다.");
+						isEmailVerified = false;
 					}
 				},
 				error : function() {
 					$(".verification-alert").text("서버와의 통신 중 오류가 발생했습니다.");
+					isEmailVerified = false;
 				}
 			});
 		});
@@ -559,37 +563,40 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
 
 			if (!idRegExr.test(inputID.value)) {
-				alert("ID를 확인 해주십시오.")
+				alert("ID를 확인 해주십시오.");
 				return false;
 			} else if (!duplCheck) {
-				alert("ID 중복 검사를 해주십시오.")
+				alert("ID 중복 검사를 해주십시오.");
 				return false;
 			} else if (!pwRegExr.test(inputPW.value)) {
-				alert("비밀번호를 확인 해주십시오.")
+				alert("비밀번호를 확인 해주십시오.");
 				return false;
 			} else if (!ispwcPassed) {
-				alert("비밀번호 재입력 칸을 확인 해주십시오.")
+				alert("비밀번호 재입력 칸을 확인 해주십시오.");
 				return false;
 			} else if (!nameRegExr.test(inputName.value)) {
-				alert("이름을 확인 해주십시오.")
+				alert("이름을 확인 해주십시오.");
 				return false;
 			} else if (!phoneHeadRegExr.test(inputPhoneHead.value)
 					&& !phoneRegExr.test(inputPhoneBody.value)
 					&& !phoneRegExr.test(inputPhoneTail.value)) {
-				alert("전화번호를 확인 해주십시오.")
+				alert("전화번호를 확인 해주십시오.");
 				return false;
 			} else if (!emailRegExr.test(inputEmail.value + "@"
 					+ inputEmail2.value)) {
-				alert("이메일 주소를 확인 해주십시오.")
+				alert("이메일 주소를 확인 해주십시오.");
 				return false;
 			} else if ($("#input-post").val() == ""
 					|| $("#input-addr-1").val() == "") {
-				alert("주소를 확인 해주십시오.")
+				alert("주소를 확인 해주십시오.");
+				return false;
+			} else if (!isEmailVerified) {
+				alert("이메일 인증이 필요합니다."); // Email verification check
 				return false;
 			} else {
-				return true;
+				return true; // Allow form submission if all checks pass
 			}
-		}
+		};
 
 		// RESET 버튼 클릭 시
 		btnReset.onclick = function() {

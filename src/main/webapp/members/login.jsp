@@ -58,7 +58,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 						src="/UI_img/lock.svg" alt="lockImg"> 비밀번호</label>
 					<div class="col-sm-8 p-0">
 						<input type="password" class="form-control" id="inputPassword"
-							name="pw">
+							name="password">
 					</div>
 				</div>
 
