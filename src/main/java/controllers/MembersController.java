@@ -51,13 +51,26 @@ public class MembersController extends HttpServlet {
 				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 				String name = request.getParameter("name");
 				String phone = request.getParameter("phone_head") + request.getParameter("phone_body") + request.getParameter("phone_tail");
-				String email = request.getParameter("email");
+				String email1 = request.getParameter("email1");
+				String email2 = request.getParameter("email2");
+				String email = email1+"@"+email2;
 				String zipcode = request.getParameter("zipcode");
 				String address1 = request.getParameter("address1");
 				String address2 = request.getParameter("address2");
 
-				// Redirect to the verification page
-				response.sendRedirect("/index.jsp");
+				MembersDTO membersDTO = new MembersDTO(id, password, name, phone, email, zipcode, address1, address2, null, null);
+
+				int result = membersDAO.insert(membersDTO);
+
+				System.out.println(result);
+
+				if (result > 0) {
+					System.out.println("회원가입 성공");
+					response.sendRedirect("/index.jsp");
+				} else {
+					response.sendRedirect("/error.jsp");
+				}
+
 			}
 			else if(cmd.equals("/idDupleCheck.members")) {
 				String id = request.getParameter("id");
@@ -167,6 +180,8 @@ public class MembersController extends HttpServlet {
 
 			} else if(cmd.equals("/goToSignUp.members")) { // 회원 가입 페이지 창으로 이동
 
+				response.sendRedirect("/members/register.jsp");
+
 			} else if(cmd.equals("/delAccountPage.members")) { // 회원 탈퇴 페이지로 이동
 				String id = (String)request.getSession().getAttribute("loginID");
 				String loginPassword = membersDAO.getPassword(id);
@@ -181,15 +196,15 @@ public class MembersController extends HttpServlet {
 			} else if(cmd.equals("/idSearch.members")) { // 아이디 찾기 
 
 
-
 			} else if(cmd.equals("/goToIdSearch.members")) {
-				response.sendRedirect("/");
+				response.sendRedirect("/members/id_Search.jsp");
+
 			} else if (cmd.equals("/pwSearch.members")) {
+
 			}
 
-
 			else if(cmd.equals("/goToPwSearch.members")) {
-				//response.sendRedirect("/");
+				response.sendRedirect("/members/pw_Search.jsp");
 			} else if(cmd.equals("/update.members")) { // 마이페이지 - 내 정보 수정
 
 				request.setCharacterEncoding("utf8");
