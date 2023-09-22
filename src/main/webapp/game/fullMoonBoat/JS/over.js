@@ -13,12 +13,10 @@ class Over extends Phaser.Scene {
 
         $.ajax({
             url: "/rankReadPoint.rankBoard",
-            // Point가 높을때 랭킹이 우선시 되는 경우에는  /rankReadPoint.rankBoard로 이동
-            // Point(Time)이 낮을 때 랭킹이 우선시 되는 경우에는 /rankReadTime.rankBoard으로 이동
-
             data: {
                 score: $("#point").html(),
-                game_name: "fullMoonBoat"
+                game_name: "fullMoonBoat",
+                rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
             },
             method: "GET"
         });
