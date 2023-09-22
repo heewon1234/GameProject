@@ -43,23 +43,66 @@ public class RankingBoardController extends HttpServlet {
 			
 			else if(cmd.equals("/rankReadPoint.rankBoard")) {
 				
-				// String score = request.getParameter("score");
-				// String game_name = request.getParameter("game_name");
-				// String id = (String) session.getAttribute("loginID");
+				 int newScore = Integer.parseInt(request.getParameter("score"));
+				 String game_name = request.getParameter("game_name");
+				 String rank_type = request.getParameter("rank_type");
+				 String id = "testEC";
+				 
+				 // String id = (String) session.getAttribute("loginID");
 				
-				String game_name = "fullMoonBoat";
-				String id = "dldidsla13";
+//				int newScore = 5;
+//				String game_name = "fullMoonBoat";
+//				String id = "dldidsla13";
+//				String rank_type = "point";
+				
 				List<RankingBoardDTO> Check = dao.thisGameRankCheck(game_name, id);
 				
 				int isRank = Check.size();
-				System.out.println(isRank);
+				boolean updateCheck = false;
 				
-				if(isRank > 0) {
-					System.out.println(Check.get(2).getScore());
+				if (rank_type.equals("point")) {
+					System.out.println("포인트 타입임");
+					if(isRank > 0) {
+						int oriScore = Check.get(0).getScore();
+						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
+						if(newScore > oriScore) {
+							System.out.println("업데이트 들어가자");
+							dao.update(newScore, id);
+							updateCheck = true; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
+						}
+						else {
+							System.out.println("기록이 꾸져서 신기록 달성 못함 ㅋ");
+							// 신기록 달성에 실패한거임 ㅇㅇ..
+							// updateCheck 홈페이지로 날려줘서 AJAX로 False 되면 아무 일도 없게 하면 됨 
+						}
+					}
+					else {
+						// 기존 기록이 없는 경우로 새로 등록 해줘야함 
+						System.out.println("신기록 등록 하겠음.");
+						dao.insert(id, newScore, game_name);
+					}
 				}
-				else {
-					System.out.println("값이 없음.");
+				
+				else if(rank_type.equals("time")) {
+					System.out.println("타임 타입임");
+					if(isRank > 0) {
+						int oriScore = Check.get(0).getScore();
+						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
+						if(newScore < oriScore) {
+							System.out.println("업데이트 들어가자");
+							dao.update(newScore, id);
+							updateCheck = true; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
+						}
+					}
+					else {
+						System.out.println("값이 없음.");
+						// updateCheck 홈페이지로 날려줘서 AJAX로 False 되면 아무 일도 없게 하면 됨 
+					}
 				}
+				
+				
+				
+
 				
 				
 				// RankingBoardDAO.rankUpdatePoint(score, loginID);
