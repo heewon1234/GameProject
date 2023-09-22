@@ -4,10 +4,11 @@ class GameOverScene extends Phaser.Scene {
         super({ key: "GameOverScene" });
     }
     preload() {
-
+        this.load.image("background", "/game/dragon/img/01.png");
     }
     create() {
-	const pointValue = $("#point").html();
+
+        const pointValue = $("#point").html();
         console.log($("#point").html());
 
         $.ajax({
@@ -19,9 +20,11 @@ class GameOverScene extends Phaser.Scene {
             },
             method: "GET"
         });
+
+        this.back = this.add.tileSprite(0, 0, 400, 500, "background").setOrigin(0, 0);
         this.add.text(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 2 -40,
+            this.cameras.main.height / 2 - 40,
             "Game Over",
             { fontSize: "50px", fill: "#FFFFFF" }
         ).setOrigin(0.5);
@@ -30,16 +33,18 @@ class GameOverScene extends Phaser.Scene {
             this.cameras.main.width / 2,
             this.cameras.main.height / 2 + 40,
             "Restart",
-            { fontSize: "30px" }
+            { fontSize: "30px", color: "black" }
         ).setOrigin(0.5).setInteractive().setPadding(10); // setInteractive 클릭 이벤트\
 
+
+        restartBtn.setBackgroundColor("#FFFFFF");
         restartBtn.on("pointerover", () => {
-            restartBtn.setBackgroundColor("#280972");
+            restartBtn.setBackgroundColor("#A9F5E1");
             this.game.canvas.style.cursor = "pointer";
         });
 
         restartBtn.on("pointerout", () => {
-            restartBtn.setBackgroundColor("#000000");
+            restartBtn.setBackgroundColor("#FFFFFF");
             this.game.canvas.style.cursor = "default";
         });
 
