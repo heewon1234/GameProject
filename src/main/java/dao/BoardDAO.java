@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.BoardDTO;
-// 주석
+
 public class BoardDAO {
 
 	private static BoardDAO instance; 
