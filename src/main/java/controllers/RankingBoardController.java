@@ -64,7 +64,7 @@ public class RankingBoardController extends HttpServlet {
 						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
 						if(newScore > oriScore) {
 							System.out.println("업데이트 들어가자");
-							dao.update(newScore, id);
+							dao.update(newScore, id, game_name);
 							updateCheck = true; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
 						}
 						else {
@@ -87,7 +87,7 @@ public class RankingBoardController extends HttpServlet {
 						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
 						if(newScore < oriScore) {
 							System.out.println("업데이트 들어가자");
-							dao.update(newScore, id);
+							dao.update(newScore, id, game_name);
 							updateCheck = true; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
 						}
 					}
