@@ -15,6 +15,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+        <!-- SHA 512 -->
+        <script src="/commons/sha512.js" type="text/javascript"></script>
+
         <style>
             body {
                 padding-top: 60px;
@@ -122,7 +125,8 @@
 
             // 회원탈퇴 버튼 클릭
             $("#delete_btn").on("click", function () {
-                if (inputPW.value != "${loginPassword}") {
+                
+                if (hex_sha512(inputPW.value) != "${loginPassword}") {
                     alert("비밀번호를 확인 해주십시오.")
                     return false;
                 } else if (!ispwcPassed) {
