@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"
         integrity="sha512-YQL0GVx/Too3vZjBl9plePRIYsRnd1s8N6QOvXPdZ+JMH2mtRTLQXGUDGjNW6zr1HUgcOIury67IvWe91oeEwQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -26,6 +27,7 @@
     <div id="container">
 
     </div>
+    <div id="point"></div>
 
     <script>
         let option = {
@@ -37,7 +39,7 @@
                 default: "arcade", // "matter" : 디테일한 물리력 설정 가능
                 arcade: {
                     gravity: { y: 0 },
-                    debug: true
+                    debug: false
                 }
             },
             scene: [StartScene,MainScene, GameOverScene] // scene: [클래스명]
