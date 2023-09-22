@@ -122,7 +122,7 @@
 						<li class="nav-item"><a class="nav-link"
 							href="/board/gameBoard.jsp">게임</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="/board/freeboard.jsp">자유게시판</a></li>
+							href="/board/list.board">자유게시판</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 					</ul>
