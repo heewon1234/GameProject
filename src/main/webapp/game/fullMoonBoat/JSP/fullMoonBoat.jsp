@@ -58,6 +58,10 @@
 #score {
 	display: none;
 }
+
+#point {
+display: none;
+}
 </style>
 </head>
 
