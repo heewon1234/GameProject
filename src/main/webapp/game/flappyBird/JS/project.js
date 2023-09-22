@@ -10,6 +10,7 @@ class Project extends Phaser.Scene {
         this.isJumping = false;
         this.jumpTimer = null;
         this.cnt = 0;
+        this.frame = 0;
     }
 
     preload() {
@@ -146,7 +147,6 @@ class Project extends Phaser.Scene {
     }
 
     gameOver = () => {
-        alert(`Time: ${this.elapsedTime} seconds`);
         this.backgroundMusic.pause(); // 음악 일시 중지
         this.scene.start("GameOverScene");
     }
@@ -161,6 +161,8 @@ class Project extends Phaser.Scene {
     }
 
     update() {
+	this.frame++;
+	$("#point").html(Math.floor(this.frame / 60));
         this.updateCnt();
         this.back.tilePositionX += 3;
         if (this.topBoxes && this.downBoxes) {

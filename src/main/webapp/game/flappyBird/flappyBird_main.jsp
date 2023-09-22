@@ -148,6 +148,7 @@
 					</div>
 					<h3 style="margin-top: 20px;">플래피버드</h3>
 					<hr>
+					<div id="point"></div>
 					<div id="wrapper" align="center">
 						<input id="score">
 					</div>
