@@ -40,6 +40,7 @@ public class MembersController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
+		request.setCharacterEncoding("utf8");
 
 		MembersDAO membersDAO = MembersDAO.getInstance();
 		Gson gson = new Gson();
