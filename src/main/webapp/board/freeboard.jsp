@@ -86,10 +86,10 @@
 
 						<div id="bottom" class="p-3 mt-2">
 							<div class="d-flex pb-1 justify-content-end">
-								<form class="d-flex pb-3" role="search" style="width: 250px;">
+								<form class="d-flex pb-3" role="search" style="width: 250px;" method="get" id="searchForm">
 									<input class="form-control me-2" type="search" placeholder="Search"
-										aria-label="Search">
-									<button class="btn btn-outline-success" type="submit">Search</button>
+										aria-label="Search" id="input_search" name="keyword">
+									<button class="btn btn-outline-success" type="button" id="btn_search">Search</button>
 								</form>
 							</div>
 							<div id="title" class="p-2"
@@ -156,40 +156,40 @@
 			$(document).ready(function () {
 	            $("#footer_container").load("../commons/footer.html")
 	        });
-				// 페이지네이션(지금은 데이터가 없어서 오류 나기 때문에 주석 처리 했습니다.)
-				// let recordTotalCount = ${ recordTotalCount };
-				// let recordCountPerPage = ${ recordCountPerPage };
-				// let naviCountPerPage = ${ naviCountPerPage };
+				// 페이지네이션
+				let recordTotalCount = ${ recordTotalCount };
+				let recordCountPerPage = ${ recordCountPerPage };
+				let naviCountPerPage = ${ naviCountPerPage };
 
 				// // 총 페이지 개수
-				// let pageTotalCount = 0;
-				// let latestPage = ${ latestPage };
+				let pageTotalCount = 0;
+				let latestPage = ${ latestPage };
 
-				// if (recordTotalCount % recordCountPerPage > 0) {
-				// 	pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage)) + 1;
-				// } else {
-				// 	pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage));
-				// }
+				if (recordTotalCount % recordCountPerPage > 0) {
+					pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage)) + 1;
+				} else {
+					pageTotalCount = Math.floor((recordTotalCount / recordCountPerPage));
+				}
 
-				// let startNavi = Math.floor((latestPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
-				// let endNavi = startNavi + (naviCountPerPage - 1);
+				let startNavi = Math.floor((latestPage - 1) / naviCountPerPage) * naviCountPerPage + 1;
+				let endNavi = startNavi + (naviCountPerPage - 1);
 
-				// if (endNavi > pageTotalCount) {
-				// 	endNavi = pageTotalCount;
-				// }
+				if (endNavi > pageTotalCount) {
+					endNavi = pageTotalCount;
+				}
 
-				// let needPrev = true;
-				// let needNext = true;
+				let needPrev = true;
+				let needNext = true;
 
-				// if (startNavi == 1) { needPrev = false; }
-				// if (endNavi == pageTotalCount) { needNext = false; }
+				if (startNavi == 1) { needPrev = false; }
+				if (endNavi == pageTotalCount) { needNext = false; }
 
-				// if (needPrev) { $("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + (startNavi - 1) + "> < </a> "); }
-				// for (let i = startNavi; i <= endNavi; i++) {
-				// 	$("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + i + ">" + i + "</a> ");
-				// }
-				// if (needNext) { $("#navi").append("<a href=/list.board?searchItem=${sItem}&cPage=" + (endNavi + 1) + ">> </a> "); }
-				// 페이지네이션
+				if (needPrev) { $("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + (startNavi - 1) + "> < </a> "); }
+				for (let i = startNavi; i <= endNavi; i++) {
+					$("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + i + ">" + i + "</a> ");
+				}
+				if (needNext) { $("#navi").append("<a href=/list.board?keyword=${keyword}&cPage=" + (endNavi + 1) + ">> </a> "); }
+				// 페이지네이션 끝
 				
 				$("#write_btn").on("click", function () {
                     location.href = "/board/write.jsp";
@@ -197,6 +197,13 @@
                 $("#home_btn").on("click", function () {
                     location.href = "/index.jsp";
                 });
+                $("#btn_search").on("click", function() {
+                	if($("#input_search").val() == "") {
+                		return false;
+                	}
+                	$("#searchForm").submit();
+                })
+                
 			</script>
 		</body>
 
