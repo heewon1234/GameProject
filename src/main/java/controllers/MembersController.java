@@ -26,7 +26,7 @@ public class MembersController extends HttpServlet {
 
 		try {
 			if(cmd.equals("/insert.members")) { // 회원가입
-
+// 임시 주석
 				String id = request.getParameter("id");
 				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 				String name = request.getParameter("name");
