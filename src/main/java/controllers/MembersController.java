@@ -165,10 +165,14 @@ public class MembersController extends HttpServlet {
 				request.getSession().invalidate(); // 사용자의 키로 저장되어 있던 정보 다 제거
 				response.sendRedirect("/index.jsp");
 
-			} else if(cmd.equals("/goToSignUp")) { // 회원 가입 페이지 창으로 이동
+			} else if(cmd.equals("/goToSignUp.members")) { // 회원 가입 페이지 창으로 이동
 
+			} else if(cmd.equals("/delAccountPage.members")) { // 회원 탈퇴 페이지로 이동
+				String id = (String)request.getSession().getAttribute("loginID");
+				String loginPassword = membersDAO.getPassword(id);
+				request.setAttribute("loginPassword", loginPassword);
+				request.getRequestDispatcher("/members/deleteAccount.jsp").forward(request, response);
 			} else if(cmd.equals("/memberOut.members")) { // 회원 탈퇴 버튼 클릭 시 
-
 				String id = (String)request.getSession().getAttribute("loginID");
 				int result = membersDAO.delAccount(id);
 				request.getSession().invalidate();
