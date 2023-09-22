@@ -94,8 +94,8 @@ public class RankingBoardDAO {
 		} 
 	}
 	
-	public List<RankingBoardDTO> rankThisGameCheck(String game_name, String id) throws Exception {
-		String sql = "select * from (select row_number() over(order by seq asc) as number, rankingBoard.* from rankingBoard) as sub where game_name like ?' and id like ?;";
+	public List<RankingBoardDTO> thisGameRankCheck(String game_name, String id) throws Exception {
+		String sql = "select * from (select row_number() over(order by seq asc) as number, rankingBoard.* from rankingBoard) as sub where game_name like ? and id like ?;";
 		List<RankingBoardDTO> list = new ArrayList<>();
 
 		try(Connection con = this.getConnection();
@@ -103,7 +103,6 @@ public class RankingBoardDAO {
 			pstat.setString(1,game_name);
 			pstat.setString(2,id); 
 			try(ResultSet rs = pstat.executeQuery();){
-				
 				
 				while(rs.next()) {
 					int seq = rs.getInt("seq");

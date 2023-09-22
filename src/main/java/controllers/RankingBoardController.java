@@ -21,12 +21,14 @@ public class RankingBoardController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		RankingBoardDAO rnkdao = RankingBoardDAO.getInstance();
 		HttpSession session = request.getSession();
+		RankingBoardDAO dao = RankingBoardDAO.getInstance();
+		
 		
 		try {
 			 
 			if(cmd.equals("/list.rankBoard")) { // 게시물 리스트 가져오기
-				//?????????????????????????????????????????
-				String id = (String)request.getSession().getAttribute("loginID");
+				System.out.println("옴");
+				String id = (String) session.getAttribute("loginID");
 				String gname = request.getParameter("game_name");
 				RankingBoardDTO myRanking = rnkdao.selectByGName(id, gname);
 				List<RankingBoardDTO> rankingList = rnkdao.selectAll(gname);
@@ -40,12 +42,26 @@ public class RankingBoardController extends HttpServlet {
 			}
 			
 			else if(cmd.equals("/rankReadPoint.rankBoard")) {
-				String score = request.getParameter("score");
-				String game_name = request.getParameter("game_name");
-				System.out.println(score);
-				String id = (String) session.getAttribute("loginID");
-				System.out.println(id);
-				List<RankingBoardDTO> Check = dao.rankThisGameCheck(game_name, id);
+				
+				// String score = request.getParameter("score");
+				// String game_name = request.getParameter("game_name");
+				// String id = (String) session.getAttribute("loginID");
+				
+				String game_name = "fullMoonBoat";
+				String id = "dldidsla13";
+				List<RankingBoardDTO> Check = dao.thisGameRankCheck(game_name, id);
+				
+				int isRank = Check.size();
+				System.out.println(isRank);
+				
+				if(isRank > 0) {
+					System.out.println(Check.get(2).getScore());
+				}
+				else {
+					System.out.println("값이 없음.");
+				}
+				
+				
 				// RankingBoardDAO.rankUpdatePoint(score, loginID);
 				
 			}
