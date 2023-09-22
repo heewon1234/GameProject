@@ -55,6 +55,7 @@
 		</style>
 	</head>
 
+<<<<<<< HEAD
 	<body>
 		<div class="container-fluid p-0">
 			<div id="head">
@@ -64,6 +65,45 @@
 							<div class="col-md-2 d-flex align-items-center justify-content-center">
 								<a href="/index.jsp"><img src="/UI_img/marvlestudio.jpg"></a>
 							</div>
+=======
+<body>
+	<div class="container-fluid p-0">
+		<div id="head">
+			<div>
+				<div class="container">
+					<div class="row">
+						<div
+							class="col-md-2 d-flex align-items-center justify-content-center">
+							<img src="/UI_img/marvlestudio.jpg">
+						</div>
+
+						<div class="col-md-2 p-0">
+							<div class="d-flex align-items-center justify-content-center"
+								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
+								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
+								<select class="form-select" aria-label="Default select example"
+									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
+									onchange="location = this.value;">
+									<option value="#">Game</option>
+									<option value="/board/gameBoard.jsp">1. 지뢰찾기</option>
+									<option value="/game/bounceball/bounceball_main.jsp">2.
+										바운스볼</option>
+									<option value="/game/flappyBird/flappyBird_main.jsp">3.
+										플래피버드</option>
+									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
+										풀문보트</option>
+									<option value="/game/dragon/dragon.jsp" selected>5. 드래곤 플라이트</option>
+									<option value="/game/colorblind/colorblind.jsp">6.
+										컬러블라인드</option>
+								</select>
+							</div>
+						</div>
+						<div
+							class="col-md-7 ml-auto d-flex align-items-center justify-content-end p-0">
+							<a class="nav-link" href="/logout.members"><img
+								src="/UI_img/log-out.svg"></a>
+						</div>
+>>>>>>> e58465e763858c2aa6ea6e7c519abf3d6a28d917
 
 							<div class="col-md-3 p-0">
 								<div class="d-flex align-items-center justify-content-center"
@@ -106,10 +146,21 @@
 				<div id="center" class="mt-4" style="background-color: #FFF9B0; text-align: center;">
 					<ul class="nav nav-pills nav-fill"
 						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
+<<<<<<< HEAD
 						<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+=======
+						<li class="nav-item"><a class="nav-link"
+							href="/members/myPage.jsp">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/gameBoard.jsp">게임</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/list.board">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+>>>>>>> e58465e763858c2aa6ea6e7c519abf3d6a28d917
 					</ul>
 				</div>
 

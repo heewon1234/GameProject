@@ -4,24 +4,29 @@ class StartScene extends Phaser.Scene {
         super({ key: "StartScene" });
     }
     preload() {
-
+        this.load.image("background", "/game/dragon/img/01.png");
+        this.load.image("logo", "/game/dragon/img/logo.png");
     }
     create() {
+        this.back = this.add.tileSprite(0, 0, 400, 500, "background").setOrigin(0, 0);
+
+        this.physics.add.sprite(this.cameras.main.width / 2, this.cameras.main.height / 2 - 140, "logo").setOrigin(0.5);
 
         let startBtn = this.add.text(
             this.cameras.main.width / 2,
-            this.cameras.main.height / 2,
+            this.cameras.main.height / 2 + 100,
             "Start",
-            { fontSize: "30px" }
+            { fontSize: "30px", color: "black" }
         ).setOrigin(0.5).setInteractive().setPadding(10); // setInteractive 클릭 이벤트\
 
+        startBtn.setBackgroundColor("#FFFFFF");
         startBtn.on("pointerover", () => {
-            startBtn.setBackgroundColor("#280972");
+            startBtn.setBackgroundColor("#A9F5E1");
             this.game.canvas.style.cursor = "pointer";
         });
 
         startBtn.on("pointerout", () => {
-            startBtn.setBackgroundColor("#000000");
+            startBtn.setBackgroundColor("#FFFFFF");
             this.game.canvas.style.cursor = "default";
         });
 
@@ -30,6 +35,6 @@ class StartScene extends Phaser.Scene {
         });
     }
     update() {
-
+        this.back.tilePositionY -= 1;
     }
 }
