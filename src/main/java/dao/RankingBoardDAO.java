@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.BoardDTO;
 import dto.RankingBoardDTO;
 import dto.ReplyDTO;
 
@@ -92,4 +93,54 @@ public class RankingBoardDAO {
 			}
 		} 
 	}
+	
+	public List<RankingBoardDTO> rankThisGameCheck(String game_name, String id) throws Exception {
+		String sql = "select * from (select row_number() over(order by seq asc) as number, rankingBoard.* from rankingBoard) as sub where game_name like ?' and id like ?;";
+		List<RankingBoardDTO> list = new ArrayList<>();
+
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1,game_name);
+			pstat.setString(2,id); 
+			try(ResultSet rs = pstat.executeQuery();){
+				
+				
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String id_in = rs.getString("id");
+					String game_name_in = rs.getString("game_name");
+					int score = rs.getInt("score");
+					Timestamp rank_date = rs.getTimestamp("rank_date");
+					list.add(new RankingBoardDTO(seq, id_in, game_name_in, score, rank_date));
+					
+				}
+				return list;
+			}
+		}
+	
+		
+	};
+	
+//	public boolean rankUpdatePoint(RankingBoardDTO dto) {
+//		String sql = "update rankingBoard set title=?, contents=?, game_name=? where seq = ?;" ;
+//
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//		}
+//
+//		catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//
+//		try(
+//				Connection con = this.getConnection();
+//				PreparedStatement pstat = con.prepareStatement(sql);
+//				) 
+//		{
+//			pstat.setString(1, dto.getTitle());
+//			pstat.setString(2, dto.getContents());
+//			return pstat.executeUpdate();
+//		}
+//
+//	}
 }
