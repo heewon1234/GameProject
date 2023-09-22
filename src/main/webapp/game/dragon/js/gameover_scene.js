@@ -7,6 +7,18 @@ class GameOverScene extends Phaser.Scene {
 
     }
     create() {
+	const pointValue = $("#point").html();
+        console.log($("#point").html());
+
+        $.ajax({
+            url: "/rankReadPoint.rankBoard",
+            data: {
+                score: $("#point").html(),
+                game_name: "fullMoonBoat",
+                rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+            },
+            method: "GET"
+        });
         this.add.text(
             this.cameras.main.width / 2,
             this.cameras.main.height / 2 -40,
