@@ -46,7 +46,6 @@ class Project extends Phaser.Scene {
             this.backgroundMusic.play();
         }
     }
-
         // 게임 요소 초기화
         this.cursors = this.input.keyboard.createCursorKeys();
         this.back = this.add.tileSprite(0, 0, 1000, 478, "background6");

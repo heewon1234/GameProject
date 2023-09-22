@@ -93,7 +93,6 @@ public class BoardDAO {
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 				) 
-
 		{
 			pstat.setString(1, dto.getWriter());
 			pstat.setString(2, dto.getTitle());

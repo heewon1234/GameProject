@@ -110,7 +110,6 @@ public class BoardController extends HttpServlet {
 //					}
 //				}
 
-			
 			} else if(cmd.equals("/goToWrite.board")) { // 글쓰기 창으로 이동
 //				response.sendRedirect("/");
 			
