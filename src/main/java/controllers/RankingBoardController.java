@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import dao.RankingBoardDAO;
 import dto.RankingBoardDTO;
 
@@ -24,7 +26,7 @@ public class RankingBoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		RankingBoardDAO dao = RankingBoardDAO.getInstance();
 		PrintWriter pw = response.getWriter();
-
+		Gson gson = new Gson();
 
 		try {
 
@@ -107,10 +109,13 @@ public class RankingBoardController extends HttpServlet {
 			}
 
 			else if(cmd.equals("/myRankGames.rankBoard")) {//index.jsp에서 자신의 게임랭킹들을 보여주는 코드입니다.
+				System.out.println("sda");
 				String id = (String) session.getAttribute("loginID");
 				List<RankingBoardDTO> myGameList = rnkdao.selectById(id);
+				System.out.println(myGameList);
 				request.setAttribute("myGameList", myGameList);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(myGameList));
 			}
 
 		} catch(Exception e) {

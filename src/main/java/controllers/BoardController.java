@@ -2,6 +2,7 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -28,7 +30,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		
-		
+		Gson gson = new Gson();
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		try {
 			if(cmd.equals("/list.board")) { // 게시물 리스트 가져오기
@@ -143,8 +145,10 @@ public class BoardController extends HttpServlet {
 			
 			} else if(cmd.equals("/indexList.board")) { // index에 최근 5개의 게시물을 올리는 코드입니다.
 				List<BoardDTO> selectFive = boardDAO.selectRecentFive();
-				request.setAttribute("selectFive", selectFive);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				request.setAttribute("fiveList", selectFive);
+				response.setContentType("text/html; charset=utf8");
+				PrintWriter pw = response.getWriter();//response의 내용을 담는다.
+				pw.append(gson.toJson(selectFive));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

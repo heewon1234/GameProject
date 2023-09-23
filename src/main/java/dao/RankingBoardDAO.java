@@ -34,7 +34,6 @@ public class RankingBoardDAO {
 	}
 	public RankingBoardDTO selectByGName (String id,String gname) throws Exception{
 		String sql = "select * from rankingBoard where id = ? and game_name = ?;";
-
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -50,16 +49,15 @@ public class RankingBoardDAO {
 				String game_name = rs.getString("game_name");
 				int score = rs.getInt("score");
 				Timestamp rank_date = rs.getTimestamp("rank_date");
+				int ranking = rs.getInt("ranking");
 
-				return new RankingBoardDTO(seq,id1,game_name,score,rank_date);
-
-			}
+				return new RankingBoardDTO(seq, id1, game_name, score, rank_date, ranking);
+	        }
 		} 
-	}
+	};
 
 	public List<RankingBoardDTO> selectAll(String gname) throws Exception{
 		String sql = "select * from rankingBoard where game_name = ?;";
-
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -75,12 +73,13 @@ public class RankingBoardDAO {
 					String game_name = rs.getString("game_name");
 					int score = rs.getInt("score");
 					Timestamp rank_date = rs.getTimestamp("rank_date");
+					int ranking = rs.getInt("ranking");
 
-					list.add(new RankingBoardDTO(seq,id1,game_name,score,rank_date));
+					list.add(new RankingBoardDTO(seq, id1, game_name, score, rank_date, ranking));
 				}return list;
 			}
 		} 
-	}
+	};
 
 	public List<RankingBoardDTO> thisGameRankCheck(String game_name, String id) throws Exception {
 		String sql = "select * from (select row_number() over(order by seq asc) as number, rankingBoard.* from rankingBoard) as sub where game_name like ? and id like ?;";
@@ -94,18 +93,17 @@ public class RankingBoardDAO {
 
 				while(rs.next()) {
 					int seq = rs.getInt("seq");
-					String id_in = rs.getString("id");
-					String game_name_in = rs.getString("game_name");
+					String id1 = rs.getString("id");
+					String gamename = rs.getString("game_name");
 					int score = rs.getInt("score");
 					Timestamp rank_date = rs.getTimestamp("rank_date");
-					list.add(new RankingBoardDTO(seq, id_in, game_name_in, score, rank_date));
+					int ranking = rs.getInt("ranking");
+					list.add(new RankingBoardDTO(seq, id1, gamename, score, rank_date, ranking));
 
 				}
 				return list;
 			}
 		}
-
-
 	};
 
 	// 기존에 기록이 있을 때 신기록을 변경하는 코드
@@ -121,7 +119,7 @@ public class RankingBoardDAO {
 			int result = pstat.executeUpdate();
 			return result;
 		}
-	}
+	};
 
 	// 기존에 기록이 없을때 기록을 등록하는 코드
 	public int insert (String id, int newScore, String game_name) throws Exception {
@@ -140,32 +138,32 @@ public class RankingBoardDAO {
 
 		}
 
-	}
+	};
 	
 	//index.jsp에서 자신의 게임들의 랭킹을 보여주는 코드입니다.
 	public List<RankingBoardDTO> selectById(String loggedInUserId) throws Exception {
-		String sql = "SELECT * FROM rankingBoard WHERE id = ? ;";
+	    String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `rank` FROM rankingBoard AS rb1 where id = ? ORDER BY game_name, score DESC";
 
-		try (
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				) {
-			pstat.setString(1, loggedInUserId);
+	    try (
+	        Connection con = this.getConnection();
+	        PreparedStatement pstat = con.prepareStatement(sql);
+	    ) {
+	        pstat.setString(1, loggedInUserId);
+	        try (ResultSet rs = pstat.executeQuery()) {
+	            List<RankingBoardDTO> list = new ArrayList<>();
 
-			try (ResultSet rs = pstat.executeQuery()) {
-				List<RankingBoardDTO> list = new ArrayList<>();
+	            while (rs.next()) {
+	                int seq = rs.getInt("seq");
+	                String id = rs.getString("id");
+	                String gameName = rs.getString("game_name");
+	                int score = rs.getInt("score");
+	                Timestamp rankDate = rs.getTimestamp("rank_date");
+	                int ranking = rs.getInt("ranking"); // 추가: ranking 컬럼 조회
 
-				while (rs.next()) {
-					int seq = rs.getInt("seq");
-					String id1 = rs.getString("id");
-					String game_name = rs.getString("game_name");
-					int score = rs.getInt("score");
-					Timestamp rank_date = rs.getTimestamp("rank_date");
-
-					list.add(new RankingBoardDTO(seq, id1, game_name, score, rank_date));
-				}
-				return list;
-			}
-		}
-	}
+	                list.add(new RankingBoardDTO(seq, id, gameName, score, rankDate, ranking));
+	            }
+	            return list;
+	        }
+	    }
+	};
 }
