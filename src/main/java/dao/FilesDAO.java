@@ -49,15 +49,15 @@ public class FilesDAO {
 	
 	
 	// file 불러오기
-	public List<FilesDTO> selectFile(FilesDTO dto) throws Exception {
-		String sql = "select * from file where parent_seq like ?";
+	public List<FilesDTO> selectFile(int parentSeq) throws Exception {
+		String sql = "select * from file where parent_seq = ?";
 		try (
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
 			
 			List<FilesDTO> result = new ArrayList<>();
-			pstat.setInt(1, dto.getSeq());
+			pstat.setInt(1, parentSeq);
 			
 			ResultSet rs = pstat.executeQuery();
 			while (rs.next()) {
