@@ -80,7 +80,7 @@
 						<div id="center" class="mt-4" style="background-color: #FFF9B0; text-align: center;">
 							<ul class="nav nav-pills nav-fill"
 								style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-								<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link" href="/mypage.members">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" href="/game/minesweeper/eazyMinesweeper.jsp">게임</a></li>
 								<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
 								<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>

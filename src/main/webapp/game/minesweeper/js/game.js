@@ -4,7 +4,7 @@ var states = {
 };
 
 var graphicAssets = {
-    tiles: { URL: '/assets/tiles.png', name: 'tiles', frames: 14 }
+    tiles: { URL: './assets/tiles.png', name: 'tiles', frames: 14 }
 };
 
 var fontStyles = {
@@ -19,8 +19,6 @@ var gameState = function (game) {
     this.counter;
     this.tf_replay;
 };
-
-
 
 gameState.prototype = {
 
