@@ -95,7 +95,6 @@
 							class="col-md-7 ml-auto d-flex align-items-center justify-content-end p-0">
 							<a class="nav-link" href="/logout.members"><img src="/UI_img/log-out.svg"></a>
 						</div>
-
 					</div>
 				</div>
 			</div>

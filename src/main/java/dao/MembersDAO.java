@@ -3,14 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.BoardDTO;
 import dto.MembersDTO;
 
 public class MembersDAO {
@@ -210,5 +210,60 @@ public class MembersDAO {
             return pstat.executeUpdate();
         }
     }
+	
+	public List<MembersDTO> selectMembersInfo() throws Exception {
+		String sql = "SELECT * FROM MEMBERS WHERE position IN ('user', 'banned')";
+		List<MembersDTO> list = new ArrayList<>();
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);) {
+
+			try(ResultSet rs = pstat.executeQuery();) {
+
+				while(rs.next()) {
+					String id = rs.getString("ID");
+					String password = rs.getString("PASSWORD");
+					String name = rs.getString("NAME");
+					String phone = rs.getString("PHONE");
+					String email = rs.getString("EMAIL");
+					String zipcode = rs.getString("ZIPCODE");
+					String address1 = rs.getString("ADDRESS1");
+					String address2 = rs.getString("ADDRESS2");
+					Timestamp signupDate = rs.getTimestamp("SIGNUP_DATE");
+					String position = rs.getString("POSITION");
+					
+					list.add(new MembersDTO(id, password, name, phone, email, zipcode, address1, address2, signupDate, position));
+				}
+				
+
+				return list;
+			}
+		}
+	}
+	
+	public int banMember(String id) throws Exception {
+		String sql = "UPDATE MEMBERS SET position = 'banned' WHERE ID = ?";
+        
+        try (
+            Connection con = this.getConnection();
+            PreparedStatement pstat = con.prepareStatement(sql);
+        ) {
+            pstat.setString(1, id);
+            
+            return pstat.executeUpdate();
+        }
+	}
+	
+	public int unbanMember(String id) throws Exception {
+		String sql = "UPDATE MEMBERS SET position = 'user' WHERE ID = ?";
+        
+        try (
+            Connection con = this.getConnection();
+            PreparedStatement pstat = con.prepareStatement(sql);
+        ) {
+            pstat.setString(1, id);
+            
+            return pstat.executeUpdate();
+        }
+	}
 
 }

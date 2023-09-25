@@ -10,7 +10,6 @@ class GameOverScene extends Phaser.Scene{
     }
 
     create(){
-
         this.background = this.add.tileSprite(0,0,800,600,"background2");
         this.background.setOrigin(0,0);
 

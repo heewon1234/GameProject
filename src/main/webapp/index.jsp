@@ -140,7 +140,7 @@
 								style="max-height: 350px">
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/Logo_color.png" class="d-block w-100" alt="3"
+							<img src="/UI_img/Color Blind_Carousel.png" class="d-block w-100" alt="3"
 								style="max-height: 350px">
 						</div>
 					</div>
@@ -221,7 +221,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/game/gameUI/Colorblind.png"
+												<img src="/game/gameUI/Colorblind_Logo_new.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
 													<a class="gtext" href="/game/colorblind/colorblind.jsp"
