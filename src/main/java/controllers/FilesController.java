@@ -17,13 +17,15 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.FilesDAO;
 import dto.FilesDTO;
 
-@WebServlet("/FilesController")
+@WebServlet("*.file")
 public class FilesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FilesDAO fileDAO = FilesDAO.getInstance();
 		String cmd = request.getRequestURI();
+		FilesDAO fileDAO = FilesDAO.getInstance();
+		response.setContentType("text/html;charset=utf8");
+		PrintWriter pw = response.getWriter();
 		try {
 			if(cmd.equals("/upload.file")) { // 게시물 이미지 업로드 ( ajax )
 				String uploadPath = request.getServletContext().getRealPath("files");
@@ -34,7 +36,7 @@ public class FilesController extends HttpServlet {
 				int maxSize = 1024 * 1024 * 10; // 업로드 파일 최대 사이즈 : 10MB	
 
 				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy()); // multipartrequest로 업그레이드
-
+				
 				Enumeration<String> fileNames = multi.getFileNames();
 				while(fileNames.hasMoreElements()) {
 					String fileName = fileNames.nextElement();
@@ -42,12 +44,11 @@ public class FilesController extends HttpServlet {
 						System.out.println(fileName);
 						String ori_name = multi.getOriginalFileName(fileName);
 						String sys_name = multi.getFilesystemName(fileName);
-						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,0));
-						PrintWriter pw = response.getWriter();
 						pw.append("/files/"+sys_name);
 					}
 				}
 			} 
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
