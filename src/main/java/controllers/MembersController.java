@@ -2,21 +2,25 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.Properties;
-import java.util.Random;
-
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import com.google.gson.Gson;
 
@@ -54,6 +58,7 @@ public class MembersController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
+		response.setContentType("text/html;charset=utf8");
 		request.setCharacterEncoding("utf8");
 		PrintWriter pw = response.getWriter();
 		
@@ -298,6 +303,23 @@ public class MembersController extends HttpServlet {
 				request.setAttribute("mypageList", list);
 				request.getRequestDispatcher("/members/myPage.jsp").forward(request, response);
 
+			} else if(cmd.equals("/membersInfo.members")) { // 관리자 페이지로 이동
+				
+				List<MembersDTO> list = new ArrayList<>();
+				String id = (String)request.getSession().getAttribute("loginID");
+				MembersDTO myInfo = membersDAO.mypage(id);
+				request.setAttribute("myInfo", myInfo);
+				list = membersDAO.selectMembersInfo();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("/members/admin.jsp").forward(request, response);
+			} else if(cmd.equals("/banMember.members")) { // 사용자 밴
+				String id = request.getParameter("id");
+				membersDAO.banMember(id);
+				response.sendRedirect("/membersInfo.members");
+			} else if(cmd.equals("/unbanMember.members")) { // 밴 풀기
+				String id = request.getParameter("id");
+				membersDAO.unbanMember(id);
+				response.sendRedirect("/membersInfo.members");
 			}
 
 		} catch(Exception e) {
