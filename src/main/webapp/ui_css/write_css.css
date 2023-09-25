@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box;}
+
+/* div{border:1px solid black;} */
+
+.header+hr{
+    margin-top:30px;
+}
+.menubar>div{
+    font-weight: bold;
+    font-size:23px;
+}
+
+.game-dropdown{
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.board-txt-top{
+    border:1px solid gainsboro;
+    padding:20px;
+    margin:30px;
+    font-size:large;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-border{
+    margin:30px;
+    padding:20px;
+    border:1px solid gainsboro;
+
+}
+
+.board-title>input{
+    width:98%;
+    padding:10px;
+    border:none;
+    border-bottom:1px solid gainsboro;
+}
+.game-select>select{
+    width:100%;
+}
+
+.board-contents{
+    margin-top:30px;
+    padding:0px;
+}
+.btns{
+    margin-top:30px;
+    padding:0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btns>button{
+    padding:5px;
+    padding-left:40px;
+    padding-right:40px;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+}

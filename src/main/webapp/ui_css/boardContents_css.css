@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box;}
+
+/* div{border:1px solid black;} */
+
+.header+hr{
+    margin-top:30px;
+}
+.menubar>div{
+    font-weight: bold;
+    font-size:23px;
+}
+
+.game-dropdown{
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.board-txt-top{
+    border:1px solid gainsboro;
+    padding:20px;
+    margin:30px;
+    font-size:large;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-border{
+    margin:30px;
+    padding:20px;
+    border:1px solid gainsboro;
+
+}
+
+.board-title>input{
+    width:98%;
+    padding:10px;
+    border:none;
+    border-bottom:1px solid gainsboro;
+}
+.board-title>input:focus{
+    padding-left:10px;
+    outline:none;
+}
+.game-select{
+    display: flex;
+    align-items: end;
+}
+.game-select>button{
+    width:60%;
+    height:80%;
+    border:none;
+    border:1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
+.board-info{
+    margin-top:5px;
+    display: flex;
+    justify-content: space-between;
+}
+.board-info>input{
+    font-size:12px;
+    width:13%;
+    text-align: center;
+    border:none;
+}
+.board-info>input:focus{
+    outline:none;
+}
+.board-info>input:nth-child(2),.board-info>input:nth-child(4){
+    width:15%;
+}
+.board-info>input:last-child{
+    width:20%;
+}
+.board-contents{
+    margin-top:30px;
+    padding:10px;
+    border:1px solid gainsboro;
+}
+.board-contents>textarea{
+    min-height:400px;
+    width:100%;
+    resize:none;
+    border:none;
+}
+.board-contents>textarea:focus{
+    outline:none;
+} 
+.btns{
+    margin-top:30px;
+    padding:0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btns>button{
+    padding:5px;
+    padding-left:40px;
+    padding-right:40px;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+}
+
+.reply{
+    border:1px solid gainsboro;
+    padding:15px;
+    margin:30px;
+}
+
+.replyWriter{
+    margin-bottom:5px;
+}
+.replyContents>textarea{
+    width:100%;
+    resize:none;
+    overflow:auto;
+    border:1px solid gainsboro;
+}
+.insertReply{
+    margin-top:5px;
+    display: flex;
+    justify-content: end;
+}
+
+.insertReply>button{
+    border:1px solid gainsboro;
+    border-radius: 5px;
+}
+
+.replies{overflow:hidden;}
+
+#replyListContainer{
+    border: 1px solid gainsboro;
+    margin:30px;
+    padding:15px;
+}
+
+.replyHeader,.replyWrite_date{
+	float:left;
+	width:50%;
+}
+.replyHeader{text-decoration:underline;}
+.replyWrite_date{text-align:end;}
+
+.reply-btns{
+	margin-top:10px;
+	display:flex;
+	justify-content:space-between;
+}
+.reply-btns>button{
+	border:1px solid gainsboro;
+	border-radius:5px;
+}
+
+#replyFooter{text-align:center;}
+
+#replyFooter>a{
+	margin-left:5px;
+	margin-right:5px;
+}

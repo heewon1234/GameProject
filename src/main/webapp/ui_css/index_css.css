@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box;}
+
+/* div{border:1px solid black;} */
+a{
+	text-decoration:none;
+	color:black;
+}
+.header+hr{
+    margin-top:30px;
+}
+
+.body{
+    width:100%;
+    margin-top:30px;
+}
+
+.bodyBorder{
+    width:95%;
+    margin:auto;
+}
+
+.banner{margin-bottom:30px;}
+
+.contents{
+    overflow: hidden;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+.contents>div{float: left;}
+
+.contents-left{
+    width:65%;
+}
+
+.game-border{
+    border:1px solid gainsboro;
+    
+}
+.game-select-text{
+    margin-top:15px;
+    padding-left:30px; 
+    font-size:x-large; 
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.game-select-text+hr{
+    width:95%;
+    margin:auto;
+}
+.game{
+    overflow: hidden;
+    width:100%;
+    margin-top:20px;
+}
+.game>div{
+    float:left;
+    width:33.33%;
+}
+.game-list,.game-img{width:100%;}
+.game-list{
+	margin-bottom:15px;
+}
+.game-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    overflow:hidden;
+}
+.game-img>img{
+    width:100%;
+    height:100%;
+    border-radius: 10px;
+}
+
+.game-txt{
+    margin-top:5px;
+    text-align: center;
+}
+.game-txt>a:hover{
+	text-decoration: underline;
+}
+
+.board-border{
+    margin-top:30px;
+    border:1px solid gainsboro;
+}
+
+.board-text{
+    margin-top:15px;
+    padding-left:30px; 
+    font-size:x-large; 
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.board-text:hover{text-decoration:underline;}
+.board{
+    padding-left:30px;
+    padding-right:30px;
+}
+.contents-right{
+    width:33%;
+}
+
+.loginbox{
+    width:100%;
+    border: 1px solid gainsboro;
+    margin-bottom: 30px;
+}
+.login-button{
+    width:100%;
+    padding:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-button>button{
+    width:100%;
+    height:40px;
+    border:1px solid gainsboro;
+    border-radius:5px;
+}
+.login-txt{
+    padding-left:30px;
+    padding-right:30px;
+    padding-bottom:30px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.login-txt>a:hover{text-decoration:underline;}
+
+.rnk-board{
+    border: 1px solid gainsboro;
+}
+.rnk-txt{
+    margin-top:15px;
+    padding-left:30px; 
+    font-size:x-large; 
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.rnk-txt>a:hover{text-decoration:underline;}
+.rnk-board-contents{
+    padding-left:30px;
+    padding-right:30px;
+}

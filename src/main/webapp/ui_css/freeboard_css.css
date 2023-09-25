@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box;}
+
+/* div{border:1px solid black;} */
+
+.header+hr{
+    margin-top:30px;
+}
+
+.board-txt-top{
+    border:1px solid gainsboro;
+    padding:20px;
+    margin:30px;
+    font-size:large;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+.board-txt-top>form>input{
+    border-radius: 5px;
+}
+.board-txt-top>form>button{
+    border:1px solid gainsboro;
+    border-radius: 5px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+#input_search{
+	padding-left:5px;
+	border:1px solid gainsboro;
+}
+
+.board-border{
+    margin:30px;
+    padding:20px;
+    border:1px solid gainsboro;
+}
+
+.board-list-title:hover{text-decoration:underline;}
