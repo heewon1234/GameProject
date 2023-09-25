@@ -118,11 +118,22 @@ public class BoardController extends HttpServlet {
 //						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
 //					}
 //				}
-
+				
+				response.sendRedirect("/viewContents.board?seq="+seq);
 				
 			} else if(cmd.equals("/goToWrite.board")) { // 글쓰기 창으로 이동
 //				response.sendRedirect("/");
 			
+			} else if(cmd.equals("/goToEdit.board")) { // 글수정 창으로 이동
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				
+				BoardDTO dto = boardDAO.showContents(seq);
+				List<FilesDTO> fileList = fileDAO.selectFile(seq);
+				request.setAttribute("contentsList", dto);
+				request.setAttribute("fileList", fileList);
+				
+				request.getRequestDispatcher("/editBoard.jsp").forward(request, response);
+				
 			} else if(cmd.equals("/showContents.board")) { // 게시글 보기
 				
 //				int seq = Integer.parseInt(request.getParameter("seq"));
