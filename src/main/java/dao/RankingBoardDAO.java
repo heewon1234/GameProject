@@ -198,9 +198,9 @@ public class RankingBoardDAO {
 			}
 		}
 	};
-	//게임 전체 랭킹을 보여주는 코드
+	//처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급을 보여주는 코드
 	public List<RankingBoardDTO> selectAll() throws Exception {
-		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 ORDER BY game_name, score DESC";
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' ORDER BY game_name, score DESC";
 
 		try (
 				Connection con = this.getConnection();
@@ -221,6 +221,33 @@ public class RankingBoardDAO {
 			}
 			return list;
 
+		}
+	};
+	//처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급 자신의 랭킹을  보여주는 코드
+	public List<RankingBoardDTO> selectMyMines(String loggedInUserId) throws Exception {
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' and id = ?";
+
+
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, loggedInUserId);
+			try (ResultSet rs = pstat.executeQuery()) {
+				List<RankingBoardDTO> list = new ArrayList<>();
+
+				while (rs.next()) {
+					int seq = rs.getInt("seq");
+					String id = rs.getString("id");
+					String gameName = rs.getString("game_name");
+					int score = rs.getInt("score");
+					Timestamp rankDate = rs.getTimestamp("rank_date");
+					int ranking = rs.getInt("ranking"); // 추가: rank 컬럼 조회
+
+					list.add(new RankingBoardDTO(seq, id, gameName, score, rankDate, ranking));
+				}
+				return list;
+			}
 		}
 	};
 }
