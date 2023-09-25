@@ -85,7 +85,7 @@ var Board = function (columns, rows, mines) {
 
         if (!tilesLeft) {
 
-            if (gameProperties.totalMines == 3) {
+            if (gameProperties.totalMines == 10) {
 				console.log("Eazy: "+gameProperties.count);
 				this.time = gameProperties.count;
                 $.ajax({

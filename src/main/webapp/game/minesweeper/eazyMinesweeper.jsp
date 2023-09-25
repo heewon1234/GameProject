@@ -25,7 +25,7 @@
 				boardWidth: 9,
 				boardHeight: 9,
 
-				totalMines: 3,
+				totalMines: 10,
 
 				count: 0
 			};
