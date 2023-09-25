@@ -128,6 +128,10 @@
                     return false();
                 }
 			});
+            
+            $("#cancelBtn").on("click",function(){
+            	location.href="/list.board?cpage=${latestPage}";
+            })
 		});
    </script>
 

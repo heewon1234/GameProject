@@ -12,157 +12,86 @@
 				crossorigin="anonymous">
 			<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-			<style>
-				* {
-					box-sizing: border-box;
-				}
-
-				#head {
-					background-color: #B1B2FF
-				}
-
-				#body {
-					background-color: #D2DAFF
-				}
-
-				#footer {
-					background-color: #B1B2FF
-				}
-			</style>
+			<link rel="stylesheet" type="text/css" href="/ui_css/rankboard_css.css">
 		</head>
 
 		<body>
-			<div class="container-fluid p-0">
-				<div id="head">
-					<div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-2 d-flex align-items-center justify-content-center">
-									<a href="/index.jsp"><img src="/UI_img/marvlestudio.jpg"></a>
-								</div>
-
-								<div class="col-md-3 p-0">
-									<div class="d-flex align-items-center justify-content-center"
-										style="height: 40px; width: 200px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
-										<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
-
-										<select class="form-select" aria-label="Default select example"
-											style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
-											onchange="location = this.value;">
-											<option value="#" selected>Game</option>
-											<option value="/game/minesweeper/eazyMinesweeper.jsp">1.
-												지뢰찾기</option>
-											<option value="/game/bounceball/bounceball_main.jsp">2.
-												바운스볼</option>
-											<option value="/game/flappyBird/flappyBird_main.jsp">3.
-												플래피버드</option>
-											<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
-												풀문보트</option>
-											<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
-											<option value="/game/colorblind/colorblind.jsp">6.
-												컬러블라인드</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-7 ml-auto d-flex align-items-center justify-content-end p-0">
-									<a class="nav-link" href="/logout.members"><img src="/UI_img/log-out.svg"></a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div style="background-color: #D2DAFF; height: 20px"></div>
+			<div class="container header pt-5 p-0">
+		<div class="row p-0 m-0 header" id="main-header"></div>
+		<hr>
+		<div class="board-txt-top">랭킹게시판</div>
+		<div class="rnk-game-select" style="display: flex; justify-content: space-between;">
+			<ul class="nav nav-pills nav-fill"
+				style="width: 100%; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
+				<li class="nav-item dropdown"><button type="button" class="btn"
+						data-bs-toggle="dropdown" aria-expanded="false">지뢰찾기</button>
+					<ul class="dropdown-menu">
+						<li><a class="game dropdown-item" href="#"
+							data-game="minesweeperEazy">하급</a></li>
+						<li><a class="game dropdown-item" href="#"
+							data-game="minesweeperNormal">중급</a></li>
+						<li><a class="game dropdown-item" href="#"
+							data-game="minesweeperHard">상급</a></li>
+					</ul>
+				<li class="game nav-item"><a class="nav-link" href="#"
+					data-game="bounceball" style="color:black;">바운스볼</a></li>
+				<li class="game nav-item"><a class="nav-link" href="#"
+					data-game="flappyBird" style="color:black;">플래피버드</a></li>
+				<li class="game nav-item"><a class="nav-link" href="#"
+					data-game="fullMoonBoat" style="color:black;">풀문보트</a></li>
+				<li class="game nav-item"><a class="nav-link" href="#"
+					data-game="dragon" style="color:black;">드래곤 플라이트</a></li>
+				<li class="game nav-item"><a class="nav-link" href="#"
+					data-game="colorblind" style="color:black;">컬러블라인드</a></li>
+			</ul>
+		</div>
+		<div class="board-border">
+			<div class="board">
+				<div class="rnk-txt">
+					<나의 랭킹>
 				</div>
-				<div class="container-fluid p-0" style="background-color: #EEF1FF;">
-					<div id="body" class="container p-0">
-						<div id="top" style="display: flex; justify-content: center; align-items: center;">
-							<img src="/UI_img/marvlestudio.jpg" alt="Marvel Studio">
-						</div>
-
-						<div id="center" class="mt-4" style="background-color: #FFF9B0; text-align: center;">
-							<ul class="nav nav-pills nav-fill"
-								style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-								<li class="nav-item"><a class="nav-link" href="/mypage.members">마이페이지</a></li>
-								<li class="nav-item"><a class="nav-link"
-										href="/game/minesweeper/eazyMinesweeper.jsp">게임</a></li>
-								<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
-								<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
-							</ul>
-						</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="w-10">순위</th>
+							<th scope="col" class="w-35" style="text-align: start;">게임</th>
+							<th scope="col" class="w-25">점수</th>
+							<th scope="col" class="w-25" style="text-align: center;">닉네임</th>
+						</tr>
+					</thead>
+					<tbody class="table-group-divider" id="myTable">
 
 
-
-						<div id="bottom" class="p-3 mt-2">
-							<div id="title" class="p-2"
-								style="background-color: white; display: flex; justify-content: space-between; align-items: center;">
-								<form id="gameForm" action="/game.rankBoard" method="post">
-
-
-									<ul class="nav nav-pills nav-fill"
-										style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-										<li class="nav-item dropdown"><button type="button" class="btn"
-												data-bs-toggle="dropdown" aria-expanded="false">
-												지뢰찾기</button>
-											<ul class="dropdown-menu">
-												<li><a class="game dropdown-item" href="#"
-														data-game="minesweeperEazy">하급</a></li>
-												<li><a class="game dropdown-item" href="#"
-														data-game="minesweeperNormal">중급</a></li>
-												<li><a class="game dropdown-item" href="#"
-														data-game="minesweeperHard">상급</a></li>
-											</ul>
-										<li class="game nav-item"><a class="nav-link" href="#"
-												data-game="bounceball">바운스볼</a></li>
-										<li class="game nav-item"><a class="nav-link" href="#"
-												data-game="flappyBird">플래피버드</a></li>
-										<li class="game nav-item"><a class="nav-link" href="#"
-												data-game="fullMoonBoat">풀문보트</a></li>
-										<li class="game nav-item"><a class="nav-link" href="#" data-game="dragon">드래곤
-												플라이트</a></li>
-										<li class="game nav-item"><a class="nav-link" href="#"
-												data-game="colorblind">컬러블라인드</a></li>
-									</ul>
-								</form>
-							</div>
-							<h3 style="margin-top: 20px;">내 랭킹</h3>
-							<div id="title" class="mt-4">
-								<table class="table mt-4">
-									<thead>
-										<tr>
-											<th scope="col">순위</th>
-											<th scope="col">게임</th>
-											<th scope="col">점수</th>
-											<th scope="col">등록일</th>
-										</tr>
-									</thead>
-									<tbody id="myTable">
-										<!-- ajax 내용 -->
-									</tbody>
-								</table>
-							</div>
-							<h3 style="margin-top: 20px;">전체 랭킹</h3>
-							<div id="contents" class="mt-4">
-								<table class="table">
-									<thead>
-										<tr>
-											<th scope="col" class="w-25">순위</th>
-											<th scope="col" class="w-25">게임</th>
-											<th scope="col" class="w-25">점수</th>
-											<th scope="col" class="w-25">닉네임</th>
-										</tr>
-									</thead>
-									<tbody class="table-group-divider" id="tableBody">
-										<!-- ajax 내용 -->
-
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="footer_container"></div>
+					</tbody>
+				</table>
 			</div>
+		</div>
+		<div class="board-border">
+			<div class="board">
+				<div class="rnk-txt">
+					<전체 랭킹>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col" class="w-10">순위</th>
+							<th scope="col" class="w-35" style="text-align: start;">게임</th>
+							<th scope="col" class="w-25">점수</th>
+							<th scope="col" class="w-25" style="text-align: center;">닉네임</th>
+						</tr>
+					</thead>
+					<tbody class="table-group-divider" id="tableBody">
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 			<script>
+			 	$(document).ready(function() {
+		            $("#main-header").load("/commons_ui/header.html");
+		        });
 				$(document).ready(function () {
 					// Footer를 로드
 					$("#footer_container").load("/commons/footer.html");
