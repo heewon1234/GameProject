@@ -86,6 +86,7 @@ public class BoardController extends HttpServlet {
 			} else if(cmd.equals("/insert.board")) { // 게시물 등록
 
 				String uploadPath = request.getServletContext().getRealPath("files");
+				System.out.println(uploadPath);
 				File filesPath = new File(uploadPath);
 				if(!filesPath.exists()) {filesPath.mkdir();} // 폴더가 없다면 만들어라
 				int maxSize = 1024 * 1024 * 10; // 업로드 파일 최대 사이즈 : 10MB	
@@ -117,11 +118,11 @@ public class BoardController extends HttpServlet {
 
 			} else if(cmd.equals("/update.board")) { // 게시물 수정
 
-//				String uploadPath = request.getServletContext().getRealPath("files");
-//				File filesPath = new File(uploadPath);
-//				if(!filesPath.exists()) {filesPath.mkdir();}
-//				int maxSize = 1024 * 1024 * 10;
-//				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
+				String uploadPath = request.getServletContext().getRealPath("files");
+				File filesPath = new File(uploadPath);
+				if(!filesPath.exists()) {filesPath.mkdir();}
+				int maxSize = 1024 * 1024 * 10;
+				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
 
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String title = request.getParameter("title");
@@ -129,16 +130,16 @@ public class BoardController extends HttpServlet {
 				String game_name = request.getParameter("game_name");
 				int result = boardDAO.update(new BoardDTO(seq, null, title, contents, null, 0, game_name));      
 
-//				Enumeration<String> fileNames = multi.getFileNames();
+				Enumeration<String> fileNames = multi.getFileNames();
 
-//				while(fileNames.hasMoreElements()) {
-//					String fileName = fileNames.nextElement();
-//					if(multi.getFile(fileName) != null) {
-//						String ori_name = multi.getOriginalFileName(fileName);
-//						String sys_name = multi.getFilesystemName(fileName);
-//						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
-//					}
-//				}
+				while(fileNames.hasMoreElements()) {
+					String fileName = fileNames.nextElement();
+					if(multi.getFile(fileName) != null) {
+						String ori_name = multi.getOriginalFileName(fileName);
+						String sys_name = multi.getFilesystemName(fileName);
+						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
+					}
+				}
 				
 				response.sendRedirect("/showContents.board?seq="+seq);
 				
