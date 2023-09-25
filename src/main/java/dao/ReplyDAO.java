@@ -11,10 +11,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.BoardDTO;
 import dto.ReplyDTO;
 
 public class ReplyDAO {
-	
+
 	private static ReplyDAO instance; 
 
 	public static ReplyDAO getInstance() {
@@ -32,8 +33,8 @@ public class ReplyDAO {
 
 	}
 
-	public List<ReplyDTO> selectByParent(int pseq) throws Exception{
-		String sql = "select * from reply where parent_seq = ?;";
+	public int countReply(int pseq) throws Exception{
+		String sql = "select count(*) from reply where parent_seq = ?;";
 
 		try(
 				Connection con = this.getConnection();
@@ -42,20 +43,39 @@ public class ReplyDAO {
 
 			pstat.setInt(1, pseq);
 			try(ResultSet rs = pstat.executeQuery()){
-				List<ReplyDTO> list = new ArrayList<>();
+				rs.next();
+				return rs.getInt(1);
 
-				while(rs.next()) {
-					int replyseq = rs.getInt("seq");
-					int parent_seq = rs.getInt("parent_seq");
-					String writer = rs.getString("writer");
-					String contents = rs.getString("contents");
-					Timestamp write_date = rs.getTimestamp("write_date");
-
-					list.add(new ReplyDTO(replyseq, writer, contents, write_date,parent_seq));
-				}return list;
 			}
 		} 
 	}
+
+	public List<ReplyDTO> selectBy(int start, int end, int p_seq) throws Exception{
+		ReplyDTO replyDTO = new ReplyDTO();
+		List<ReplyDTO> list = new ArrayList<>();
+		String sql = "select * from (select row_number() over(order by seq desc) as rn, reply.* from reply where parent_seq=?) as sub where rn between ? and ?;";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, p_seq);
+			pstat.setInt(2, start);
+			pstat.setInt(3, end);
+			try(ResultSet rs = pstat.executeQuery();){
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String writer = rs.getString("writer");
+					String contents = rs.getString("contents");
+					Timestamp write_date = rs.getTimestamp("write_date");
+					int parent_seq = rs.getInt("parent_seq");
+					list.add(new ReplyDTO(seq,writer,contents,write_date,parent_seq));
+				}
+				return list;
+			}
+		}
+
+	}
+
+
 	public int insert(ReplyDTO dto) throws Exception {
 		String sql = "insert into reply (writer, contents, parent_seq) values (?, ?, ?)";
 		try (
@@ -66,18 +86,18 @@ public class ReplyDAO {
 			pstat.setString(2, dto.getContents());
 			pstat.setInt(3, dto.getParent_seq());
 			int result = pstat.executeUpdate();
-			
+
 			return result;
 		}
 	}
-	public int update(ReplyDTO rdto) throws Exception {
+	public int update(String contents, int seq) throws Exception {
 		String sql = "UPDATE reply SET contents=? where seq = ?";
 		try (
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
-			pstat.setString(1, rdto.getContents());
-			pstat.setInt(2, rdto.getSeq());
+			pstat.setString(1, contents);
+			pstat.setInt(2, seq);
 			int result = pstat.executeUpdate();
 			return result;
 		}

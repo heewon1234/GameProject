@@ -119,7 +119,7 @@
 											<tr>
 												<th scope="row" style="text-align: center">${list.seq}</th>
 												<td style="text-align: center">${list.game_name}</td>
-												<td>${list.title}</td>
+												<td><a href="/showContents.board?seq=${list.seq}">${list.title}</a></td>
 												<td style="text-align: center">${list.view_count}</td>
 												<td style="text-align: center">${list.writer}</td>
 												<td style="text-align: center">${list.timestampToString}</td>
