@@ -182,6 +182,8 @@ public class MembersController extends HttpServlet {
 				    request.getRequestDispatcher("/index.jsp").forward(request, response);
 				} else {
 				    // result가 false인 경우 다른 페이지로 이동
+					String alertMessage = "로그인 실패하였습니다.";
+					request.setAttribute("alertMessage", alertMessage);
 				    request.getRequestDispatcher("/members/login.jsp").forward(request, response);
 				}
 

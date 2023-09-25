@@ -136,5 +136,15 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 			}
 		});
 	</script>
+	<%
+    String alertMessage = (String) request.getAttribute("alertMessage");
+    if (alertMessage != null && !alertMessage.isEmpty()) {
+%>
+<script>
+    alert("<%= alertMessage %>");
+</script>
+<%
+    }
+%>
 </body>
 </html>
