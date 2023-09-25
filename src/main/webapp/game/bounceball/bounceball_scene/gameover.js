@@ -10,6 +10,25 @@ class GameOverScene extends Phaser.Scene{
     }
 
     create(){
+	
+	        console.log($("#point").html());
+
+$.ajax({
+    url: "/rankReadPoint.rankBoard",
+    data: {
+        score: $("#score").html(),
+        game_name: "fullMoonBoat",
+        rank_type: "point"
+    },
+    method: "GET"
+}).done(function(resp) {
+    console.log(resp);
+    if (resp === "true") { // 문자열 "true"와 비교
+        alert("ㅊㅊㅊㅊㅊㅊㅊ");
+    }
+});
+	
+	
 
         this.background = this.add.tileSprite(0,0,800,600,"background2");
         this.background.setOrigin(0,0);

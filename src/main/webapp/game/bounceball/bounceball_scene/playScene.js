@@ -331,11 +331,13 @@ class PlayScene extends Phaser.Scene {
 
     update(){
 
+
         if(this.destroy){
             this.scene.start("GameOverScene");
         } else{
             this.time++;
             let timer = this.time / 60;
+            $("#point").html(Math.floor(this.time / 60));
             this.text.setText("Time : " + Math.floor(timer));
             $("#score").val(Math.floor(timer));
         }
