@@ -27,6 +27,7 @@ import dto.MembersDTO;
 
 @WebServlet("*.members")
 public class MembersController extends HttpServlet {
+
 	private static String generateRandomCode(int length) {
 		String chars = "0123456789"; //ABCDEFGHIJKLMNOPQRSTUVWXYZ
 		StringBuilder code = new StringBuilder();
@@ -37,6 +38,19 @@ public class MembersController extends HttpServlet {
 		return code.toString();
 	}
 
+	private boolean verifyAuthenticationCode(HttpServletRequest request) { // 인증번호 확인
+		// 세션에서 저장된 인증 코드 가져오기
+		HttpSession session = request.getSession();
+
+		// 사용자가 입력한 인증 코드
+		String enteredCode = request.getParameter("code");
+
+		String verificationCode = (String) session.getAttribute("verificationCode");
+
+		System.out.println("Entered Code: " + enteredCode);
+
+		return verificationCode != null && verificationCode.equals(enteredCode);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
@@ -63,8 +77,6 @@ public class MembersController extends HttpServlet {
 
 				int result = membersDAO.insert(membersDTO);
 
-				System.out.println(result);
-
 				if (result > 0) {
 					System.out.println("회원가입 성공");
 					response.sendRedirect("/index.jsp");
@@ -81,12 +93,14 @@ public class MembersController extends HttpServlet {
 				pw.append(gson.toJson(result));
 			}
 			else if (cmd.equals("/sendVerificationCode.members")) {
-				// Generate a random code
-				String code = generateRandomCode(6);
-
 				// Set it in the session
 				HttpSession session = request.getSession();
+
+				// Generate a random code
+				String code = generateRandomCode(6);
 				session.setAttribute("verificationCode", code);
+
+				System.out.println("Stored Verification Code: " + code);
 
 				// Email sending logic
 				final String user = "teammarvel2023@gmail.com";
@@ -140,14 +154,7 @@ public class MembersController extends HttpServlet {
 				}
 			}
 			else if (cmd.equals("/verifyCode.members")) {
-				// 사용자가 입력한 인증 코드
-				String enteredCode = request.getParameter("code");
-
-				// 세션에서 저장된 인증 코드 가져오기
-				HttpSession session = request.getSession();
-				String verificationCode = (String) session.getAttribute("verificationCode");
-
-				if (verificationCode != null && verificationCode.equals(enteredCode)) {
+				if (verifyAuthenticationCode(request)) {
 					// 인증 코드 일치
 					System.out.println("인증 코드 일치");
 					response.getWriter().write("success");
@@ -194,16 +201,64 @@ public class MembersController extends HttpServlet {
 				request.getSession().invalidate();
 				response.sendRedirect("/index.jsp");
 
-			} else if(cmd.equals("/idSearch.members")) { // 아이디 찾기 
+			} else if (cmd.equals("/idSearch.members")) { // 아이디 찾기
 
+				String name = request.getParameter("inputName");
+				String email = request.getParameter("email1") + "@" + request.getParameter("email2");
 
-			} else if(cmd.equals("/goToIdSearch.members")) {
+				String foundId = membersDAO.getIdByEmail(email);
+
+				if (foundId != null) {
+					System.out.println("아이디 찾기 성공");
+					request.setAttribute("foundId", foundId);
+					request.getRequestDispatcher("/members/id_search_result.jsp").forward(request, response);
+				} else {
+					System.out.println("아이디를 찾을 수 없음");
+					request.setAttribute("errorMessage", "Email에 해당하는 아이디를 찾을 수 없습니다.");
+					request.getRequestDispatcher("/members/id_Search.jsp").forward(request, response);
+				}
+			} 
+			else if(cmd.equals("/goToIdSearch.members")) {
 				response.sendRedirect("/members/id_Search.jsp");
 
 			} else if (cmd.equals("/pwSearch.members")) {
 
-			}
+				String id = request.getParameter("inputId");
+				String email = request.getParameter("email1") + "@" + request.getParameter("email2");
 
+				String foundId = membersDAO.getIdByEmail(email);
+
+				if (foundId != null && foundId.equals(id)) {
+					System.out.println("비밀번호 찾기 성공");
+					HttpSession session = request.getSession();
+					session.setAttribute("foundId", foundId);
+					request.getRequestDispatcher("/members/pw_search_result.jsp").forward(request, response);
+				} else {
+					System.out.println("가입시 사용한 이메일이 아님");
+					request.setAttribute("errorMessage", "가입시 사용한 이메일이 아닙니다.");
+					request.getRequestDispatcher("/members/pw_Search.jsp").forward(request, response);
+				}
+			}
+			else if (cmd.equals("/pw_reset.members")) {
+
+				HttpSession session = request.getSession();
+				String id = (String) session.getAttribute("foundId");
+				String newPw = EncryptionUtils.getSHA512(request.getParameter("newPassword"));
+
+				try {
+					int rowsUpdated = membersDAO.updatePassword(id, newPw);
+
+					if (rowsUpdated > 0) {
+						System.out.println("비밀번호 수정 완료");
+						response.sendRedirect("/login.members"); 
+					} else {
+						System.out.println("비밀번호 수정 실패");
+						response.sendRedirect("/pwSearch.members"); 
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			else if(cmd.equals("/goToPwSearch.members")) {
 				response.sendRedirect("/members/pw_Search.jsp");
 			} else if(cmd.equals("/update.members")) { // 마이페이지 - 내 정보 수정
