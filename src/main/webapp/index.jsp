@@ -35,15 +35,15 @@
 }
 
 .figure {
-	position : relative;
+	position: relative;
 }
 
 .figure>img {
-	width : 100%;
-	aspect-ratio : 4/3;
-	object-fit : cover;
-
+	width: 100%;
+	aspect-ratio: 4/3;
+	object-fit: cover;
 }
+
 .figure>img:hover {
 	cursor: pointer;
 }
@@ -52,6 +52,45 @@
 
 <body>
 	<div class="container-fluid p-0">
+		<!-- 우측상단 -->
+		<nav class="navbar bg-transparent fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#" ></a><!-- 우측에 놓기 위한거니 그냥 냅둬요. 아무 의미는 없지만 -->
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end" tabindex="-1"
+					id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+						<button type="button" class="btn-close"
+							data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/index.jsp">홈</a></li>
+							<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 게임 </a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</a></li>
+									<li><a class="dropdown-item" href="/game/bounceball/bounceball_main.jsp">2. 바운스볼</a></li>
+									<li><a class="dropdown-item" href="/game/flappyBird/flappyBird_main.jsp">3. 플래피버드</a></li>
+									<li><a class="dropdown-item" href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4. 풀문보트</a></li>
+									<li><a class="dropdown-item" href="/game/dragon/dragon.jsp">5. 드래곤 플라이트</a></li>
+									<li><a class="dropdown-item" href="/game/colorblind/colorblind.jsp">6. 컬러블라인드</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
 		<div id="head">
 			<div>
 				<div class="container">
@@ -67,7 +106,8 @@
 									style="max-width: 200px; background-color: #D2DAFF; width: 100%;"
 									onchange="location = this.value;">
 									<option value="#" selected>Game</option>
-									<option value="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</option>
+									<option value="/game/minesweeper/eazyMinesweeper.jsp">1.
+										지뢰찾기</option>
 									<option value="/game/bounceball/bounceball_main.jsp">2.
 										바운스볼</option>
 									<option value="/game/flappyBird/flappyBird_main.jsp">3.
@@ -75,7 +115,8 @@
 									<option value="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.
 										풀문보트</option>
 									<option value="/game/dragon/dragon.jsp">5. 드래곤 플라이트</option>
-									<option value="/game/colorblind/colorblind.jsp">6. 컬러블라인드</option>
+									<option value="/game/colorblind/colorblind.jsp">6.
+										컬러블라인드</option>
 								</select>
 							</div>
 						</div>
@@ -119,7 +160,9 @@
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/minesweeper/eazyMinesweeper.jsp" style="text-decoration: none;">지뢰찾기</a>
+													<a class="gtext"
+														href="/game/minesweeper/eazyMinesweeper.jsp"
+														style="text-decoration: none;">지뢰찾기</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -130,7 +173,9 @@
 												<img src="/game/gameUI/bounceball.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/bounceball/bounceball_main.jsp" style="text-decoration: none;">바운스볼</a>
+													<a class="gtext"
+														href="/game/bounceball/bounceball_main.jsp"
+														style="text-decoration: none;">바운스볼</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -141,7 +186,9 @@
 												<img src="/game/gameUI/flappybird.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/flappyBird/flappyBird_main.jsp" style="text-decoration: none;">플래피버드</a>
+													<a class="gtext"
+														href="/game/flappyBird/flappyBird_main.jsp"
+														style="text-decoration: none;">플래피버드</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -152,7 +199,9 @@
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp" style="text-decoration: none;">풀문보트</a>
+													<a class="gtext"
+														href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp"
+														style="text-decoration: none;">풀문보트</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -163,7 +212,8 @@
 												<img src="/UI_img/캡틴.jpg"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/dragon/dragon.jsp" style="text-decoration: none;">드래곤 플라이트</a>
+													<a class="gtext" href="/game/dragon/dragon.jsp"
+														style="text-decoration: none;">드래곤 플라이트</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -174,7 +224,8 @@
 												<img src="/game/gameUI/Colorblind.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
-													<a class="gtext" href="/game/colorblind/colorblind.jsp" style="text-decoration: none;">컬러블라인드</a>
+													<a class="gtext" href="/game/colorblind/colorblind.jsp"
+														style="text-decoration: none;">컬러블라인드</a>
 												</figcaption>
 											</figure>
 										</div>
@@ -185,7 +236,10 @@
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;"
 								class="mt-4">
 								<div>
-									<h5 ><a href="/list.board" style="color: white; text-decoration: none">최근 게시물 ></a></h5>
+									<h5>
+										<a href="/list.board"
+											style="color: white; text-decoration: none">최근 게시물 ></a>
+									</h5>
 								</div>
 								<table class="table mt-4">
 									<thead>
@@ -198,17 +252,8 @@
 											<th scope="col">작성일</th>
 										</tr>
 									</thead>
-									<tbody class="table-group-divider">
-										<c:forEach var="list" items="${myGameList }">
-											<tr>
-												<th scope="row" style="text-align: center">${list.seq}</th>
-												<td style="text-align: center">${list.game_name}</td>
-												<td>${list.title}</td>
-												<td style="text-align: center">${list.view_count}</td>
-												<td style="text-align: center">${list.writer}</td>
-												<td style="text-align: center">${list.timestampToString}</td>
-											</tr>
-										</c:forEach>
+									<tbody class="table-group-divider" id="tableBody">
+										<!-- AJAX로 데이터가 삽입될 위치 -->
 									</tbody>
 								</table>
 							</div>
@@ -272,25 +317,21 @@
 							<!-- ---------------------------------------------------- -->
 							<div id="ranking" class="mt-4"
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;">
-								<h5><a href="/list.rankBoard" style="color: white; text-decoration: none">내 랭킹 ></a></h5>
+								<h5>
+									<a href="/board/rankingBoard.jsp"
+										style="color: white; text-decoration: none">내 랭킹 ></a>
+								</h5>
 								<table class="table mt-4">
 									<thead>
 										<tr>
-											<th scope="col">#</th>
-											<th scope="col">game_name</th>
-											<th scope="col">score</th>
-											<th scope="col">rank_date</th>
+											<th scope="col">순위</th>
+											<th scope="col">게임</th>
+											<th scope="col">점수</th>
+											<th scope="col">등록일</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="list" items="${myGameList }">
-											<tr>
-												<th scope="row" style="text-align: center">${list.seq}</th>
-												<td style="text-align: center">${list.game_name}</td>
-												<td style="text-align: center">${list.score}</td>
-												<td style="text-align: center">${list.rank_date}</td>
-											</tr>
-										</c:forEach>
+									<tbody id="rankList">
+										<!-- ajax 내용 -->
 									</tbody>
 								</table>
 							</div>
@@ -302,18 +343,83 @@
 		<div id="footer_container"></div>
 
 	</div>
-
 	<script>
-		// 버튼을 클릭했을 때 이벤트 핸들러를 추가합니다.
 		$(document).ready(function() {
 			$("#loginButton").on("click", function() {
 				location.href = "/goToLogin.members";
 			})
 		});
+
 		$(document).ready(function() {
 			$("#footer_container").load("../commons/footer.html")
 		});
 
+		// 최근 게시물
+		$.ajax({
+			type : "POST",
+			url : "/indexList.board",
+			dataType : "json",
+		}).done(
+				function(resp) {
+					try {
+						var parsedData = resp;
+						// 성공적으로 서버로부터 데이터를 받았을 때 실행되는 부분
+						var $tableBody = $("#tableBody");
+
+						if (parsedData.length > 0) {
+							// 데이터가 존재하는 경우
+							for (var i = 0; i < parsedData.length; i++) {
+								var fiveList = parsedData[i];
+
+								var $row = $("<tr>");
+								$row.append($("<td>").text(fiveList.seq), $(
+										"<td>").text(fiveList.game_name), $(
+										"<td>").text(fiveList.title), $("<td>")
+										.text(fiveList.view_count), $("<td>")
+										.text(fiveList.writer), $("<td>").text(
+										fiveList.write_date));
+								$tableBody.append($row);
+							}
+						}
+					} catch (error) {
+						console.error("JSON 파싱 오류:", error);
+					}
+				}).fail(function(xhr, status, error) {
+			console.error("요청 실패:", status, error);
+		});
+		// 내 랭킹
+		$.ajax({
+			type : "POST",
+			url : "/myRankGames.rankBoard",
+			dataType : "json",
+		}).done(
+				function(resp) {
+					try {
+						var parsedData = resp;
+						// 성공적으로 서버로부터 데이터를 받았을 때 실행되는 부분
+						var $rankList = $("#rankList");
+
+						if (parsedData.length > 0) {
+							// 데이터가 존재하는 경우
+							for (var i = 0; i < parsedData.length; i++) {
+								var myRank = parsedData[i];
+
+								var $row = $("<tr>");
+								$row.append($("<td>").text(myRank.ranking), $(
+										"<td>").text(myRank.game_name), $(
+										"<td>").text(myRank.score), $("<td>")
+										.text(myRank.rank_date));
+								$rankList.append($row);
+							}
+						}
+					} catch (error) {
+						console.error("JSON 파싱 오류:", error);
+					}
+				}).fail(function(xhr, status, error) {
+			console.error("요청 실패:", status, error);
+		});
 	</script>
+
+
 </body>
 </html>

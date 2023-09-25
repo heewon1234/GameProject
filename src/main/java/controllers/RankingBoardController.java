@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import dao.RankingBoardDAO;
 import dto.RankingBoardDTO;
@@ -24,21 +34,25 @@ public class RankingBoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		RankingBoardDAO dao = RankingBoardDAO.getInstance();
 		PrintWriter pw = response.getWriter();
-
+		Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
+			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
+			
+			@Override
+			public JsonElement serialize(Timestamp arg0, Type arg1, JsonSerializationContext arg2) {
+				return new JsonPrimitive(sdf.format(arg0));
+			}
+		}).create();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		gson.toJson(timestamp);
 
 		try {
 
-			if(cmd.equals("/list.rankBoard")) { // 게시물 리스트 가져오기
-				System.out.println("옴");
-				String id = (String) session.getAttribute("loginID");
-				String gname = request.getParameter("game_name");
-				RankingBoardDTO myRanking = rnkdao.selectByGName(id, gname);
-				List<RankingBoardDTO> rankingList = rnkdao.selectAll(gname);
-
-				request.setAttribute("myRanking", myRanking);
+			if(cmd.equals("/list.rankBoard")) { // 게시물 전체 리스트 가져오기 ajax사용
+				System.out.println("/list.rankBoard");
+				List<RankingBoardDTO> rankingList = rnkdao.selectAll();
 				request.setAttribute("rankingList", rankingList);
-				request.getRequestDispatcher("/board/rankingBoard.jsp");
-
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(rankingList));
 			} else if(cmd.equals("/search.rankBoard")) { // 랭킹 검색 ( 아이디 )
 
 			}
@@ -95,7 +109,7 @@ public class RankingBoardController extends HttpServlet {
 							System.out.println("업데이트 들어가자");
 							dao.update(newScore, id, game_name);
 							updateCheck = "true"; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
-							
+
 						}
 					}
 					else {
@@ -107,10 +121,35 @@ public class RankingBoardController extends HttpServlet {
 			}
 
 			else if(cmd.equals("/myRankGames.rankBoard")) {//index.jsp에서 자신의 게임랭킹들을 보여주는 코드입니다.
+				System.out.println("sda");
 				String id = (String) session.getAttribute("loginID");
 				List<RankingBoardDTO> myGameList = rnkdao.selectById(id);
+
+				System.out.println(myGameList);
 				request.setAttribute("myGameList", myGameList);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(myGameList));
+			}
+			else if(cmd.equals("/game.rankBoard")) {//각각의 게임들을 누르면 해당게임의 랭킹을 보여주는 코드입니다.
+				System.out.println("game");
+				String game_name = request.getParameter("game_name");
+				System.out.println(game_name);
+				List<RankingBoardDTO> GameList = rnkdao.gameList(game_name);
+				System.out.println(GameList);
+				request.setAttribute("GameList", GameList);
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(GameList));
+			}
+			else if(cmd.equals("/myGame.rankBoard")) {//각각의 게임들을 누르면 해당게임의 랭킹을 보여주는 코드입니다.
+				System.out.println("game");
+				String game_name = request.getParameter("game_name");
+				System.out.println(game_name);
+				String id = (String) session.getAttribute("loginID");
+				List<RankingBoardDTO> myList = rnkdao.myGameList(id,game_name);
+				System.out.println(myList);
+				request.setAttribute("myList", myList);
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(myList));
 			}
 
 		} catch(Exception e) {
