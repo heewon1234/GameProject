@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -47,7 +48,7 @@ public class RankingBoardController extends HttpServlet {
 
 		try {
 
-			if(cmd.equals("/list.rankBoard")) { // 게시물 전체 리스트 가져오기 ajax사용
+			if(cmd.equals("/list.rankBoard")) { //처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급을 보여주는 코드
 				System.out.println("/list.rankBoard");
 				List<RankingBoardDTO> rankingList = rnkdao.selectAll();
 				request.setAttribute("rankingList", rankingList);
@@ -122,14 +123,16 @@ public class RankingBoardController extends HttpServlet {
 			}
 
 			else if(cmd.equals("/myRankGames.rankBoard")) {//index.jsp에서 자신의 게임랭킹들을 보여주는 코드입니다.
-				System.out.println("sda");
 				String id = (String) session.getAttribute("loginID");
-				List<RankingBoardDTO> myGameList = rnkdao.selectById(id);
+				List<RankingBoardDTO> myGameLists = new ArrayList<>();
 
-				System.out.println(myGameList);
-				request.setAttribute("myGameList", myGameList);
+				myGameLists.addAll(rnkdao.selectByIdD(id));
+				myGameLists.addAll(rnkdao.selectById(id));
+
+				request.setAttribute("myGameLists", myGameLists);
 				response.setContentType("text/html; charset=utf8");
-				pw.append(gson.toJson(myGameList));
+				pw.append(gson.toJson(myGameLists));
+
 			}
 			else if(cmd.equals("/myMines.rankBoard")) {// 랭킹 처음에 들어갔을때 자신의 지뢰찾기 초급을 보여주는 코드입니다. 
 				System.out.println("sda");
@@ -142,22 +145,30 @@ public class RankingBoardController extends HttpServlet {
 				pw.append(gson.toJson(myMines));
 			}
 			else if(cmd.equals("/game.rankBoard")) {//각각의 게임들을 누르면 해당게임의 랭킹을 보여주는 코드입니다.
-				System.out.println("game");
 				String game_name = request.getParameter("game_name");
-				System.out.println(game_name);
-				List<RankingBoardDTO> GameList = rnkdao.gameList(game_name);
-				System.out.println(GameList);
-				request.setAttribute("GameList", GameList);
-				response.setContentType("text/html; charset=utf8");
-				pw.append(gson.toJson(GameList));
+				List<RankingBoardDTO> gameList;
+
+				if ("bounceball".equals(game_name) || "minesweeperEazy".equals(game_name) || "minesweeperNormal".equals(game_name) || "minesweeperHard".equals(game_name)) {
+					gameList = rnkdao.gameListDESC(game_name);
+				    request.setAttribute("gameListD", gameList);
+					response.setContentType("text/html; charset=utf8");
+					pw.append(gson.toJson(gameList));
+				} else {
+				    gameList = rnkdao.gameList(game_name);
+				    request.setAttribute("gameList", gameList);
+					response.setContentType("text/html; charset=utf8");
+					pw.append(gson.toJson(gameList));
+				}
 			}
-			else if(cmd.equals("/myGame.rankBoard")) {//각각의 게임들을 누르면 해당게임의 랭킹을 보여주는 코드입니다.
-				System.out.println("game");
+			else if(cmd.equals("/myGame.rankBoard")) {
 				String game_name = request.getParameter("game_name");
-				System.out.println(game_name);
 				String id = (String) session.getAttribute("loginID");
-				List<RankingBoardDTO> myList = rnkdao.myGameList(id,game_name);
-				System.out.println(myList);
+				List<RankingBoardDTO> myList = new ArrayList<>();
+				if ("bounceball".equals(game_name) || "minesweeperEazy".equals(game_name) || "minesweeperNormal".equals(game_name) || "minesweeperHard".equals(game_name)) {
+					myList.addAll(rnkdao.myGameListD(id, game_name));
+				}else {
+					myList.addAll(rnkdao.myGameList(id, game_name));
+				}
 				request.setAttribute("myList", myList);
 				response.setContentType("text/html; charset=utf8");
 				pw.append(gson.toJson(myList));

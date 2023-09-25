@@ -58,7 +58,7 @@ public class RankingBoardDAO {
 	    String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking`\r\n"
 	    		+ "FROM rankingBoard AS rb1\r\n"
 	    		+ "WHERE id = ? and game_name = ? \r\n"
-	    		+ "ORDER BY score DESC;";
+	    		+ "ORDER BY ranking;";
 
 	    try (
 	        Connection con = this.getConnection();
@@ -84,9 +84,67 @@ public class RankingBoardDAO {
 	        }
 	    }
 	};
+	// 바운스볼, 지뢰찾기
+	public List<RankingBoardDTO> myGameListD(String id,String gname) throws Exception {
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking`\r\n"
+				+ "FROM rankingBoard AS rb1\r\n"
+				+ "WHERE id = ? and game_name = ? \r\n"
+				+ "ORDER BY ranking;";
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, id);
+			pstat.setString(2, gname);
+			
+			try (ResultSet rs = pstat.executeQuery()) {
+				List<RankingBoardDTO> list = new ArrayList<>();
+				
+				while (rs.next()) {
+					int seq = rs.getInt("seq");
+					String id1 = rs.getString("id");
+					String game_name = rs.getString("game_name");
+					int score = rs.getInt("score");
+					Timestamp rank_date = rs.getTimestamp("rank_date");
+					int ranking = rs.getInt("ranking");
+					
+					list.add(new RankingBoardDTO(seq, id1, game_name, score, rank_date, ranking));
+				}
+				return list;
+			}
+		}
+	};
 	// where game_name 인 해당 게임을 클릭 할 경우 전체 랭킹을 보여주는 코드
 	public List<RankingBoardDTO> gameList(String gname) throws Exception {
 		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = ? ORDER BY score DESC";
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, gname); // 파라미터 설정
+			
+			try (ResultSet rs = pstat.executeQuery()) {
+				List<RankingBoardDTO> list = new ArrayList<>();
+				
+				while (rs.next()) {
+					int seq = rs.getInt("seq");
+					String id1 = rs.getString("id");
+					String game_name = rs.getString("game_name");
+					int score = rs.getInt("score");
+					Timestamp rank_date = rs.getTimestamp("rank_date");
+					int ranking = rs.getInt("ranking");
+					
+					list.add(new RankingBoardDTO(seq, id1, game_name, score, rank_date, ranking));
+				}
+				return list;
+			}
+		}
+	};
+	//바운스볼 지뢰찾기
+	public List<RankingBoardDTO> gameListDESC(String gname) throws Exception {
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = ?  ORDER BY ranking";
 		
 		try (
 				Connection con = this.getConnection();
@@ -174,7 +232,7 @@ public class RankingBoardDAO {
 
 	//index.jsp에서 자신의 게임들의 랭킹을 보여주는 코드입니다.
 	public List<RankingBoardDTO> selectById(String loggedInUserId) throws Exception {
-		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 where id = ? ORDER BY game_name, score DESC";
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 where id = ? and NOT (game_name = 'bounceball' OR game_name LIKE 'mine%') ORDER BY game_name";
 
 		try (
 				Connection con = this.getConnection();
@@ -198,9 +256,35 @@ public class RankingBoardDAO {
 			}
 		}
 	};
+	//바운스볼 지뢰찾기
+	public List<RankingBoardDTO> selectByIdD(String loggedInUserId) throws Exception {
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking` FROM rankingBoard AS rb1 where id = ? and (game_name = 'bounceball' or game_name like 'mine%') ORDER BY game_name";
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				) {
+			pstat.setString(1, loggedInUserId);
+			try (ResultSet rs = pstat.executeQuery()) {
+				List<RankingBoardDTO> list = new ArrayList<>();
+				
+				while (rs.next()) {
+					int seq = rs.getInt("seq");
+					String id = rs.getString("id");
+					String gameName = rs.getString("game_name");
+					int score = rs.getInt("score");
+					Timestamp rankDate = rs.getTimestamp("rank_date");
+					int ranking = rs.getInt("ranking"); // 추가: rank 컬럼 조회
+					
+					list.add(new RankingBoardDTO(seq, id, gameName, score, rankDate, ranking));
+				}
+				return list;
+			}
+		}
+	};
 	//처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급을 보여주는 코드
 	public List<RankingBoardDTO> selectAll() throws Exception {
-		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' ORDER BY game_name, score DESC";
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy'";
 
 		try (
 				Connection con = this.getConnection();
@@ -225,7 +309,7 @@ public class RankingBoardDAO {
 	};
 	//처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급 자신의 랭킹을  보여주는 코드
 	public List<RankingBoardDTO> selectMyMines(String loggedInUserId) throws Exception {
-		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score > rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' and id = ?";
+		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' and id = ?";
 
 
 		try (
