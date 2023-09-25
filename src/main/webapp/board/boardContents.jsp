@@ -15,156 +15,85 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	rel="stylesheet">
-<style>
-* {
-	box-sizing: border-box;
-}
+	<link rel="stylesheet" type="text/css" href="/ui_css/boardContents_css.css">
 
-#head {
-	background-color: #B1B2FF
-}
-
-#body {
-	background-color: #D2DAFF
-}
-
-#footer {
-	background-color: #B1B2FF
-}
-</style>
 </head>
 <body>
-	<div class="container-fluid p-0">
-		<div id="head">
-			<div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-2">
-							<img src="/UI_img/marvlestudio.jpg">
-						</div>
-						<div class="col-md-2 p-0">
-							<div class="d-flex align-items-center justify-content-center"
-								style="height: 40px; width: 150px; border-radius: 5px; background-color: #D2DAFF; margin-top: 2.4%">
-								<i class="fas fa-gamepad me-2 mx-2" style="font-size: 1.5rem;"></i>
-								<select class="form-select" aria-label="Default select example"
-									style="max-width: 120px; background-color: #D2DAFF; width: 100%;">
-									<option selected>Game</option>
-									<option value="1">1.지뢰찾기</option>
-									<option value="2">2.바운스볼</option>
-									<option value="3">3.플래피버드</option>
-									<option value="4">4.풀문보트</option>
-									<option value="5">5.드래곤플라이트</option>
-									<option value="6">6.컬러블라인드</option>
-								</select>
-							</div>
-						</div>
-					</div>
+	<div class="container header pt-5 p-0">
+		<div class="row p-0 m-0 header" id="main-header"></div>
+		<hr>
+		<div class="board-txt-top">자유게시판</div>
+		<form>
+			<div class="board-border row">
+				<div class="board-title col-md-11 p-0">
+					<input value="${dto.title}" readonly>
+				</div>
+				<div class="game-select col-md-1 d-flex justify-content-end">
+					<c:if test="${loginID eq dto.writer }">
+						<button id="delBtn" type="button">삭제</button>
+						<div style="display:none;" id="board-seq">${dto.seq }</div>
+					</c:if>
+				</div>
+				<div class="board-info col-md-11 p-0">
+					<input type="text" value="글 번호 : ${dto.seq}" readonly> | 
+					<input type="text" value="작성자 : ${dto.writer}" readonly> | 
+					<input type="text" value="작성일 : ${dto.write_date}" readonly> | 
+					<input type="text" value="조회수 : ${dto.view_count}" readonly> | 
+					<input type="text" value="카테고리 : ${dto.game_name}" readonly>
+				</div>
+				<div class="board-contents">
+					${dto.contents}
+				</div>
+				<div class="btns">
+					<button id="backBtn" type="button">뒤로가기</button>
+					<c:if test="${loginID eq dto.writer }">
+						<button id="edit" type="button">수정</button>
+					</c:if>
+
 				</div>
 			</div>
-			<div style="background-color: #C9CFFF; height: 10px"></div>
-		</div>
-		<div class="container-fluid p-0" style="background-color: #EEF1FF;">
-			<div id="body" class="container">
-				<div id="top"
-					style="display: flex; justify-content: center; align-items: center;">
-					<img src="/UI_img/marvlestudio.jpg" alt="Marvel Studio">
+		</form>
+
+		<hr>
+		<form action="/insert.reply">
+			<div class="reply">
+				<div class="replyWriter">${loginID}</div>
+				<div class="replyContents">
+					<input type="hidden" value="${dto.seq }" name="seq">
+					<textarea placeholder="내용을 입력해주세요" name="contentsReply"></textarea>
 				</div>
-
-				<div id="center" class="mt-4"
-					style="background-color: #FFF9B0; text-align: center;">
-					<ul class="nav nav-pills nav-fill"
-						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-						<li class="nav-item"><a class="nav-link"
-							href="/members/myPage.jsp">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/board/gameBoard.jsp">게임</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/board/freeboard.jsp">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
-					</ul>
-				</div>
-				<div id="bottom" class="p-3 mt-2">
-					<div id="title" style="color: white;">자유 게시판 ></div>
-					<!-- DB에서 가져와야함 ( title )-->
-					<div class="p-2 mt-2" style="background-color: white;">
-						<h5>${dto.title }</h5>
-					</div>
-					<div style="display:none;" id="board-seq">${dto.seq }</div>
-					<!-- DB에서 가져와야함 ( user, write_date )-->
-					<div id="user" class="p-2" style="display: flex;">
-						<div id="userIcon" style="font-size: 3rem">
-							<i class="fa-solid fa-user"></i>
-						</div>
-						<div class="mt-3 mx-4">
-							<div id="writer">${dto.writer }</div>
-							<div id="write_date">${dto.write_date }</div>
-						</div>
-					</div>
-					<hr>
-					<div class="mb-2">
-						<h6>${dto.contents }</h6>
-					</div>
-					<div class="mb-2">
-						<c:if test="${loginID eq dto.writer }">
-							<button id="backBtn">뒤로가기</button>
-							<button id="edit">수정하기</button>
-							<button id="delBtn">삭제</button>
-						</c:if>
-
-					</div>
-					<hr>
-					<!-- reply -->
-					<div>
-						<h6>Reply contents</h6>
-					</div>
-					<h6>댓글</h6>
-					<div class="commendBox p-2"
-						style="border: 1px solid #d3d3d3; border-radius: 8px">
-						<div class="nickName mb-1">
-							<input type="text" id="loginID"
-								style="width: 15vw; border: none;" value="${loginID }" readonly>
-						</div>
-						<form action="/insert.reply">
-							<input type="hidden" id="seq" name="seq" value="${dto.seq}">
-							<div class="contents mb-2">
-								<input type="text" placeholder="내용을 입력해주세요."
-									name="contentsReply" style="width: 50vw">
-							</div>
-							<div class="controls d-flex" style="justify-content: flex-end;">
-								<input id="send" type="submit" class="btn btn-primary write "
-									value="등록">
-							</div>
-						</form>
-						<hr>
-						<div id="replyListContainer">
-							<c:choose>
-								<c:when test="${replyCount>0 }">
-									<form action="/update.reply" method="post" id="replyForm">
-
-									</form>
-									<div id="replyFooter"></div>
-								</c:when>
-								<c:otherwise>
-										댓글이 없습니다.
-									</c:otherwise>
-							</c:choose>
-							
-							
-						</div>
-					</div>
+				<div class="insertReply">
+					<button>등록</button>
 				</div>
 			</div>
+		</form>
+
+		<div id="replyListContainer">
+			<c:choose>
+				<c:when test="${replyCount>0 }">
+					<form action="/update.reply" method="post" id="replyForm"></form>
+					<div id="replyFooter"></div>
+				</c:when>
+				<c:otherwise>
+                    댓글이 없습니다.
+                </c:otherwise>
+			</c:choose>
+
 		</div>
-		<div id="footer" class="pt-4">footer</div>
+
+
 	</div>
 
 	<script>
 	$(document).ready(function() {
+		$("#main-header").load("/commons_ui/header.html");
+	});
+	
+	$(document).ready(function() {
 		let updateSuccess = true;
 
 		$("#backBtn").on("click", function() {
-			location.href = "/list.board?currentPage=${latestPageNum}";
+			location.href = "/list.board?cPage=${latestPage}";
 		});
 
 		$("#edit").on("click", function() {
@@ -187,11 +116,13 @@
 					replies.addClass("replies");
 					
 					let replyHeader = $("<div>");
+					replyHeader.addClass("replyHeader");
 					replyHeader.append(resp[i].writer);
 					$(replies).append(replyHeader);
 					
 					let replyWrite_date = $("<div>");
 					replyWrite_date.append(resp[i].write_date);
+					replyWrite_date.addClass("replyWrite_date");
 					$(replies).append(replyWrite_date);
 					
 					let replyBody = $("<div>");
