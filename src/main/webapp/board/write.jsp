@@ -62,6 +62,7 @@
    		$(document).ready(function() {
 			$("#main-header").load("/commons_ui/header.html");
 		});
+   		
 		$(document).ready(function() {
       		$('#summernote').summernote({
             	placeholder : '내용을 입력해주세요.',
