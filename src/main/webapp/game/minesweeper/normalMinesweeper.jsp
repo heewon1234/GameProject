@@ -21,7 +21,9 @@
 				boardWidth: 16,
 				boardHeight: 16,
 
-				totalMines: 40
+				totalMines: 40,
+				
+				count: 0
 			};
 		</script>
 		<script src="/game/minesweeper/js/phaser.min.js"></script>
