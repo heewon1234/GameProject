@@ -1,10 +1,12 @@
  package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,10 +21,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import constants.Constants;
 import dao.BoardDAO;
 import dao.FilesDAO;
+import dao.ReplyDAO;
 import dto.BoardDTO;
 import dto.FilesDTO;
 // 주석
@@ -34,7 +39,7 @@ public class BoardController extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       request.setCharacterEncoding("utf8");
       String cmd = request.getRequestURI();
-      
+      ReplyDAO replyDAO = ReplyDAO.getInstance();
       
       Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
          private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
@@ -80,37 +85,35 @@ public class BoardController extends HttpServlet {
             request.getRequestDispatcher("/board/freeboard.jsp").forward(request, response);
          } else if(cmd.equals("/insert.board")) { // 게시물 등록
             
-//            String uploadPath = request.getServletContext().getRealPath("files");
-//            File filesPath = new File(uploadPath);
-//            if(!filesPath.exists()) {filesPath.mkdir();}
-//            int maxSize = 1024 * 1024 * 10;
-//            MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
-//            
-//            String writer = (String)request.getSession().getAttribute("loginID");
-//            String title = multi.getParameter("title");
-//            String contents = multi.getParameter("contents");
-//            String game_name = multi.getParameter("game_name");
-            
-//            int result = boardDAO.insert(new BoardDTO(0,writer,title,contents,null,null,game_name));      
-//
-//            Enumeration<String> fileNames = multi.getFileNames();
-//
-//            while(fileNames.hasMoreElements()) {
-//               String fileName = fileNames.nextElement();
-//               if(multi.getFile(fileName) != null) {
-//                  String ori_name = multi.getOriginalFileName(fileName);
-//                  String sys_name = multi.getFilesystemName(fileName);
-//                  fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
-//               }
-//            }
-//
-//            response.sendRedirect("/list.board");
+        	 String uploadPath = request.getServletContext().getRealPath("files");
+				File filesPath = new File(uploadPath);
+				if(!filesPath.exists()) {filesPath.mkdir();} // 폴더가 없다면 만들어라
+				int maxSize = 1024 * 1024 * 10; // 업로드 파일 최대 사이즈 : 10MB	
+				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
+				String writer = (String)request.getSession().getAttribute("loginID");
+				String title = multi.getParameter("title");
+				String contents = multi.getParameter("contents");
+				String game_name = multi.getParameter("game_name");
+				int result = boardDAO.insert(new BoardDTO(0,writer,title,contents,null,0,game_name));		
+
+				Enumeration<String> fileNames = multi.getFileNames();
+				while(fileNames.hasMoreElements()) {
+					String fileName = fileNames.nextElement();
+					System.out.println(fileName);
+					if(multi.getFile(fileName) != null) { // multi.getFile(fileName) : 파일 크기 -> 파일이 없다면 null 반환
+						String ori_name = multi.getOriginalFileName(fileName);
+						String sys_name = multi.getFilesystemName(fileName);
+						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
+					}
+				}
+
+				response.sendRedirect("/list.board");
             
          } else if(cmd.equals("/delete.board")) { // 게시물 삭제
             
-//            int seq = Integer.parseInt(request.getParameter("seq"));
-//            int result = boardDAO.delContents(seq);
-//            response.sendRedirect("/list.board");
+        	 int seq = Integer.parseInt(request.getParameter("seq"));
+				int result = boardDAO.delContents(seq);
+				response.sendRedirect("/list.board");
          
          } else if(cmd.equals("/update.board")) { // 게시물 수정
             
@@ -145,25 +148,32 @@ public class BoardController extends HttpServlet {
                int seq = Integer.parseInt(request.getParameter("seq"));
                
                BoardDTO dto = boardDAO.showContents(seq);
-               List<FilesDTO> fileList = fileDAO.selectFile(seq);
+               //List<FilesDTO> fileList = fileDAO.selectFile(seq);
                request.setAttribute("contentsList", dto);
-               request.setAttribute("fileList", fileList);
+               //request.setAttribute("fileList", fileList);
                
                request.getRequestDispatcher("/editBoard.jsp").forward(request, response);
       }else if(cmd.equals("/showContents.board")) { // 게시글 보기
             
-//            int seq = Integer.parseInt(request.getParameter("seq"));
-//            
-//            int view_countResult = boardDAO.viewCountUpdate(seq);
-//            BoardDTO dto = boardDAO.showContents(seq);
-//            List<ReplyDTO> replyList = replyDAO.selectAll(seq);
-//            
-//            List<FilesDTO> fileList = fileDAO.selectFile(seq);
-//            request.setAttribute("fileList", fileList);
-//            request.setAttribute("dto", dto);
-//            request.setAttribute("replyList", replyList);
-//            request.getRequestDispatcher("/freeboard.jsp").forward(request, response);
-         
+    	  int currentReplyPage=1;
+			if(request.getParameterMap().containsKey("currentReplyPage")) {
+				currentReplyPage = Integer.parseInt(request.getParameter("currentReplyPage"));
+			}
+			request.getSession().setAttribute("latestReplyPageNum", currentReplyPage);
+			request.setAttribute("recordCountPerPage", Constants.RECORD_COUNT_PER_PAGE);
+			request.setAttribute("naviCountPerPage", Constants.NAVI_COUNT_PER_PAGE);
+			request.setAttribute("currentReplyPage", currentReplyPage);
+
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			request.setAttribute("recordTotalCount",replyDAO.countReply(seq));
+			int view_countResult = boardDAO.viewCountUpdate(seq);
+			BoardDTO dto = boardDAO.showContents(seq);
+
+			//request.setAttribute("fileList", fileList);
+			int replyCount = replyDAO.countReply(seq);
+			request.setAttribute("replyCount", replyCount);
+			request.setAttribute("dto", dto);
+			request.getRequestDispatcher("/board/boardContents.jsp").forward(request, response);
          } else if(cmd.equals("/search.board")) { // 게시글 검색 ( 제목 & 내용 & 카테고리 )
 //            String title = request.getParameter("searchTitle");
 //            List<BoardDTO> list = boardDAO.searchList(title);

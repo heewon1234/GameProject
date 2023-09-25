@@ -109,7 +109,7 @@ public class BoardDAO {
 
 	
 	// board 게시물 삭제
-	public int delContents(BoardDTO dto) throws Exception {
+	public int delContents(int seq) throws Exception {
 		String sql = "delete from board where seq = ?" ;
 
 		try(
@@ -118,7 +118,7 @@ public class BoardDAO {
 				) 
 
 		{
-			pstat.setInt(1, dto.getSeq());
+			pstat.setInt(1, seq);
 			return pstat.executeUpdate();
 		}
 	}
@@ -176,7 +176,7 @@ public class BoardDAO {
 	}
 	
 	// board 게시물 조회수 추가하기
-	public int viewCountUpdate(BoardDTO dto) throws Exception{
+	public int viewCountUpdate(int seq) throws Exception{
 		String sql = "update board set view_count = view_count + 1 where seq = ?;" ;
 
 		try(
@@ -184,7 +184,7 @@ public class BoardDAO {
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) 
 		{
-			pstat.setInt(1, dto.getSeq());
+			pstat.setInt(1, seq);
 			return pstat.executeUpdate();
 		}
 	}

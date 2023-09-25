@@ -83,7 +83,7 @@
 								<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
 								<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
-								<li class="nav-item"><a class="nav-link" href="/list.rankBoard">랭킹게시판</a></li>
+								<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 							</ul>
 						</div>
 
@@ -119,7 +119,7 @@
 											<tr>
 												<th scope="row" style="text-align: center">${list.seq}</th>
 												<td style="text-align: center">${list.game_name}</td>
-												<td>${list.title}</td>
+												<td><a href="/showContents.board?seq=${list.seq}">${list.title}</a></td>
 												<td style="text-align: center">${list.view_count}</td>
 												<td style="text-align: center">${list.writer}</td>
 												<td style="text-align: center">${list.timestampToString}</td>

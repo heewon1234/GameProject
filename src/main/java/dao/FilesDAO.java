@@ -34,30 +34,29 @@ public class FilesDAO {
 	
 	// file 테이블 작성 
 	public int insert(FilesDTO dto) throws Exception {
-		String sql = "insert into file (ori_name, sys_name, parent_seq) values (?, ?, ?)";
-		try (
-				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
-				) {
-			pstat.setString(1, dto.getOri_name());
-			pstat.setString(2, dto.getSys_name());
-			pstat.setInt(3, dto.getParent_seq());
-			return pstat.executeUpdate();
+		String sql = "insert into files values (?,?,?,?)";
 		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setInt(1, dto.getSeq());
+			pstat.setString(2, dto.getOri_name());
+			pstat.setString(3, dto.getSys_name());
+			pstat.setInt(4, dto.getParent_seq());
+			return pstat.executeUpdate();
 		}
 	}
 	
 	
 	// file 불러오기
-	public List<FilesDTO> selectFile(int parentSeq) throws Exception {
-		String sql = "select * from file where parent_seq = ?";
+	public List<FilesDTO> selectFile(FilesDTO dto) throws Exception {
+		String sql = "select * from files where parent_seq like ?";
 		try (
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				) {
 			
 			List<FilesDTO> result = new ArrayList<>();
-			pstat.setInt(1, parentSeq);
+			pstat.setInt(1, dto.getSeq());
 			
 			ResultSet rs = pstat.executeQuery();
 			while (rs.next()) {
@@ -69,5 +68,9 @@ public class FilesDAO {
 			}
 			return result;
 		}
+	}
+	
+	public void delete(int pseq) throws Exception{
+//		String sql = "delete "
 	}
 }
