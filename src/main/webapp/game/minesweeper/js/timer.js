@@ -1,7 +1,5 @@
 var Timer = function (x, y) {
-
-    var count = 0;
-    var tf_counter = game.add.text(x, y, 'Time: ' + count, fontStyles.counterFontStyle);
+    var tf_counter = game.add.text(x, y, 'Time: ' + gameProperties.count, fontStyles.counterFontStyle);
 
     tf_counter.anchor.set(0, 0.5);
 
@@ -17,7 +15,7 @@ var Timer = function (x, y) {
     };
  
     var update = function() {
-        count++;
-        tf_counter.text = 'Time: ' + count;
+        gameProperties.count++;
+        tf_counter.text = 'Time: ' + gameProperties.count;
     };
 };

@@ -113,8 +113,9 @@ public class RankingBoardController extends HttpServlet {
 						}
 					}
 					else {
-						System.out.println("값이 없음.");
-						// updateCheck 홈페이지로 날려줘서 AJAX로 False 되면 아무 일도 없게 하면 됨
+						System.out.println("신기록 등록 하겠음.");
+						dao.insert(id, newScore, game_name);
+						updateCheck = "true";
 						pw.append(updateCheck);
 					}
 				}

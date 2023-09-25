@@ -84,6 +84,43 @@ var Board = function (columns, rows, mines) {
         tilesLeft--;
 
         if (!tilesLeft) {
+
+            if (gameProperties.totalMines == 10) {
+				console.log("Eazy: "+gameProperties.count);
+				this.time = gameProperties.count;
+                $.ajax({
+                    url: "/rankReadPoint.rankBoard",
+                    data: {
+                        score: gameProperties.count,
+                        game_name: "minesweeperEazy",
+                        rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+                    },
+                    method: "GET"
+                });
+                console.log("Eazy: "+gameProperties.count);
+            } else if(gameProperties.totalMines == 40) {
+				console.log("Normal: "+gameProperties.count);
+                $.ajax({
+                    url: "/rankReadPoint.rankBoard",
+                    data: {
+                        score: gameProperties.count,
+                        game_name: "minesweeperNormal",
+                        rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+                    },
+                    method: "GET"
+                });
+            } else if(gameProperties.totalMines == 99) {
+                console.log("Hard: "+gameProperties.count);
+                $.ajax({
+                    url: "/rankReadPoint.rankBoard",
+                    data: {
+                        score: gameProperties.count,
+                        game_name: "minesweeperHard",
+                        rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
+                    },
+                    method: "GET"
+                });
+            }
             endGame();
         }
     };
