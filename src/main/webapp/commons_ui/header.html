@@ -7,7 +7,10 @@
     .game-dropdown{
         font-weight: bold;
         font-size: 23px;
-        
+    }
+    a{
+    	color:black;
+    	text-decoration:none;
     }
 </style>
 
@@ -17,7 +20,7 @@
 <div class="col-md-8 p-0">
     <div class="row p-0 m-0 h-100 menubar">
         <div class="col-md-3 p-0 d-flex align-items-center justify-content-center">
-           홈
+           <a href="/index.jsp">홈</a>
         </div>
         <div class="col-md-3 p-0 d-flex align-items-center justify-content-center">
             <div class="dropdown">
@@ -26,17 +29,17 @@
                     게임
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">1.지뢰찾기</a></li>
-                  <li><a class="dropdown-item" href="#">2.바운스볼</a></li>
-                  <li><a class="dropdown-item" href="#">3.플래피버드</a></li>
-                  <li><a class="dropdown-item" href="#">4.풀문보트</a></li>
-                  <li><a class="dropdown-item" href="#">5.드래곤 플라이트</a></li>
-                  <li><a class="dropdown-item" href="#">6.컬러블라인드</a></li>
+                  <li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">1.지뢰찾기</a></li>
+                  <li><a class="dropdown-item" href="/game/bounceball/bounceball_main.jsp">2.바운스볼</a></li>
+                  <li><a class="dropdown-item" href="/game/flappyBird/flappyBird_main.jsp">3.플래피버드</a></li>
+                  <li><a class="dropdown-item" href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.풀문보트</a></li>
+                  <li><a class="dropdown-item" href="/game/dragon/dragon.jsp">5.드래곤 플라이트</a></li>
+                  <li><a class="dropdown-item" href="/game/colorblind/colorblind.jsp">6.컬러블라인드</a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-3 p-0 d-flex align-items-center justify-content-center">자유게시판</div>
-        <div class="col-md-3 p-0 d-flex align-items-center justify-content-center">랭킹게시판</div>
+        <div class="col-md-3 p-0 d-flex align-items-center justify-content-center"><a href="/list.board">자유게시판</a></div>
+        <div class="col-md-3 p-0 d-flex align-items-center justify-content-center"><a href="/board/rankingBoard.jsp">랭킹게시판</a></div>
     </div>
 </div>
 <div class="col-md-2 mt-2 d-md-flex justify-content-end align-items-center icon-place d-none d-md-block pe-5">

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
+<link href="/ui_css/index_css.css" rel="stylesheet" type="text/css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <link
@@ -17,7 +18,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/ui_css/index_css.css">
+
 
 </head>
 
@@ -123,14 +124,42 @@
                     </div>
                     <div class="contents-right">
                         <div class="loginbox">
-                            <div class="login-button">
-                                <button id="loginButton">로그인</button>
-                            </div>
-                            <div class="login-txt">
-                                <a href="/goToIdSearch.members">아이디찾기</a> | 
-                                <a href="/goToPwSearch.members">비밀번호찾기</a> | 
-                                <a href="/goToSignUp.members">회원가입</a>
-                            </div>
+                        	<c:choose>
+                        		<c:when test="${loginID == null }">
+                        			<div class="login-button">
+                                		<button id="loginButton">로그인</button>
+                            		</div>
+                            		<div class="login-txt">
+                                		<a href="/goToIdSearch.members">아이디찾기</a> | 
+                                		<a href="/goToPwSearch.members">비밀번호찾기</a> | 
+                                		<a href="/goToSignUp.members">회원가입</a>
+                            		</div>
+                        		</c:when>
+                            	<c:otherwise>
+                            		<div id="profile">
+										<div id="user" class="p-2" style="display: flex;">
+											<div id="userIcon" style="font-size: 3rem">
+												<i class="fa-solid fa-user"></i>
+											</div>
+											<div class="mt-3 mx-4">
+												<div id="user">${loginID}</div>
+												<div id="email">${email}</div>
+											</div>
+
+											<div class="mt-3" style="cursor: pointer;"
+												onclick="window.location.href='/logout.members';">
+												<div class="d-flex border p-2"
+													style="width: 120px; border-radius: 20px; align-items: center;">
+													<div>로그아웃</div>
+													<img src="/UI_img/log-out.svg" style="margin-left: 5px;">
+												</div>
+											</div>
+										</div>
+										<div style="text-align:center;margin-bottom:10px; border-top:1px solid gainsboro;"><a href="/mypage.members">마이페이지</a></div>
+										
+									</div>
+                            	</c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="rnk-board">
                             <div class="rnk-txt"><a href="/board/rankingBoard.jsp">나의 랭킹 ></a> </div>
