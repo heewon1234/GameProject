@@ -179,6 +179,11 @@ public class MembersController extends HttpServlet {
 			    String id = request.getParameter("id");
 			    String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 			    boolean result = membersDAO.isAccountExist(id, password);
+			    
+			    if(membersDAO.isBanned(id)) {
+			    	response.getWriter().write("banned");
+			    	return;
+			    }
 
 			    if (result) {
 			    	System.out.println("로그인 성공");

@@ -265,5 +265,16 @@ public class MembersDAO {
             return pstat.executeUpdate();
         }
 	}
+	
+	public boolean isBanned(String id) throws Exception {
+		String sql = "SELECT * FROM MEMBERS WHERE position = 'banned' and id=?";
+
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);) {
+			try(ResultSet rs = pstat.executeQuery();) {
+				return rs.next();
+			}
+		}
+	}
 
 }
