@@ -168,7 +168,7 @@
 		});
 
 		$("#edit").on("click", function() {
-			location.href = "/updateList.board?seq=${dto.seq}";
+			location.href = "/goToEdit.board?seq=${dto.seq}";
 
 		});
 		
