@@ -74,10 +74,14 @@
 					style="background-color: #FFF9B0; text-align: center;">
 					<ul class="nav nav-pills nav-fill"
 						style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-						<li class="nav-item"><a class="nav-link" href="/members/myPage.jsp">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/gameBoard.jsp">게임</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/freeboard.jsp">자유게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/members/myPage.jsp">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/gameBoard.jsp">게임</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/freeboard.jsp">자유게시판</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="/board/rankingBoard.jsp">랭킹게시판</a></li>
 					</ul>
 				</div>
 				<div id="bottom" class="p-3 mt-2">
@@ -86,6 +90,7 @@
 					<div class="p-2 mt-2" style="background-color: white;">
 						<h5>${dto.title }</h5>
 					</div>
+					<div style="display:none;" id="board-seq">${dto.seq }</div>
 					<!-- DB에서 가져와야함 ( user, write_date )-->
 					<div id="user" class="p-2" style="display: flex;">
 						<div id="userIcon" style="font-size: 3rem">
@@ -106,64 +111,69 @@
 							<button id="edit">수정하기</button>
 							<button id="delBtn">삭제</button>
 						</c:if>
-						
+
 					</div>
 					<hr>
 					<!-- reply -->
-					<div><h6>Reply contents</h6></div>
+					<div>
+						<h6>Reply contents</h6>
+					</div>
 					<h6>댓글</h6>
 					<div class="commendBox p-2"
-							style="border: 1px solid #d3d3d3; border-radius: 8px">
-							<div class="nickName mb-1">
-								<input type="text" id="loginID"
-									style="width: 15vw; border: none;" value="${loginID }" readonly>
+						style="border: 1px solid #d3d3d3; border-radius: 8px">
+						<div class="nickName mb-1">
+							<input type="text" id="loginID"
+								style="width: 15vw; border: none;" value="${loginID }" readonly>
+						</div>
+						<form action="/insert.reply">
+							<input type="hidden" id="seq" name="seq" value="${dto.seq}">
+							<div class="contents mb-2">
+								<input type="text" placeholder="내용을 입력해주세요."
+									name="contentsReply" style="width: 50vw">
 							</div>
-							<form action="#">
-								<input type="hidden" id="seq" name="seq" value="${boardDTO.seq}">
-								<div class="contents mb-2">
-									<input type="text" placeholder="내용을 입력해주세요."
-										name="contentsReply" style="width: 50vw">
-								</div>
-								<div class="controls d-flex" style="justify-content: flex-end;">
-									<input id="send" type="submit" class="btn btn-primary write "
-										value="등록">
-								</div>
-							</form>
-							<hr>
-							<div id="replyListContainer">
-								<c:choose>
-									<c:when test="${replyList.size()>0 }">
-										<form action="/update.reply" method="post" id="replyForm">
-										
-										</form>
-									</c:when>
-									<c:otherwise>
+							<div class="controls d-flex" style="justify-content: flex-end;">
+								<input id="send" type="submit" class="btn btn-primary write "
+									value="등록">
+							</div>
+						</form>
+						<hr>
+						<div id="replyListContainer">
+							<c:choose>
+								<c:when test="${replyCount>0 }">
+									<form action="/update.reply" method="post" id="replyForm">
+
+									</form>
+									<div id="replyFooter"></div>
+								</c:when>
+								<c:otherwise>
 										댓글이 없습니다.
 									</c:otherwise>
-								</c:choose>
-								<div id="replyFooter"></div>
-							</div>
+							</c:choose>
+							
+							
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div id="footer" class="pt-4">footer</div>
 	</div>
-	
+
 	<script>
 	$(document).ready(function() {
 		let updateSuccess = true;
+
 		$("#backBtn").on("click", function() {
-			//location.href = "/list.board?currentPage=${latestPageNum}";
+			location.href = "/list.board?currentPage=${latestPageNum}";
 		});
 
 		$("#edit").on("click", function() {
-
+			location.href = "/updateList.board?seq=${dto.seq}";
 
 		});
 		
 		$("#delBtn").on("click",function() {
-			//window.open("/board/isDelContents.jsp", "","width=300,height=200");
+			window.open("/board/isDelContents.jsp", "","width=300,height=200");
 		});
 		
 		$(function(){
@@ -213,6 +223,7 @@
 					cancelReply.addClass("cancelReply");
 					cancelReply.attr("type","button");
 					cancelReply.append("취소");
+					cancelReply.css("display","none");
 					$(replyBtns).append(cancelReply);
 					
 					let seqInput = $("<input>");
@@ -229,24 +240,34 @@
 					parentInput.addClass("parentInput");
 					$(replyBtns).append(parentInput);
 					
+					let replyPageInput = $("<input>");
+					replyPageInput.val(${currentReplyPage});
+					replyPageInput.attr("name","currentReplyPage");
+					replyPageInput.attr("type","hidden");
+					replyPageInput.addClass("replyPageInput");
+					$(replyBtns).append(replyPageInput);
+					
 					let completeReply = $("<button>");
 					completeReply.addClass("completeReply");
+					completeReply.css("display","none");
 					completeReply.append("수정완료");
 					$(replyBtns).append(completeReply);
 					
 					$(replies).append(replyBtns);
 					
 					$("#replyForm").append(replies);
+					let hr = $("<hr>");
+					
+					$("#replyForm").append(hr);
 
 				}
-				
 				$(".deleteReply").on("click",function(){
-					$(this).siblings(".seqInput").attr("id","seq");
+					$(this).siblings(".seqInput").attr("id","seqInput");
 					$(this).siblings(".parentInput").attr("id","parent_seq");
-					//window.open("/reply/isDelReply.jsp","","width=300,height=200");
-	
+					$(this).siblings(".replyPageInput").attr("id","replyPage");
+					window.open("/reply/isDelReply.jsp","","width=300,height=200");
+					
 				});
-				
 				$(".cancelReply").on("click",function(){
 					location.reload();
 				});
@@ -272,45 +293,51 @@
 					$(this).siblings(".completeReply").css("display","inline");
 					
 				});
-
 				
 			});
-			let replyFooter = document.getElementById("replyFooter");
-			let recordTotalCount = ${recordTotalCount};
-			let recordCountPerPage = ${recordCountPerPage};
-			let naviCountPerPage = ${naviCountPerPage};
-			let currentReplyPage = ${currentReplyPage};
-			let pageTotalCount = 0;
-			if((recordTotalCount%recordCountPerPage)>0){
-				pageTotalCount = Math.floor( recordTotalCount/recordCountPerPage ) + 1;
-			} else {
-				pageTotalCount =  recordTotalCount/ recordCountPerPage;
-			}
-			
-			if(currentReplyPage<1){currenPage=1;}
-			else if(currentReplyPage>pageTotalCount){currentReplyPage=pageTotalCount;}
-			
-			let startNavi = Math.floor(( currentReplyPage - 1 ) / naviCountPerPage) * naviCountPerPage + 1;
-			let endNavi = startNavi + naviCountPerPage - 1;
-			if(endNavi > pageTotalCount) {endNavi = pageTotalCount;}
-			
-			let needPrev = true;
-			let needNext = true;
-			
-			if( startNavi == 1 ) { needPrev=false; }
-			if( endNavi == pageTotalCount ) { needNext = false; }
-			
-			if(needPrev) {
-				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(startNavi-1)+"'>"+ "<<"+ "</a>");
-			}
-			for(let i = startNavi; i<=endNavi; i++) {
-				$("#replyFooter").append("<a href='/list.board?currentReplyPage="+ i +"' class='naviNum'>" + i + "</a>");
-			}
-			if(needNext) {$("#replyFooter").append("<a href='/list.board?currentReplyPage="+(endNavi+1)+"'>"+ ">>"+ "</a>");}
-			
-			let childNum = currentReplyPage;
-			if(childNum>10){childNum = childNum-9;}
-			$(".naviNum:nth-child("+childNum+")").css("color","red").css("text-decoration","underline");
+		});
+		
+		
+		
+		let replyFooter = document.getElementById("replyFooter");
+		let recordTotalCount = ${recordTotalCount};
+		let recordCountPerPage = ${recordCountPerPage};
+		let naviCountPerPage = ${naviCountPerPage};
+		let currentReplyPage = ${currentReplyPage};
+		
+		let pageTotalCount = 0;
+
+		if((recordTotalCount%recordCountPerPage)>0){
+			pageTotalCount = Math.floor( recordTotalCount/recordCountPerPage ) + 1;
+		} else {
+			pageTotalCount =  recordTotalCount/ recordCountPerPage;
+		}
+		console.log(recordTotalCount, recordCountPerPage, naviCountPerPage, currentReplyPage)
+		if(currentReplyPage<1){currenReplyPage=1;}
+		else if(currentReplyPage>pageTotalCount){currentReplyPage=pageTotalCount;}
+		
+		let startNavi = Math.floor(( currentReplyPage - 1 ) / naviCountPerPage) * naviCountPerPage + 1;
+		let endNavi = startNavi + naviCountPerPage - 1;
+		if(endNavi > pageTotalCount) {endNavi = pageTotalCount;}
+		console.log(currentReplyPage);
+		console.log(Math.floor(( currentReplyPage - 1 )));
+		let needPrev = true;
+		let needNext = true;
+		
+		if( startNavi == 1 ) { needPrev=false; }
+		if( endNavi == pageTotalCount ) { needNext = false; }
+		
+		if(needPrev) {
+			$("#replyFooter").append("<a href='/showContents.board?currentReplyPage="+(startNavi-1)+"&seq=${dto.seq}'>"+ "<<"+ "</a>");
+		}
+		for(let i = startNavi; i<=endNavi; i++) {
+			$("#replyFooter").append("<a href='/showContents.board?currentReplyPage="+ i +"&seq=${dto.seq}' class='naviNum'>" + i + "</a>");
+		}
+		if(needNext) {$("#replyFooter").append("<a href='/showContents.board?currentReplyPage="+(endNavi+1)+"&seq=${dto.seq}'>"+ ">>"+ "</a>");}
+		
+		let childNum = currentReplyPage;
+		if(childNum>10){childNum = childNum-9;}
+		$(".naviNum:nth-child("+childNum+")").css("color","red").css("text-decoration","underline");
 	});
 	</script>
 </body>
