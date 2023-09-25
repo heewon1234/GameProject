@@ -152,7 +152,10 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
                             // 로그인 실패 시, alert 창 띄우기
                             alert("로그인 실패하였습니다.");
                             location.href = "/members/login.jsp"
-                        } 
+                        } else if (response == "banned") {
+                        	alert("해당 사용자는 관리자에 의해 사용이 차단되었습니다.");
+                        	location.href = "/members/login.jsp"
+                        }
                     },
                     error: function() {
                         // Ajax 요청 실패 시 처리
