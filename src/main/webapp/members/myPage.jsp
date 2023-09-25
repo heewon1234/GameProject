@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!DOCTYPE html>
     <html>
 
@@ -70,7 +71,7 @@
                             <li class="list-group-item"><a href="/members/myPage.jsp">내프로필</a></li>
                             <li class="list-group-item"><a href="/board/rankingBoard.jsp">랭킹</a></li>
                             <li class="list-group-item"><a href="/delAccountPage.members">회원탈퇴</a></li>
-                            <c:if test="${myInfo.id eq 'minseok123'}" >
+                            <c:if test="${mypageList.id eq 'admin'}" >
                             <li class="list-group-item"><a href="/membersInfo.members">관리자 페이지</a></li>
                             </c:if>
                         </ul>
