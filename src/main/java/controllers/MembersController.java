@@ -191,7 +191,6 @@ public class MembersController extends HttpServlet {
 			        response.getWriter().write("false");
 			    }
 			} else if(cmd.equals("/logout.members")) { // 로그아웃 버튼 클릭 시
-
 				request.getSession().removeAttribute("loginID"); // 사용자의 키로 저장되어 있던 특정 정보 하나 제거
 				request.getSession().invalidate(); // 사용자의 키로 저장되어 있던 정보 다 제거
 				response.sendRedirect("/index.jsp");
