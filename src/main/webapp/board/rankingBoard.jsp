@@ -113,8 +113,14 @@
 
 							<ul class="nav nav-pills nav-fill"
 								style="width: 700px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-								<li class="game nav-item"><a class="nav-link" href="#"
-									data-game="#">지뢰찾기</a></li>
+								<li class="nav-item dropdown"><button type="button"
+									class="btn" data-bs-toggle="dropdown" aria-expanded="false">
+									지뢰찾기</button>
+								<ul class="dropdown-menu">
+									<li><a class="game dropdown-item" href="#" data-game="minesweeperEazy">하급</a></li>
+									<li><a class="game dropdown-item" href="#" data-game="minesweeperNormal">중급</a></li>
+									<li><a class="game dropdown-item" href="#" data-game="minesweeperHard">상급</a></li>
+									</ul>
 								<li class="game nav-item"><a class="nav-link" href="#"
 									data-game="bounceball">바운스볼</a></li>
 								<li class="game nav-item"><a class="nav-link" href="#"
@@ -144,6 +150,7 @@
 							</tbody>
 						</table>
 					</div>
+					<h3 style="margin-top: 20px;">전체 랭킹</h3>
 					<div id="contents" class="mt-4">
 						<table class="table">
 							<thead>
@@ -170,8 +177,8 @@ $(document).ready(function() {
     // Footer를 로드
     $("#footer_container").load("/commons/footer.html");
 
-    // 전체 게임 리스트를 보여주는 AJAX 요청
-    $.ajax({
+    // 처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급을 보여주는 AJAX 요청
+   $.ajax({
         type: "POST",
         url: "/list.rankBoard",
         dataType: "json",
@@ -203,10 +210,10 @@ $(document).ready(function() {
         console.error("요청 실패:", status, error);
     });
 
-    // 내 랭킹을 보여주는 AJAX 요청
+    // 내 지뢰찾기 초급 랭킹을 보여주는 AJAX 요청
     $.ajax({
         type: "POST",
-        url: "/myRankGames.rankBoard",
+        url: "/myMines.rankBoard",
         dataType: "json",
     })
     .done(function(resp) {
@@ -237,9 +244,9 @@ $(document).ready(function() {
     });
 
     // 게임 메뉴를 클릭했을 때 해당 게임 정보를 보여주는 AJAX 요청
-    $(".game").on("click", function() {
-        event.preventDefault();
-        var gameName = $("a.nav-link", this).data("game");
+    $(".game.nav-item a.nav-link,.game.dropdown-item").on("click", function(event) {
+    event.preventDefault();
+    var gameName = $(this).data("game");
         console.log("게임 이름:", gameName);
         $.ajax({
             type: "POST",

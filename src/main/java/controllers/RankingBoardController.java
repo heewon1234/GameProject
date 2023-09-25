@@ -131,6 +131,16 @@ public class RankingBoardController extends HttpServlet {
 				response.setContentType("text/html; charset=utf8");
 				pw.append(gson.toJson(myGameList));
 			}
+			else if(cmd.equals("/myMines.rankBoard")) {// 랭킹 처음에 들어갔을때 자신의 지뢰찾기 초급을 보여주는 코드입니다. 
+				System.out.println("sda");
+				String id = (String) session.getAttribute("loginID");
+				List<RankingBoardDTO> myMines = rnkdao.selectMyMines(id);
+				
+				System.out.println(myMines);
+				request.setAttribute("myMines", myMines);
+				response.setContentType("text/html; charset=utf8");
+				pw.append(gson.toJson(myMines));
+			}
 			else if(cmd.equals("/game.rankBoard")) {//각각의 게임들을 누르면 해당게임의 랭킹을 보여주는 코드입니다.
 				System.out.println("game");
 				String game_name = request.getParameter("game_name");
