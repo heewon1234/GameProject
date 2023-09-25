@@ -174,11 +174,17 @@ public class MembersController extends HttpServlet {
 				String id = request.getParameter("id");
 				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
 				boolean result = membersDAO.isAccountExist(id, password);
+				String email = membersDAO.getEmail(id);
 
-				if(result) { 
-					request.getSession().setAttribute("loginID", id); // session scope
+				if (result) {
+				    request.getSession().setAttribute("loginID", id); // session scope
+				    request.setAttribute("email", email);
+				    request.getRequestDispatcher("/index.jsp").forward(request, response);
+				} else {
+				    // result가 false인 경우 다른 페이지로 이동
+				    request.getRequestDispatcher("/members/login.jsp").forward(request, response);
 				}
-				response.sendRedirect("/index.jsp");
+
 
 			} else if(cmd.equals("/logout.members")) { // 로그아웃 버튼 클릭 시
 
