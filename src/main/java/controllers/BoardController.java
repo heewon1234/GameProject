@@ -152,7 +152,7 @@ public class BoardController extends HttpServlet {
                request.setAttribute("contentsList", dto);
                //request.setAttribute("fileList", fileList);
                
-               request.getRequestDispatcher("/editBoard.jsp").forward(request, response);
+               request.getRequestDispatcher("/board/editBoard.jsp").forward(request, response);
       }else if(cmd.equals("/showContents.board")) { // 게시글 보기
             
     	  int currentReplyPage=1;
