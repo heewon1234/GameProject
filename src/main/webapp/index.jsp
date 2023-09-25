@@ -221,7 +221,7 @@
 									<div class="col">
 										<div class="p-3">
 											<figure class="figure">
-												<img src="/game/gameUI/colorblind_new.png"
+												<img src="/game/gameUI/Colorblind_Logo_new.png"
 													class="figure-img img-fluid rounded" alt="...">
 												<figcaption class="figure-caption text-center">
 													<a class="gtext" href="/game/colorblind/colorblind.jsp"
