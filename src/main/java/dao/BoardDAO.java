@@ -127,17 +127,9 @@ public class BoardDAO {
 	public int update(BoardDTO dto) throws Exception {
 		String sql = "update board set title=?, contents=?, game_name=? where seq = ?;" ;
 
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		}
-
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		try(
 				Connection con = this.getConnection();
-				PreparedStatement pstat = con.prepareStatement(sql);
+				PreparedStatement pstat = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 				) 
 		{
 			pstat.setString(1, dto.getTitle());

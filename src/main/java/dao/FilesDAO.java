@@ -48,7 +48,7 @@ public class FilesDAO {
 	
 	
 	// file 불러오기
-	public List<FilesDTO> selectFile(FilesDTO dto) throws Exception {
+	public List<FilesDTO> selectFile(int parentSeq) throws Exception {
 		String sql = "select * from files where parent_seq like ?";
 		try (
 				Connection con = this.getConnection();
@@ -56,7 +56,7 @@ public class FilesDAO {
 				) {
 			
 			List<FilesDTO> result = new ArrayList<>();
-			pstat.setInt(1, dto.getSeq());
+			pstat.setInt(1, parentSeq);
 			
 			ResultSet rs = pstat.executeQuery();
 			while (rs.next()) {
