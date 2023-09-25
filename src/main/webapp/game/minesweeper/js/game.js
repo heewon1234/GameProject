@@ -4,7 +4,7 @@ var states = {
 };
 
 var graphicAssets = {
-    tiles: { URL: '/game/minesweeper/assets/tiles.png', name: 'tiles', frames: 14 }
+    tiles: { URL: '/game/assets/tiles.png', name: 'tiles', frames: 14 }
 };
 
 var fontStyles = {
@@ -50,6 +50,7 @@ gameState.prototype = {
     create: function () {
         this.initBoard();
         this.initUI();
+        
     },
 
     update: function () {
@@ -73,7 +74,8 @@ gameState.prototype = {
         var left = this.boardLeft;
         var right = left + (gameProperties.boardWidth * gameProperties.tileWidth);
 
-        this.timer = new Timer(left, top);
+        
+        this.timer = new Timer(left, top, gameProperties.count);
         this.counter = new Counter(right, top, gameProperties.totalMines);
 
         this.tf_replay = game.add.text
@@ -96,6 +98,7 @@ gameState.prototype = {
 
     endGame: function () {
         this.timer.stop();
+        gameProperties.count = 0;
         this.tf_replay.visible = true;
     },
 
