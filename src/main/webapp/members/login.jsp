@@ -45,7 +45,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 			<div id="title">Login</div>
 			<form action="/login.members" method="post"
 				onsubmit="return validateForm();">
-				
+
 				<div class="row mb-3">
 					<label for="inputId" class="col-sm-4 col-form-label"><img
 						src="/UI_img/user.svg" alt="userImg"> 아이디</label>
@@ -71,7 +71,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 					</div>
 				</div>
 				<div class="row mb-3 px-2">
-					<button type="submit" class="btn"
+					<button type="submit" class="btn" id="loginBtn"
 						style="background-color: #B1B2FF;">로그인</button>
 				</div>
 			</form>
@@ -92,49 +92,75 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 		</div>
 	</div>
 	<script>
-		function validateForm() {
-			var idField = document.getElementById("inputId");
-			var pwField = document.getElementById("inputPassword");
+        function validateForm() {
+            var idField = document.getElementById("inputId");
+            var pwField = document.getElementById("inputPassword");
 
-			if (idField.value.trim() === "") {
-				alert("아이디를 입력하세요.");
-				idField.focus();
-				return false;
-			}
+            if (idField.value.trim() === "") {
+                alert("아이디를 입력하세요.");
+                idField.focus();
+                return false;
+            }
 
-			if (pwField.value.trim() === "") {
-				alert("비밀번호를 입력하세요.");
-				pwField.focus();
-				return false;
-			}
+            if (pwField.value.trim() === "") {
+                alert("비밀번호를 입력하세요.");
+                pwField.focus();
+                return false;
+            }
+            return true;
+        }
 
-			return true;
-		}
-	</script>
-	<script>
-		$(document).ready(function() {
-			let inputID = document.getElementById("inputId");
-			let remID = document.getElementById("remID");
+        $(document).ready(function() {
+            let inputID = document.getElementById("inputId");
+            let remID = document.getElementById("remID");
 
-			let userID = Cookies.get("remid");
-			if (userID) {
-				inputID.value = userID;
-				remID.checked = true;
-			}
-			inputID.oninput = function() {
-				remID.checked = false;
-			};
-			remID.onchange = function() {
-				if (remID.checked) {
-					let id = inputID.value;
-					Cookies.set("remid", id, {
-						expires : 7
-					});
-				} else {
-					Cookies.remove("remid")
-				}
-			}
-		});
-	</script>
+            let userID = Cookies.get("remid");
+            if (userID) {
+                inputID.value = userID;
+                remID.checked = true;
+            }
+            inputID.oninput = function() {
+                remID.checked = false;
+            };
+            remID.onchange = function() {
+                if (remID.checked) {
+                    let id = inputID.value;
+                    Cookies.set("remid", id, {
+                        expires : 7
+                    });
+                } else {
+                    Cookies.remove("remid")
+                }
+            }
+            $("#loginBtn").on("click", function(e) {
+                //e.preventDefault(); // 기본 폼 제출 동작을 막습니다.
+
+                var id = $("#inputId").val();
+                var password = $("#inputPassword").val();
+
+                // 서버에 인증 코드를 전송하고 검증
+                $.ajax({
+                    type: "POST",
+                    url: "/login.members",
+                    data: {
+                        id: id,
+                        password: password
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response === "false") {
+                            // 로그인 실패 시, alert 창 띄우기
+                            alert("로그인 실패하였습니다.");
+                            location.href = "/members/login.jsp"
+                        } 
+                    },
+                    error: function() {
+                        // Ajax 요청 실패 시 처리
+                        console.error("Ajax 요청이 실패하였습니다.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

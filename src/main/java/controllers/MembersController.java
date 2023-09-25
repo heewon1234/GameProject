@@ -55,7 +55,8 @@ public class MembersController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmd = request.getRequestURI();
 		request.setCharacterEncoding("utf8");
-
+		PrintWriter pw = response.getWriter();
+		
 		MembersDAO membersDAO = MembersDAO.getInstance();
 		Gson gson = new Gson();
 
@@ -88,7 +89,6 @@ public class MembersController extends HttpServlet {
 			else if(cmd.equals("/idDupleCheck.members")) {
 				String id = request.getParameter("id");
 				boolean result = membersDAO.isDuplicatedID(id);
-				PrintWriter pw = response.getWriter();
 
 				pw.append(gson.toJson(result));
 			}
@@ -169,19 +169,28 @@ public class MembersController extends HttpServlet {
 
 				response.sendRedirect("/members/login.jsp");
 
-			} else if(cmd.equals("/login.members")){ // 로그인 버튼 클릭 시
+			} else if (cmd.equals("/login.members")) { // 로그인 버튼 클릭 시
 
-				String id = request.getParameter("id");
-				String password = EncryptionUtils.getSHA512(request.getParameter("password"));
-				boolean result = membersDAO.isAccountExist(id, password);
+			    String id = request.getParameter("id");
+			    String password = EncryptionUtils.getSHA512(request.getParameter("password"));
+			    boolean result = membersDAO.isAccountExist(id, password);
 
-				if(result) { 
-					request.getSession().setAttribute("loginID", id); // session scope
-				}
-				response.sendRedirect("/index.jsp");
-
+			    if (result) {
+			    	System.out.println("로그인 성공");
+			        String email = membersDAO.getEmail(id);
+			        request.getSession().setAttribute("loginID", id); // session scope
+			        request.getSession().setAttribute("email", email);
+			        response.setCharacterEncoding("UTF-8");
+			        response.setContentType("text/html; charset=utf-8");
+			        response.sendRedirect("/index.jsp");
+			    } else {
+			        System.out.println("false 확인");
+			        response.setCharacterEncoding("UTF-8");
+			        response.setContentType("text/html; charset=utf8");
+			        // result가 false인 경우 클라이언트로 "false" 응답을 보내기
+			        response.getWriter().write("false");
+			    }
 			} else if(cmd.equals("/logout.members")) { // 로그아웃 버튼 클릭 시
-
 				request.getSession().removeAttribute("loginID"); // 사용자의 키로 저장되어 있던 특정 정보 하나 제거
 				request.getSession().invalidate(); // 사용자의 키로 저장되어 있던 정보 다 제거
 				response.sendRedirect("/index.jsp");
