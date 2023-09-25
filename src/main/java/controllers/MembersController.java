@@ -297,7 +297,6 @@ public class MembersController extends HttpServlet {
 				MembersDTO list = membersDAO.mypage(id);
 				request.setAttribute("mypageList", list);
 				request.getRequestDispatcher("/members/myPage.jsp").forward(request, response);
-
 			}
 
 		} catch(Exception e) {
