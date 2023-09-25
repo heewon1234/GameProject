@@ -8,17 +8,17 @@ public class RankingBoardDTO {
 	private String game_name;
 	private int score;
 	private Timestamp rank_date;
-	private int rank;
+	private int ranking;
 	
 	public RankingBoardDTO() {}
-	public RankingBoardDTO(int seq, String id, String game_name, int score, Timestamp rank_date, int rank) {
+	public RankingBoardDTO(int seq, String id, String game_name, int score, Timestamp rank_date, int ranking) {
 		super();
 		this.seq = seq;
 		this.id = id;
 		this.game_name = game_name;
 		this.score = score;
 		this.rank_date = rank_date;
-		this.rank = rank;
+		this.ranking = ranking;
 	}
 	public int getSeq() {
 		return seq;
@@ -50,14 +50,11 @@ public class RankingBoardDTO {
 	public void setRank_date(Timestamp rank_date) {
 		this.rank_date = rank_date;
 	}
-	public int getRank() {
-		return rank;
+	public int getRanking() {
+		return ranking;
 	}
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setRanking(int ranking) {
+		this.ranking = ranking;
 	}
-	
-
-
 	
 }

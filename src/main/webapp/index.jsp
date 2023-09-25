@@ -52,6 +52,45 @@
 
 <body>
 	<div class="container-fluid p-0">
+		<!-- 우측상단 -->
+		<nav class="navbar bg-transparent fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#" ></a><!-- 우측에 놓기 위한거니 그냥 냅둬요. 아무 의미는 없지만 -->
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+					aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="offcanvas offcanvas-end" tabindex="-1"
+					id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+						<button type="button" class="btn-close"
+							data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/index.jsp">홈</a></li>
+							<li class="nav-item"><a class="nav-link" href="/list.board">자유게시판</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/rankingBoard.jsp">랭킹게시판</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 게임 </a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">1. 지뢰찾기</a></li>
+									<li><a class="dropdown-item" href="/game/bounceball/bounceball_main.jsp">2. 바운스볼</a></li>
+									<li><a class="dropdown-item" href="/game/flappyBird/flappyBird_main.jsp">3. 플래피버드</a></li>
+									<li><a class="dropdown-item" href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4. 풀문보트</a></li>
+									<li><a class="dropdown-item" href="/game/dragon/dragon.jsp">5. 드래곤 플라이트</a></li>
+									<li><a class="dropdown-item" href="/game/colorblind/colorblind.jsp">6. 컬러블라인드</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
 		<div id="head">
 			<div>
 				<div class="container">
@@ -279,16 +318,16 @@
 							<div id="ranking" class="mt-4"
 								style="border: 2px solid #000; border-radius: 15px; padding: 40px; background-color: #C9CFFF;">
 								<h5>
-									<a href="/list.rankBoard"
+									<a href="/board/rankingBoard.jsp"
 										style="color: white; text-decoration: none">내 랭킹 ></a>
 								</h5>
 								<table class="table mt-4">
 									<thead>
 										<tr>
-											<th scope="col">rank</th>
-											<th scope="col">game_name</th>
-											<th scope="col">score</th>
-											<th scope="col">rank_date</th>
+											<th scope="col">순위</th>
+											<th scope="col">게임</th>
+											<th scope="col">점수</th>
+											<th scope="col">등록일</th>
 										</tr>
 									</thead>
 									<tbody id="rankList">

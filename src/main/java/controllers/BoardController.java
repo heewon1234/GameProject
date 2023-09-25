@@ -1,9 +1,10 @@
  package controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.lang.reflect.Type;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,14 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import constants.Constants;
 import dao.BoardDAO;
+import dao.FilesDAO;
 import dto.BoardDTO;
 import dto.FilesDTO;
-import dto.ReplyDTO;
 
 @WebServlet("*.board")
 public class BoardController extends HttpServlet {
@@ -30,8 +34,19 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		String cmd = request.getRequestURI();
 		
-		Gson gson = new Gson();
+		
+		Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
+			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
+			
+			@Override
+			public JsonElement serialize(Timestamp arg0, Type arg1, JsonSerializationContext arg2) {
+				return new JsonPrimitive(sdf.format(arg0));
+			}
+		}).create();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		gson.toJson(timestamp);
 		BoardDAO boardDAO = BoardDAO.getInstance();
+		FilesDAO fileDAO = FilesDAO.getInstance();
 		try {
 			if(cmd.equals("/list.board")) { // 게시물 리스트 가져오기
 				int currentPage = request.getParameter("cPage")==null ? 1 : Integer.parseInt(request.getParameter("cPage"));
@@ -125,7 +140,16 @@ public class BoardController extends HttpServlet {
 			} else if(cmd.equals("/goToWrite.board")) { // 글쓰기 창으로 이동
 //				response.sendRedirect("/");
 			
-			} else if(cmd.equals("/showContents.board")) { // 게시글 보기
+			} else if(cmd.equals("/goToEdit.board")) { // 글수정 창으로 이동
+	            int seq = Integer.parseInt(request.getParameter("seq"));
+	            
+	            BoardDTO dto = boardDAO.showContents(seq);
+	            List<FilesDTO> fileList = fileDAO.selectFile(seq);
+	            request.setAttribute("contentsList", dto);
+	            request.setAttribute("fileList", fileList);
+	            
+	            request.getRequestDispatcher("/editBoard.jsp").forward(request, response);
+		}else if(cmd.equals("/showContents.board")) { // 게시글 보기
 				
 //				int seq = Integer.parseInt(request.getParameter("seq"));
 //				
