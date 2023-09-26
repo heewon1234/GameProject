@@ -48,7 +48,6 @@ gameState.prototype = {
     create: function () {
         this.initBoard();
         this.initUI();
-        
     },
 
     update: function () {

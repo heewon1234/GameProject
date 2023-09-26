@@ -96,30 +96,45 @@ var Board = function (columns, rows, mines) {
                         rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
                     },
                     method: "GET"
-                });
+                }).done(function(resp) {
+			    console.log(resp);
+			    if (resp === "true") { // 문자열 "true"와 비교
+			        alert("신기록이 달성되었습니다. 축하합니다..");
+			    }
+			    });
                 console.log("Eazy: "+gameProperties.count);
             } else if(gameProperties.totalMines == 40) {
 				console.log("Normal: "+gameProperties.count);
-                $.ajax({
+               $.ajax({
                     url: "/rankReadPoint.rankBoard",
                     data: {
                         score: gameProperties.count,
-                        game_name: "minesweeperNormal",
+                        game_name: "minesweeperEazy",
                         rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
                     },
                     method: "GET"
-                });
+                }).done(function(resp) {
+			    console.log(resp);
+			    if (resp === "true") { // 문자열 "true"와 비교
+			        alert("신기록이 달성되었습니다. 축하합니다..");
+			    }
+			    });
             } else if(gameProperties.totalMines == 99) {
                 console.log("Hard: "+gameProperties.count);
                 $.ajax({
                     url: "/rankReadPoint.rankBoard",
                     data: {
                         score: gameProperties.count,
-                        game_name: "minesweeperHard",
+                        game_name: "minesweeperEazy",
                         rank_type: "time" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
                     },
                     method: "GET"
-                });
+                }).done(function(resp) {
+			    console.log(resp);
+			    if (resp === "true") { // 문자열 "true"와 비교
+			        alert("신기록이 달성되었습니다. 축하합니다..");
+			    }
+			    });
             }
             endGame();
         }
