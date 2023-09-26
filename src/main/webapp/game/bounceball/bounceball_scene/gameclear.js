@@ -30,7 +30,7 @@ $.ajax({
         this.background.setOrigin(0,0);
 
         this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2-100,"gameclear").setOrigin(0.5).setScale(0.5);
-        this.text = this.add.text(this.cameras.main.width/2,this.cameras.main.height/2,"Record : " + score.value + "s" ,{fill:"#ffffff"}).setOrigin(0.5);
+        this.text = this.add.text(this.cameras.main.width/2,this.cameras.main.height/2,"Record : " + score.value + "s" ,{ fontSize: "20px", fill: "#ffffff"}).setOrigin(0.5);
         let replyBtn = this.physics.add.sprite(this.cameras.main.width/2,this.cameras.main.height/2+100,"replay").setOrigin(0.5).setScale(0.5).setInteractive();
 
         replyBtn.on("pointerover",()=>{
