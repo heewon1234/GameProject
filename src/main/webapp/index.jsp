@@ -62,19 +62,19 @@
                                 <div class="game">
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/UI_img/어벤져스.jpg" style="width:80%;">
+                                            <img src="/UI_img/1.png" style="width:80%;">
                                         </div>
                                         <div class="game-txt"><a href="/game/minesweeper/eazyMinesweeper.jsp">지뢰찾기</a></div>
                                     </div>
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/game/gameUI/bounceball.png" style="width:80%;">
+                                            <img src="/UI_img/2.png" style="width:80%;">
                                         </div>
                                         <div class="game-txt"><a href="/game/bounceball/bounceball_main.jsp">바운스볼</a></div>
                                     </div>
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/game/gameUI/flappybird.png" style="width:80%;">
+                                            <img src="/UI_img/3.png" style="width:80%;">
                                         </div>
                                         <div class="game-txt"><a href="/game/flappyBird/flappyBird_main.jsp">플래피버드</a></div>
                                     </div>
@@ -82,19 +82,19 @@
                                 <div class="game">
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/UI_img/어벤져스.jpg" style="width:80%;">
+                                            <img src="/UI_img/4.png" style="width:80%;">
                                         </div>
                                         <div class="game-txt"><a href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀문보트</a></div>
                                     </div>
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/UI_img/어벤져스.jpg" style="width:80%;">
+                                            <img src="/UI_img/5.png" style="width:80%;">
                                         </div>
                                         <div class="game-txt"><a href="/game/dragon/dragon.jsp">드래곤플라이트</a></div>
                                     </div>
                                     <div class="game-list">
                                         <div class="game-img">
-                                            <img src="/game/gameUI/Colorblind.png" style="width:80%;">
+                                            <img src="/UI_img/6.png" style="width:80%; border:1px solid gainsboro;">
                                         </div>
                                         <div class="game-txt"><a href="/game/colorblind/colorblind.jsp">컬러블라인드</a></div>
                                     </div>
