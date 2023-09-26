@@ -8,7 +8,7 @@ class Gameover extends Phaser.Scene {
     }
     init(data){
         this.finalScore = data.score;
-        console.log(this.finalScore)
+        // console.log(this.finalScore)
     }
     preload() {
 

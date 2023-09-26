@@ -34,9 +34,9 @@ a {
 				<div class="panel panel-info">
 					<ul class="list-group">
 						<li class="list-group-item" style="background-color: #DDE6ED;"><a
-							href="#" style="color: #526D82">아이디 찾기</a></li>
-						<li class="list-group-item"><a href="#">비밀번호 찾기</a></li>
-						<li class="list-group-item"><a href="#">로그인</a></li>
+							href="/members/id_Search.jsp" style="color: #526D82">아이디 찾기</a></li>
+						<li class="list-group-item"><a href="/members/pw_Search.jsp">비밀번호 찾기</a></li>
+						<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
 					</ul>
 				</div>
 				<hr>
