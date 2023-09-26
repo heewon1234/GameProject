@@ -89,7 +89,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 				</ul>
 			</div>
 			<div id="footer" style="text-align: center;">
-				<img src="/UI_img/marvlestudio.jpg" width="150" height="auto">
+				<img src="/UI_img/logo3.jpg" width="150" height="auto">
 			</div>
 		</div>
 	</div>
