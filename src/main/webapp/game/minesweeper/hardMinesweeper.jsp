@@ -53,7 +53,7 @@
                     &nbsp;&nbsp;
                 </div>
                 <div class="game">
-                    <div class="game-title">지뢰찾기</div>
+                    <div class="game-title">지뢰찾기 고급</div>
                     <hr>
                     <div id="wrapper" align="center"></div>
                     <hr>
