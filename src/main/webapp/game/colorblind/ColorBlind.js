@@ -74,7 +74,7 @@ class ColorBlind extends Phaser.Scene {
             createCircles()
 
             // Create Score
-            score = this.add.text(1000, 50, "Score : "+ this.score).setColor('#000000').setFontSize("20px").setFontStyle("bold")
+            score = this.add.text(this.cameras.main.width - 200 , 50, "Score : "+ this.score).setColor('#000000').setFontSize("20px").setFontStyle("bold")
 
             // Timer Initialize
             timer = this.add.text(this.cameras.main.centerX, 50, "5").setColor("#000000").setOrigin(0.5,0).setFontSize('30px').setFontStyle("bold")

@@ -141,7 +141,7 @@
 										}
 
 									});
-
+							
 							$("#frm").submit(function () {
 								if ($("#selectBox").val() == "게임 선택") {
 									alert("게임 카테고리를 선택해주세요");
@@ -159,6 +159,8 @@
 									$("#contents").focus();
 									return false;
 								}
+								
+								alert($("#board-contents").val());
 							});
 							
 							$("#cancelBtn").on("click",function(){
