@@ -349,6 +349,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			if (inputPWC.value == "") {
 				rowAlert[2].setAttribute("style", "display:none");
 				pwcAlert.innerHTML = "";
+				ispwcPassed = false;
 			} else {
 				rowAlert[2].setAttribute("style", "display: flex")
 				if (inputPW.value != inputPWC.value) {
