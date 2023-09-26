@@ -59,6 +59,7 @@
            
         </div>
     </div>
+    <div id="footer_container"></div>
 	<script>
 		$(document).ready(function() {
 			$("#main-header").load("/commons_ui/header.html");

@@ -25,9 +25,11 @@
     display: flex;
     justify-content: space-between;
 }
+
+.game-select>a:hover{text-decoration:underline;}
 .game{
     margin-top:30px;
-    margin-bottom:30px;
+    margin-bottom:60px;
     padding-bottom:30px;
     background-color:rgba(245, 245, 245, 0.515);
 }
