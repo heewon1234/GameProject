@@ -14,6 +14,14 @@ class Gameover extends Phaser.Scene {
 
     }
     create() {
+	
+	    let bestScore;
+    $.ajax({
+      url: "/rankaddBest.rankBoard?game_name=colorblind",
+    }).done((resp) => {
+      bestScore = resp;
+      
+    });
 
         $.ajax({
             url: "/rankReadPoint.rankBoard",
@@ -23,7 +31,11 @@ class Gameover extends Phaser.Scene {
                 rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
             },
             method: "GET"
-        });
+        }).done(function(resp) {
+    console.log(resp);
+    if (resp === "true") { // 문자열 "true"와 비교
+        alert("신기록이 달성되었습니다. 축하합니다!");
+    }})
     
         this.events.on('transitioncomplete', () => {
             let ls = this.add.rectangle(this.cameras.main.x / 3, this.cameras.main.y, this.cameras.main.x / 3, this.cameras.main.y)
@@ -31,6 +43,9 @@ class Gameover extends Phaser.Scene {
 
             let score = this.add.text(this.cameras.main.centerX, 100, "Score : "+ this.finalScore).setColor('#000000')
             .setFontSize("30px").setFontStyle("bold").setOrigin(0.5,0.5)
+            
+            let bestScoreText = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY, "최고 기록 : " + bestScore)
+        .setOrigin(0.5, 0.5).setFontStyle("bold").setColor('#000000').setFontSize("30px").setPadding(5)
 
             let restartButton = this.add.text(this.cameras.main.centerX, this.cameras.main.centerY*1.5, 'Try Again')
     .setOrigin(0.5, 0.5)
@@ -49,6 +64,7 @@ class Gameover extends Phaser.Scene {
 
     PopUp(score, 500);
     PopUp(restartButton, 500);
+    PopUp(bestScoreText, 500);
 
     let moveTo = new MoveTo(ls,{
         speed :300,
