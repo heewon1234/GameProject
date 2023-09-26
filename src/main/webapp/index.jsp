@@ -228,7 +228,7 @@
 								var $row = $("<tr>");
 								$row.append($("<td>").text(fiveList.seq), 
 								$("<td>").text(fiveList.game_name).css("text-align","center"), 
-								$("<td>").text(fiveList.title).css("text-align","center"), 
+								$("<td>").css("text-align","center").append($("<a>").attr("href", "/showContents.board?seq="+fiveList.seq).text(fiveList.title)), 
 								$("<td>").text(fiveList.view_count).css("text-align","center"), 
 								$("<td>").text(fiveList.writer).css("text-align","center"), 
 								$("<td>").text(fiveList.write_date)).css("text-align","center");
