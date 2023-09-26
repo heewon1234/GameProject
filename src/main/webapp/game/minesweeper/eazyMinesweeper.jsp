@@ -34,6 +34,9 @@
         <script src="/game/minesweeper/js/timer.js"></script>
         <script src="/game/minesweeper/js/counter.js"></script>
         <style>
+        	.dropdown:hover {
+        		cursor: pointer;
+        	}
         	.dropdown:hover .dropdown-menu {
 			    display: block;
 			    margin-top: 0;
