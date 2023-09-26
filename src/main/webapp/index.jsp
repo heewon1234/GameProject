@@ -13,7 +13,23 @@
 				crossorigin="anonymous">
 			<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-
+			<style>
+				.game-img{position:relative;}
+				
+				.game-img>img{position:absolute;}
+				
+				.game-img>img:first-child{z-index:3; }
+				.game-img>img:last-child{z-index:2;}
+				
+				.game-img:hover>img:first-child{
+					z-index:1;
+					
+				}
+				.game-img:hover>img:last-child{
+					transform: scale(1.2);
+   					transition-duration: 0.75s;
+   					}
+			</style>
 
 		</head>
 
@@ -71,6 +87,7 @@
 												<a href="/game/minesweeper/eazyMinesweeper.jsp">
 													<div class="game-img">
 														<img src="/UI_img/1.png" style="width:80%;">
+														<img src="/UI_img/3.gif" style="width:80%">
 													</div>
 													<div class="game-txt">지뢰찾기</div>
 												</a>
@@ -79,6 +96,7 @@
 												<a href="/game/bounceball/bounceball_main.jsp">
 													<div class="game-img">
 														<img src="/UI_img/2.png" style="width:80%;">
+														<img src="/UI_img/4.gif" style="width:80%">
 													</div>
 													<div class="game-txt">바운스볼</div>
 												</a>
@@ -87,6 +105,7 @@
 												<a href="/game/flappyBird/flappyBird_main.jsp">
 													<div class="game-img">
 														<img src="/UI_img/3.png" style="width:80%;">
+														<img src="/UI_img/2.gif" style="width:80%">
 													</div>
 													<div class="game-txt">플래피버드</div>
 												</a>
@@ -97,6 +116,7 @@
 												<a href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">
 													<div class="game-img">
 														<img src="/UI_img/4.png" style="width:80%;">
+														<img src="/UI_img/1.gif" style="width:80%">
 													</div>
 													<div class="game-txt">풀문보트</div>
 												</a>
@@ -105,6 +125,7 @@
 												<a href="/game/dragon/dragon.jsp">
 													<div class="game-img">
 														<img src="/UI_img/5.png" style="width:80%;">
+														<img src="/UI_img/5.gif" style="width:80%">
 													</div>
 													<div class="game-txt">드래곤플라이트</div>
 												</a>
@@ -114,6 +135,7 @@
 													<div class="game-img">
 														<img src="/UI_img/6.png"
 															style="width:80%; border:1px solid gainsboro;">
+															<img src="/game/gameUI/colorblind_new.gif" style="width:80%">
 													</div>
 													<div class="game-txt">컬러블라인드</div>
 												</a>
