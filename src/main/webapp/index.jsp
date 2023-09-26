@@ -116,12 +116,12 @@
                                 <table class="table">
 									<thead>
 										<tr>
-											<th scope="col">번호</th>
-											<th scope="col">카테고리</th>
-											<th scope="col">제목</th>
-											<th scope="col">조회수</th>
-											<th scope="col">작성자</th>
-											<th scope="col">작성일</th>
+											<th scope="col" style="padding:0px;">번호</th>
+											<th scope="col" style="padding:0px; text-align:center;">카테고리</th>
+											<th scope="col" style="padding:0px; text-align:center;">제목</th>
+											<th scope="col" style="padding:0px; text-align:center;">조회수</th>
+											<th scope="col" style="padding:0px; text-align:center;">작성자</th>
+											<th scope="col" style="padding:0px; text-align:center;">작성일</th>
 										</tr>
 									</thead>
 									<tbody class="table-group-divider" id="tableBody">
@@ -226,12 +226,12 @@
 								var fiveList = parsedData[i];
 
 								var $row = $("<tr>");
-								$row.append($("<td>").text(fiveList.seq), $(
-										"<td>").text(fiveList.game_name), $(
-										"<td>").text(fiveList.title), $("<td>")
-										.text(fiveList.view_count), $("<td>")
-										.text(fiveList.writer), $("<td>").text(
-										fiveList.write_date));
+								$row.append($("<td>").text(fiveList.seq), 
+								$("<td>").text(fiveList.game_name).css("text-align","center"), 
+								$("<td>").text(fiveList.title).css("text-align","center"), 
+								$("<td>").text(fiveList.view_count).css("text-align","center"), 
+								$("<td>").text(fiveList.writer).css("text-align","center"), 
+								$("<td>").text(fiveList.write_date)).css("text-align","center");
 								$tableBody.append($row);
 							}
 						}
