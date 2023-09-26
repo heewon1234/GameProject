@@ -19,6 +19,11 @@ class GameOverScene extends Phaser.Scene {
                 rank_type: "point" // 랭킹의 우선 순위가 Time (짧을 수록)이면 type를 time으로, Point(높을 수록)면 point로
             },
             method: "GET"
+        }).done(function (resp) {
+            console.log(resp);
+            if (resp === "true") { // 문자열 "true"와 비교
+                alert("신기록이 달성되었습니다. 축하합니다..");
+            }
         });
 
         this.back = this.add.tileSprite(0, 0, 400, 500, "background").setOrigin(0, 0);
