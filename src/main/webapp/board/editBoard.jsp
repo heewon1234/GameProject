@@ -66,7 +66,7 @@
 			$(document).ready(function() {
 				$("#main-header").load("/commons_ui/header.html");
 			});
-				$(document).ready(//
+				$(document).ready(// //
 						function () {
 							$('#summernote')
 								.summernote(
