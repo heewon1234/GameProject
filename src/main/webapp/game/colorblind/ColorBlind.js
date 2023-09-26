@@ -64,7 +64,7 @@ class ColorBlind extends Phaser.Scene {
                         createCircles();
                         timer.text = 5.0;
                     });
-                    console.log(i+1);
+                    // console.log(i+1);
                 }
             }
         }
