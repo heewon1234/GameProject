@@ -158,8 +158,6 @@
 									$("#contents").focus();
 									return false;
 								}
-								
-								alert($("#board-contents").val());
 							});
 							
 							$("#cancelBtn").on("click",function(){
