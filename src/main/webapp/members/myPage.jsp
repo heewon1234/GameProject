@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <!-- SHA 512 -->
+    <script src="/commons/sha512.js" type="text/javascript"></script>    
     <!-- input[type=number] 스크롤 제거 -->
     <style type="text/css">
         input[type=number]::-webkit-inner-spin-button,
@@ -83,11 +85,7 @@
                     <div class="mb-3 row">
                         <label for="password" class="col-sm-3 col-form-label">현재 Password</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" id="password" readonly>
-                        </div>
-                        <div class="row g-0 row-alert">
-                            <div class="col-6 sign-header"></div>
-                            <div class="col-6 sign-body pw-alert alert"></div>
+                            <input type="password" class="form-control update_list" id="password" readonly>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -215,17 +213,21 @@
         // rowAlert 배열
         let rowAlert = document.getElementsByClassName("row-alert");
 
-        // password 입력 시 유효성 검사
+        let ispwcPassed = false;
+        
+        // chanePassword 입력 시 유효성 검사
         let pwAlert = document.getElementsByClassName("pw-alert")[0];
-        inputPW.onkeyup = function (e) {
+        inputCPW.onkeyup = function (e) {
             let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
             let pwRegExr2 = /[0-9]+/;
-            if (inputPW.value == "") {
+            let pwRegExr3 = /[A-Za-z]+/;
+            if (inputCPW.value == "") {
                 rowAlert[0].setAttribute("style", "display:none");
                 pwAlert.innerHTML = "";
             } else {
                 rowAlert[0].setAttribute("style", "display: flex")
-                if (!(pwRegExr.test(inputPW.value) && pwRegExr2.test(inputPW.value))) {
+                if (!(pwRegExr.test(inputCPW.value) && pwRegExr2
+						.test(inputCPW.value) && pwRegExr3.test(inputCPW.value))) {
                     pwAlert.setAttribute("style", "color: red;");
                     pwAlert.innerHTML = "올바르지 않은 비밀번호 형식입니다.";
                 } else {
@@ -233,18 +235,29 @@
                     pwAlert.innerHTML = "올바른 비밀번호 형식입니다.";
                 }
             }
+            
+         	// 비밀번호 확인칸과 비교 및 알림창 바꾸기
+			if (inputPW.value != inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+                pwcAlert.setAttribute("style", "color: red;");
+                pwcAlert.innerHTML = "비밀번호가 다릅니다.";
+                ispwcPassed = false;
+            } else if (inputPW.value == inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+                pwcAlert.setAttribute("style", "color: blue;");
+                pwcAlert.innerHTML = "비밀번호와 일치합니다.";
+                ispwcPassed = true;
+            }
         }
 
         // password 확인 입력 시 유효성 검사
         let pwcAlert = document.getElementsByClassName("verify-pw-alert")[0];
-        let ispwcPassed = false;
         inputVPW.onkeyup = function (e) {
             if (inputVPW.value == "") {
                 rowAlert[1].setAttribute("style", "display:none");
                 pwcAlert.innerHTML = "";
+                ispwcPassed = false;
             } else {
                 rowAlert[1].setAttribute("style", "display: flex")
-                if (inputPW.value != inputVPW.value) {
+                if (inputCPW.value != inputVPW.value) {
                     pwcAlert.setAttribute("style", "color: red;");
                     pwcAlert.innerHTML = "비밀번호가 다릅니다.";
                     ispwcPassed = false;
@@ -259,7 +272,7 @@
         // 이름 입력 시 유효성 검사
         let nameAlert = document.getElementsByClassName("name-alert")[0];
         inputName.onkeyup = function (e) {
-            let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+        	let nameRegExr = /^[가-힣]{2,5}$/;
             if (inputName.value == "") {
                 rowAlert[2].setAttribute("style", "display:none");
                 nameAlert.innerHTML = "";
@@ -278,13 +291,18 @@
         // submit 버튼 클릭시
         let frm = document.getElementById("mypage_form");
         frm.onsubmit = function () {
-            let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
-            let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+        	let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
+			let pwRegExr2 = /[0-9]+/;
+			let pwRegExr3 = /[A-Za-z]+/;
+			let nameRegExr = /^[가-힣]{2,5}$/;
             let phoneHeadRegExr = /[0-9]{3}$/;
             let phoneRegExr = /[0-9]{4}$/;
-
-            if (!pwRegExr.test(inputPW.value)) {
-                alert("비밀번호를 확인 해주십시오.")
+			
+            if (hex_sha512(inputPW.value) != "${mypageList.password}" ) {
+            	alert("비밀번호를 확인 해주십시오.")
+                return false;
+            } else if (!(pwRegExr.test(inputCPW.value) && pwRegExr2.test(inputCPW.value) && pwRegExr3.test(inputCPW.value))) {
+                alert("변경할 비밀번호를 확인 해주십시오.")
                 return false;
             } else if (!ispwcPassed) {
                 alert("비밀번호 재입력 칸을 확인 해주십시오.")
