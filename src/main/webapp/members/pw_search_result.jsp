@@ -93,7 +93,6 @@ a {
 		newPasswordInput.onkeyup = function() {
 			validatePassword();
 		}
-
 		confirmPasswordInput.onkeyup = function() {
 			validatePassword();
 		}
