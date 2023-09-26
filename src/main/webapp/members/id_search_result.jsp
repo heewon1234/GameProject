@@ -41,39 +41,42 @@ a {
 				<div class="panel panel-info">
 					<ul class="list-group">
 						<li class="list-group-item" style="background-color: #DDE6ED;"><a
-							href="#" style="color: #526D82">아이디 찾기</a></li>
-						<li class="list-group-item"><a href="#">비밀번호 찾기</a></li>
-						<li class="list-group-item"><a href="#">로그인</a></li>
+							href="/members/id_Search.jsp" style="color: #526D82">아이디 찾기</a></li>
+						<li class="list-group-item"><a href="/members/pw_Search.jsp">비밀번호
+								찾기</a></li>
+						<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
 					</ul>
 				</div>
 				<hr>
 			</div>
 			<div class="col-md-9 border" style="padding: 20px;">
-				
-					<div>아이디 찾기</div>
-					<hr>
 
-					<div>고객님의 정보와 일치하는 아이디 목록입니다.</div>
-					<hr style="color: white;">
+				<div>아이디 찾기</div>
+				<hr>
 
-					<div class="foundID">
-						Found ID:
-						<%=request.getAttribute("foundId")%>
+				<div>고객님의 정보와 일치하는 아이디 목록입니다.</div>
+				<hr style="color: white;">
+
+				<div class="foundID">
+					Found ID:
+					<%=request.getAttribute("foundId")%>
+				</div>
+
+
+				<hr style="color: gray;">
+
+				<div class="row justify-content-center">
+					<div class="col-auto">
+						<button class="btn btn-primary" id="btn-login">로그인하기</button>
 					</div>
-
-
-					<hr style="color: gray;">
-
-					<div class="row justify-content-center">
-						<div class="col-auto">
-							<button class="btn btn-primary" id="btn-login">로그인하기</button>
-						</div>
-					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script>
-		
+	$("#btn-login").click(function(){
+        window.location.href = "/members/login.jsp";
+    });
 	</script>
 </body>
 </html>
