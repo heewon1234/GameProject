@@ -55,12 +55,12 @@
 		</form>
 
 		<hr>
-		<form action="/insert.reply">
+		<form action="/insert.reply" id="replyInsertForm">
 			<div class="reply">
 				<div class="replyWriter">${loginID}</div>
 				<div class="replyContents">
 					<input type="hidden" value="${dto.seq }" name="seq">
-					<textarea placeholder="내용을 입력해주세요" name="contentsReply"></textarea>
+					<textarea placeholder="내용을 입력해주세요" name="contentsReply" id="contentsReply"></textarea>
 				</div>
 				<div class="insertReply">
 					<button>등록</button>
@@ -91,7 +91,15 @@
 	
 	$(document).ready(function() {
 		let updateSuccess = true;
-
+		
+		$("#replyInsertForm").submit(function(){
+			if($("#contentsReply").val()==""){
+				$("#contentsReply").focus();
+				alert("내용을 입력해주세요");
+				return false;
+			}
+		});
+		
 		$("#backBtn").on("click", function() {
 			location.href = "/list.board?cPage=${latestPage}";
 		});
