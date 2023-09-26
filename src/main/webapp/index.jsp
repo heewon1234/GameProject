@@ -262,7 +262,7 @@
 									var fiveList = parsedData[i];
 
 									var $row = $("<tr>");
-									$row.append($("<td>").text(fiveList.seq),
+										$row.append($("<td>").text(fiveList.seq),
 										$("<td>").text(fiveList.game_name).css("text-align", "center"),
 										$("<td>").css("text-align", "center").append($("<a>").attr("href", "/showContents.board?seq=" + fiveList.seq).text(fiveList.title)),
 										$("<td>").text(fiveList.view_count).css("text-align", "center"),
@@ -295,10 +295,10 @@
 									var myRank = parsedData[i];
 
 									var $row = $("<tr>");
-									$row.append($("<td>").text(myRank.ranking), $(
-										"<td>").text(myRank.game_name), $(
-											"<td>").text(myRank.score), $("<td>")
-												.text(myRank.rank_date));
+									$row.append($("<td>").text(myRank.ranking), 
+									$("<td>").text(myRank.game_name), 
+									$("<td>").text(myRank.score), 
+									$("<td>").text(myRank.rank_date));
 									$rankList.append($row);
 								}
 							}
