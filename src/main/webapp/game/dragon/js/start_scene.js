@@ -33,6 +33,18 @@ class StartScene extends Phaser.Scene {
         startBtn.on("pointerdown", () => {
             this.scene.start("MainScene");
         });
+        let bestScore;
+        $.ajax({
+            url: "/rankaddBest.rankBoard?game_name=dragon",
+        }).done((resp) => {
+            bestScore = resp;
+            this.add.text(
+                230,
+                10,
+                "최고 기록 " + bestScore,
+                { fontSize: "20px", fill: "#ffffff" }
+            ).setPadding(10);
+        });
     }
     update() {
         this.back.tilePositionY -= 1;
