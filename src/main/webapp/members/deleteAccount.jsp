@@ -36,7 +36,6 @@
 
             .row-alert>div {
                 font-size: small;
-                padding: 0px;
                 display: flex;
             }
         </style>
@@ -52,7 +51,7 @@
                             <h3>
                                 ${mypageList.id}
                             </h3>
-                            ${mypageList.email1}@${mypageList.email2}
+                            ${mypageList.email}
                         </div>
                     </div>
                     <hr>
@@ -66,7 +65,7 @@
                     <hr>
                 </div>
                 <div class="col-md-9 border" style="padding: 20px; display: flex; align-items: center;">
-                    <form action="/delete.members" class="row g-3 needs-validation" id="deleteAccount_form"
+                    <form action="/memberOut.members" class="row g-3 needs-validation" id="deleteAccount_form"
                         method="post">
                         <div class="mb-3 row">
                             <label for="password" class="col-sm-3 col-form-label">Password</label>
@@ -81,8 +80,8 @@
                                     name="verifyPassword">
                             </div>
                             <div class="row g-0 row-alert">
-                                <div class="col-6 sign-header"></div>
-                                <div class="col-6 sign-body verify-pw-alert alert"></div>
+                                <div class="col-3 sign-header"></div>
+                                <div class="col-9 sign-body verify-pw-alert alert"></div>
                             </div>
                         </div>
 
@@ -123,27 +122,26 @@
                 }
             }
 
-            // 회원탈퇴 버튼 클릭
-            $("#delete_btn").on("click", function () {
-                
-                if (hex_sha512(inputPW.value) != "${loginPassword}") {
-                    alert("비밀번호를 확인 해주십시오.")
+            let frm = document.getElementById("deleteAccount_form");
+    		frm.onsubmit = function() {
+    			if (hex_sha512(inputPW.value) != "${loginPassword}") {
+                    alert("비밀번호를 확인 해주십시오.");
+                    inputPW.focus();
                     return false;
                 } else if (!ispwcPassed) {
-                    alert("비밀번호 재입력 칸을 확인 해주십시오.")
+                    alert("비밀번호 재입력 칸을 확인 해주십시오.");
+                    inputPWC.focus();
                     return false;
                 } else {
                     let con_result = confirm("정말로 회원 탈퇴 하시겠습니까?");
-                    if (con_result == true) {
-                        location.href = "/memberOut.members";
-                    } else {
+                    if (con_result == false) {
                         return false;
+                    } else {
+                    	return true;
                     }
                 }
-
-
-            });
-
+    		};
+    		
             // 뒤로가기 버튼 클릭
             $("#return_btn").on("click", function () {
                 location.href = "/index.jsp";

@@ -48,7 +48,6 @@
 
         .row-alert>div {
             font-size: small;
-            padding: 0px;
             display: flex;
         }
     </style>
@@ -95,8 +94,8 @@
                                 readonly>
                         </div>
                         <div class="row g-0 row-alert">
-                            <div class="col-6 sign-header"></div>
-                            <div class="col-6 sign-body pw-alert alert"></div>
+                            <div class="col-3 sign-header"></div>
+                            <div class="col-9 sign-body pw-alert alert"></div>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -105,8 +104,8 @@
                             <input type="password" class="form-control update_list" id="verifyPassword" readonly>
                         </div>
                         <div class="row g-0 row-alert">
-                            <div class="col-6 sign-header"></div>
-                            <div class="col-6 sign-body verify-pw-alert alert"></div>
+                            <div class="col-3 sign-header"></div>
+                            <div class="col-9 sign-body verify-pw-alert alert"></div>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -116,8 +115,8 @@
                                 value="${mypageList.name}" readonly>
                         </div>
                         <div class="row g-0 row-alert">
-                            <div class="col-6 sign-header"></div>
-                            <div class="col-6 sign-body name-alert alert"></div>
+                            <div class="col-3 sign-header"></div>
+                            <div class="col-9 sign-body name-alert alert"></div>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -136,8 +135,8 @@
                         </div>
                     </div>
                     <div class="row g-0 row-alert">
-                        <div class="col-6 sign-header"></div>
-                        <div class="col-6 sign-body phone-alert alert"></div>
+                        <div class="col-3 sign-header"></div>
+                        <div class="col-9 sign-body phone-alert alert"></div>
                     </div>
                     <div class="mb-3 row">
                         <label for="postcode" class="col-sm-3 col-form-label">우편번호</label>
@@ -299,22 +298,27 @@
             let phoneRegExr = /[0-9]{4}$/;
 			
             if (hex_sha512(inputPW.value) != "${mypageList.password}" ) {
-            	alert("비밀번호를 확인 해주십시오.")
+            	alert("비밀번호를 확인 해주십시오.");
+                inputPW.focus();
                 return false;
             } else if (!(pwRegExr.test(inputCPW.value) && pwRegExr2.test(inputCPW.value) && pwRegExr3.test(inputCPW.value))) {
-                alert("변경할 비밀번호를 확인 해주십시오.")
+                alert("변경할 비밀번호를 확인 해주십시오.");
+                inputCPW.focus();
                 return false;
             } else if (!ispwcPassed) {
-                alert("비밀번호 재입력 칸을 확인 해주십시오.")
+                alert("비밀번호 재입력 칸을 확인 해주십시오.");
+                inputVPW.focus();
                 return false;
             } else if (!nameRegExr.test(inputName.value)) {
-                alert("이름을 확인 해주십시오.")
+                alert("이름을 확인 해주십시오.");
+                inputName.focus();
                 return false;
             } else if (!phoneHeadRegExr.test(inputPhoneHead.value) || !phoneRegExr.test(inputPhoneBody.value) || !phoneRegExr.test(inputPhoneTail.value)) {
-                alert("전화번호를 확인 해주십시오.")
+                alert("전화번호를 확인 해주십시오.");
+                inputPhoneHead.focus();
                 return false;
             } else if ($("#address").val() == "" || $("#detailaddress").val() == "") {
-                alert("주소를 확인 해주십시오.")
+                alert("주소를 확인 해주십시오.");
                 return false;
             } else {
                 return true;
