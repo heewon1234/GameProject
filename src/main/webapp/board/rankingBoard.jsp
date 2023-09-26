@@ -56,7 +56,7 @@
 							<th scope="col" class="w-10">순위</th>
 							<th scope="col" class="w-35" style="text-align: start;">게임</th>
 							<th scope="col" class="w-25">점수</th>
-							<th scope="col" class="w-25" style="text-align: center;">닉네임</th>
+							<th scope="col" class="w-25">등록시간</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider" id="myTable">
@@ -75,9 +75,9 @@
 					<thead>
 						<tr>
 							<th scope="col" class="w-10">순위</th>
-							<th scope="col" class="w-35" style="text-align: start;">게임</th>
+							<th scope="col" class="w-35">게임</th>
 							<th scope="col" class="w-25">점수</th>
-							<th scope="col" class="w-25" style="text-align: center;">닉네임</th>
+							<th scope="col" class="w-25">닉네임</th>
 						</tr>
 					</thead>
 					<tbody class="table-group-divider" id="tableBody">
