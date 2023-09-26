@@ -34,13 +34,22 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="/UI_img/Logo_bird.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_1.png" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/UI_img/Logo_bouncy.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_2.png" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/UI_img/Logo_color.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_3.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_4.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_5.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_6.png" class="d-block w-100" alt="..." style="border:1px solid gainsboro;">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -107,12 +116,12 @@
                                 <table class="table">
 									<thead>
 										<tr>
-											<th scope="col">번호</th>
-											<th scope="col">카테고리</th>
-											<th scope="col">제목</th>
-											<th scope="col">조회수</th>
-											<th scope="col">작성자</th>
-											<th scope="col">작성일</th>
+											<th scope="col" style="padding:0px;">번호</th>
+											<th scope="col" style="padding:0px; text-align:center;">카테고리</th>
+											<th scope="col" style="padding:0px; text-align:center;">제목</th>
+											<th scope="col" style="padding:0px; text-align:center;">조회수</th>
+											<th scope="col" style="padding:0px; text-align:center;">작성자</th>
+											<th scope="col" style="padding:0px; text-align:center;">작성일</th>
 										</tr>
 									</thead>
 									<tbody class="table-group-divider" id="tableBody">
@@ -217,12 +226,12 @@
 								var fiveList = parsedData[i];
 
 								var $row = $("<tr>");
-								$row.append($("<td>").text(fiveList.seq), $(
-										"<td>").text(fiveList.game_name), $(
-										"<td>").text(fiveList.title), $("<td>")
-										.text(fiveList.view_count), $("<td>")
-										.text(fiveList.writer), $("<td>").text(
-										fiveList.write_date));
+								$row.append($("<td>").text(fiveList.seq), 
+								$("<td>").text(fiveList.game_name).css("text-align","center"), 
+								$("<td>").text(fiveList.title).css("text-align","center"), 
+								$("<td>").text(fiveList.view_count).css("text-align","center"), 
+								$("<td>").text(fiveList.writer).css("text-align","center"), 
+								$("<td>").text(fiveList.write_date)).css("text-align","center");
 								$tableBody.append($row);
 							}
 						}
