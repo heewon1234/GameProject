@@ -42,13 +42,13 @@
 				</div>
 				<div class="game-select col-md-2 d-flex justify-content-end">
 					<select name="game_name" id="selectBox">
-						<option selected>게임 선택</option>
-						<option value="MineSweeper">지뢰찾기</option>
-						<option value="BounceBall">바운스볼</option>
-						<option value="FlappyBird">플래피버드</option>
-						<option value="FullMoonBoat">풀문보트</option>
-						<option value="Dragon">드래곤플라이트</option>
-						<option value="ColorBlind">컬러블라인드</option>
+						<option>게임 선택</option>
+						<option value="MineSweeper" ${contentsList.game_name == 'MineSweeper' ? 'selected' : ''}>지뢰찾기</option>
+						<option value="BounceBall" ${contentsList.game_name == 'BounceBall' ? 'selected' : ''}>바운스볼</option>
+						<option value="FlappyBird" ${contentsList.game_name == 'FlappyBird' ? 'selected' : ''}>플래피버드</option>
+						<option value="FullMoonBoat" ${contentsList.game_name == 'FullMoonBoat' ? 'selected' : ''}>풀문보트</option>
+						<option value="Dragon" ${contentsList.game_name == 'Dragon' ? 'selected' : ''}>드래곤플라이트</option>
+						<option value="ColorBlind" ${contentsList.game_name == 'ColorBlind' ? 'selected' : ''}>컬러블라인드</option>
 					</select>
 				</div>
 				<div class="board-contents">
