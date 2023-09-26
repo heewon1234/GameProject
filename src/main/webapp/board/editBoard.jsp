@@ -29,7 +29,7 @@
 
 
 		</head>
-
+	
 		<div class="container header pt-5 p-0">
 		<div class="row p-0 m-0 header" id="main-header"></div>
 		<hr>
@@ -44,7 +44,7 @@
 					<select name="game_name" id="selectBox">
 						<option selected>게임 선택</option>
 						<option value="MineSweeper">지뢰찾기</option>
-						<option value="BounceBall"">바운스볼</option>
+						<option value="BounceBall">바운스볼</option>
 						<option value="FlappyBird">플래피버드</option>
 						<option value="FullMoonBoat">풀문보트</option>
 						<option value="Dragon">드래곤플라이트</option>
@@ -66,8 +66,7 @@
 			$(document).ready(function() {
 				$("#main-header").load("/commons_ui/header.html");
 			});
-				$(document)
-					.ready(
+				$(document).ready(// //
 						function () {
 							$('#summernote')
 								.summernote(
