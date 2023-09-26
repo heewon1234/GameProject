@@ -111,6 +111,7 @@
 			});
 
             $("#frm").submit(function() {
+
             	if ($("#selectBox").val() == "게임 선택") {
                 	alert("게임 카테고리를 선택해주세요");
                     return false;
@@ -119,14 +120,16 @@
                 if ($("#board-title").val() == "") {
                 	alert("제목을 입력해주세요");
                     $("#title").focus();
-                    return false
+                    return false;
                 }
-
-                if ($("#board-contents").val() == "") {
+                
+                if ($("#summernote").val() == "") {
                 	alert("내용을 입력해주세요");
                     $("#contents").focus();
-                    return false();
+                    return false;
                 }
+
+                
 			});
             
             $("#cancelBtn").on("click",function(){

@@ -34,7 +34,7 @@
 		<div class="row p-0 m-0 header" id="main-header"></div>
 		<hr>
 		<div class="board-txt-top">글쓰기</div>
-		<form id="frm" action="/insert.board" method="post" enctype="multipart/form-data">
+		<form id="frm" action="/update.board" method="post" enctype="multipart/form-data">
 			<div class="board-border row">
 				<div class="board-title col-md-10 p-0">
 					<input type="hidden" value="${contentsList.seq}" name="seq">
@@ -154,10 +154,10 @@
 									return false
 								}
 
-								if ($("#board-contents").val() == "") {
+								if ($("#summernote").val() == "") {
 									alert("내용을 입력해주세요");
 									$("#contents").focus();
-									return false();
+									return false;
 								}
 							});
 							
