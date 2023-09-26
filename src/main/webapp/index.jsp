@@ -30,7 +30,6 @@
    					transition-duration: 0.75s;
    					}
 			</style>
-
 		</head>
 
 		<body>
@@ -230,9 +229,18 @@
 					</div>
 				</div>
 			</div>
+			<div id="footer_container"></div>
 			<script>
 				$(document).ready(function () {
-					$("#main-header").load("/commons_ui/header.html");
+					$("#main-header").load("/commons_ui/header.html",function(){
+						if(${loginID == null}){
+							$("#icon").css("display","none");
+						}
+						
+						$("#icon").on("click",function(){
+							location.href="/logout.members";
+						});
+					});
 				});
 				$(document).ready(function () {
 					$("#loginButton").on("click", function () {
@@ -240,8 +248,12 @@
 					})
 				});
 
-				$(document).ready(function () {
-					$("#footer_container").load("../commons/footer.html")
+				$(document).ready(function() {
+					$("#footer_container").load("/commons/footer.html");
+				});
+				
+				$(document).ready(function() {
+					console.log(document.getElementById("iconplace"));
 				});
 
 				// 최근 게시물
