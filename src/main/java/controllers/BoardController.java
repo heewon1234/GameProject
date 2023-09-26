@@ -117,16 +117,16 @@ public class BoardController extends HttpServlet {
 
 			} else if(cmd.equals("/update.board")) { // 게시물 수정
 
-//				String uploadPath = request.getServletContext().getRealPath("files");
-//				File filesPath = new File(uploadPath);
-//				if(!filesPath.exists()) {filesPath.mkdir();}
-//				int maxSize = 1024 * 1024 * 10;
-//				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
+				String uploadPath = request.getServletContext().getRealPath("files");
+				File filesPath = new File(uploadPath);
+				if(!filesPath.exists()) {filesPath.mkdir();}
+				int maxSize = 1024 * 1024 * 10;
+				MultipartRequest multi = new MultipartRequest(request, uploadPath , maxSize, "utf8", new DefaultFileRenamePolicy());
 
-				int seq = Integer.parseInt(request.getParameter("seq"));
-				String title = request.getParameter("title");
-				String contents = request.getParameter("contents");
-				String game_name = request.getParameter("game_name");
+				int seq = Integer.parseInt(multi.getParameter("seq"));
+				String title = multi.getParameter("title");
+				String contents = multi.getParameter("contents");
+				String game_name = multi.getParameter("game_name");
 				int result = boardDAO.update(new BoardDTO(seq, null, title, contents, null, 0, game_name));      
 
 //				Enumeration<String> fileNames = multi.getFileNames();
