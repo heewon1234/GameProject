@@ -23,8 +23,8 @@
         <hr>
         <div class="board-txt-top">
             자유게시판
-            <form action="/search.board">
-                <input type="text" placeholder="search" name="searchText" id="input_search">
+            <form action="/list.board">
+                <input type="text" placeholder="search" name="keyword" id="input_search">
                 <button id="btn_search">search</button>
             </form>
         </div>
