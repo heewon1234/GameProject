@@ -299,6 +299,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 
 		// rowAlert 배열
 		let rowAlert = document.getElementsByClassName("row-alert");
+		
+		// 비밀번호 일치 여부
+		let ispwcPassed = false;
 
 		// id 입력 시 유효성 검사
 		let idAlert = document.getElementsByClassName("id-alert")[0];
@@ -326,25 +329,36 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		inputPW.onkeyup = function(e) {
 			let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
 			let pwRegExr2 = /[0-9]+/;
+			let pwRegExr3 = /[A-Za-z]+/;
 			if (inputPW.value == "") {
 				rowAlert[1].setAttribute("style", "display:none");
 				pwAlert.innerHTML = "";
 			} else {
 				rowAlert[1].setAttribute("style", "display: flex")
 				if (!(pwRegExr.test(inputPW.value) && pwRegExr2
-						.test(inputPW.value))) {
+						.test(inputPW.value) && pwRegExr3.test(inputPW.value))) {
 					pwAlert.setAttribute("style", "color: red;");
 					pwAlert.innerHTML = "올바르지 않은 비밀번호 형식입니다.";
 				} else {
 					pwAlert.setAttribute("style", "color: blue;");
 					pwAlert.innerHTML = "올바른 비밀번호 형식입니다.";
 				}
-			}
+			} 
+			// 비밀번호 확인칸과 비교 및 알림창 바꾸기
+			if (inputPW.value != inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+                pwcAlert.setAttribute("style", "color: red;");
+                pwcAlert.innerHTML = "비밀번호가 다릅니다.";
+                ispwcPassed = false;
+            } else if (inputPW.value == inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+                pwcAlert.setAttribute("style", "color: blue;");
+                pwcAlert.innerHTML = "비밀번호와 일치합니다.";
+                ispwcPassed = true;
+            }
 		}
 
 		// pw 확인 입력 시 유효성 검사
 		let pwcAlert = document.getElementsByClassName("pw-confirm-alert")[0];
-		let ispwcPassed = false;
+		
 		inputPWC.onkeyup = function(e) {
 			if (inputPWC.value == "") {
 				rowAlert[2].setAttribute("style", "display:none");
@@ -367,7 +381,7 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		// 이름 입력 시 유효성 검사
 		let nameAlert = document.getElementsByClassName("name-alert")[0];
 		inputName.onkeyup = function(e) {
-			let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+			let nameRegExr = /^[가-힣]{2,5}$/;
 			if (inputName.value == "") {
 				rowAlert[3].setAttribute("style", "display:none");
 				nameAlert.innerHTML = "";
