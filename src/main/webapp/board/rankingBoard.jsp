@@ -23,7 +23,7 @@
 		<div class="rnk-game-select" style="display: flex; justify-content: space-between;">
 			<ul class="nav nav-pills nav-fill"
 				style="width: 100%; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
-				<li class="nav-item dropdown"><button type="button" class="btn"
+				<li class="nav-item dropdown game-list"><button type="button" class="btn"
 						data-bs-toggle="dropdown" aria-expanded="false">지뢰찾기</button>
 					<ul class="dropdown-menu">
 						<li><a class="game dropdown-item" href="#"
@@ -33,15 +33,15 @@
 						<li><a class="game dropdown-item" href="#"
 							data-game="minesweeperHard">고급</a></li>
 					</ul>
-				<li class="game nav-item"><a class="nav-link" href="#"
+				<li class="game nav-item game-list"><a class="nav-link" href="#"
 					data-game="bounceball" style="color:black;">바운스볼</a></li>
-				<li class="game nav-item"><a class="nav-link" href="#"
+				<li class="game nav-item game-list"><a class="nav-link" href="#"
 					data-game="flappyBird" style="color:black;">플래피버드</a></li>
-				<li class="game nav-item"><a class="nav-link" href="#"
+				<li class="game nav-item game-list"><a class="nav-link" href="#"
 					data-game="fullMoonBoat" style="color:black;">풀문보트</a></li>
-				<li class="game nav-item"><a class="nav-link" href="#"
+				<li class="game nav-item game-list"><a class="nav-link" href="#"
 					data-game="dragon" style="color:black;">드래곤 플라이트</a></li>
-				<li class="game nav-item"><a class="nav-link" href="#"
+				<li class="game nav-item game-list"><a class="nav-link" href="#"
 					data-game="colorblind" style="color:black;">컬러블라인드</a></li>
 			</ul>
 		</div>
@@ -167,6 +167,8 @@
 					$(".game.nav-item a.nav-link,.game.dropdown-item").on("click", function (event) {
 						event.preventDefault();
 						var gameName = $(this).data("game");
+						
+						$(this).css("background-color","gainsboro");
 						console.log("게임 이름:", gameName);
 						$.ajax({
 							type: "POST",
