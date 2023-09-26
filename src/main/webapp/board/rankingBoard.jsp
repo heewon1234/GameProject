@@ -27,11 +27,11 @@
 						data-bs-toggle="dropdown" aria-expanded="false">지뢰찾기</button>
 					<ul class="dropdown-menu">
 						<li><a class="game dropdown-item" href="#"
-							data-game="minesweeperEazy">하급</a></li>
+							data-game="minesweeperEazy">초급</a></li>
 						<li><a class="game dropdown-item" href="#"
 							data-game="minesweeperNormal">중급</a></li>
 						<li><a class="game dropdown-item" href="#"
-							data-game="minesweeperHard">상급</a></li>
+							data-game="minesweeperHard">고급</a></li>
 					</ul>
 				<li class="game nav-item"><a class="nav-link" href="#"
 					data-game="bounceball" style="color:black;">바운스볼</a></li>
