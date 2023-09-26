@@ -177,31 +177,22 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<div id="profile">
-												<div id="user" class="p-2" style="display: flex;">
-													<div id="userIcon" style="font-size: 3rem">
+											<div class="login-top">
+												<div class="login-user">
+													<div class="user-img-place" style="font-size:3.5rem; margin-left:15px; margin-right:15px;">
 														<i class="fa-solid fa-user"></i>
 													</div>
-													<div class="mt-3 mx-4">
-														<div id="user">${loginID}</div>
-														<div id="email">${email}</div>
-													</div>
-
-													<div class="mt-3" style="cursor: pointer;"
-														onclick="window.location.href='/logout.members';">
-														<div class="d-flex border p-2"
-															style="width: 120px; border-radius: 20px; align-items: center;">
-															<div>로그아웃</div>
-															<img src="/UI_img/log-out.svg" style="margin-left: 5px;">
-														</div>
-													</div>
 												</div>
-												<div
-													style="text-align:center;margin-bottom:10px; border-top:1px solid gainsboro;">
-													<a href="/mypage.members">마이페이지</a>
+												<div class="user-info">
+													<div style="margin-top:20px;">${loginID }</div>
+													<div>${email }</div>
 												</div>
+												<div class="logout-btn" style="display:flex; justify-content:center; align-items:center;">
+                                          			<button id="logoutBtn">로그아웃<img src="/UI_img/log-out.svg" style="margin-left: 5px;"></button>
+                                       			</div>
 
 											</div>
+											<div class="login-bottom" style="text-align:center;"><a href="/mypage.members">마이페이지</a></div>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -236,15 +227,15 @@
 						if(${loginID == null}){
 							$("#icon").css("display","none");
 						}
-						
-						$("#icon").on("click",function(){
-							location.href="/logout.members";
-						});
 					});
 				});
 				$(document).ready(function () {
 					$("#loginButton").on("click", function () {
 						location.href = "/goToLogin.members";
+					})
+					
+					$("#logoutBtn").on("click",function(){
+						location.href="/logout.members";
 					})
 				});
 
@@ -252,9 +243,6 @@
 					$("#footer_container").load("/commons/footer.html");
 				});
 				
-				$(document).ready(function() {
-					console.log(document.getElementById("iconplace"));
-				});
 
 				// 최근 게시물
 				$.ajax({

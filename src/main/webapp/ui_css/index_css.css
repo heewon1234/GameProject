@@ -1,6 +1,6 @@
 *{box-sizing: border-box;}
 
-/* div{border:1px solid black;} */
+/* div{border:1px solid black;}  */
 
 .header+hr{
     margin-top:30px;
@@ -120,6 +120,28 @@
     padding-bottom:30px;
     display: flex;
     justify-content: space-evenly;
+}
+.login-top{overflow:hidden;}
+.login-user,.logout-btn,.user-info{
+	float:left;
+}
+
+
+.logout-btn{
+	margin-top:25px; 
+	margin-left:20px;
+}
+.logout-btn>button{
+	padding:5px;
+	border:1px solid gainsboro;
+	border-radius:10px;
+}
+
+.login-bottom{
+	background-color:gainsboro;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:5px;
 }
 
 .rnk-board{
