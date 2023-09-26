@@ -57,6 +57,14 @@ public class RankingBoardController extends HttpServlet {
 			} else if(cmd.equals("/search.rankBoard")) { // 랭킹 검색 ( 아이디 )
 
 			}
+			
+			else if (cmd.equals("/rankaddBest.rankBoard")) {
+				String id = (String) session.getAttribute("loginID");
+				String game_name = request.getParameter("game_name");		
+				String bestScore = dao.addBestRank(id, game_name);
+				
+				pw.append(bestScore);
+			}
 
 			else if(cmd.equals("/rankReadPoint.rankBoard")) {			
 				int newScore = Integer.parseInt(request.getParameter("score"));
@@ -64,29 +72,24 @@ public class RankingBoardController extends HttpServlet {
 				String rank_type = request.getParameter("rank_type");
 				String id = (String) session.getAttribute("loginID");
 
-				//				int newScore = 5;
-				//				String game_name = "fullMoonBoat";
-				//				String id = "dldidsla13";
-				//				String rank_type = "point";
-
 				List<RankingBoardDTO> Check = dao.thisGameRankCheck(game_name, id);
 
 				int isRank = Check.size();
 				String updateCheck = "false";
 
 				if (rank_type.equals("point")) {
-					System.out.println("포인트 타입임");
+					// System.out.println("포인트 타입 점수 입력 받음");
 					if(isRank > 0) {
 						int oriScore = Check.get(0).getScore();
-						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
+						// System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
 						if(newScore > oriScore) {
-							System.out.println("업데이트 들어가자");
+							// System.out.println("업데이트 시작");
 							dao.update(newScore, id, game_name);
 							updateCheck = "true"; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
 							pw.append(updateCheck);
 						}
 						else {
-							System.out.println("기록이 꾸져서 신기록 달성 못함 ㅋ");
+							// System.out.println("기록이 좋지 않아, 신기록 갱신이 안 됨");
 							// 신기록 달성에 실패한거임 ㅇㅇ..
 							// updateCheck 홈페이지로 날려줘서 AJAX로 False 되면 아무 일도 없게 하면 됨 
 							pw.append(updateCheck);
@@ -94,7 +97,7 @@ public class RankingBoardController extends HttpServlet {
 					}
 					else {
 						// 기존 기록이 없는 경우로 새로 등록 해줘야함 
-						System.out.println("신기록 등록 하겠음.");
+						// System.out.println("기록이 아예 없어 신기록 등록");
 						dao.insert(id, newScore, game_name);
 						updateCheck = "true";
 						pw.append(updateCheck);
@@ -102,19 +105,25 @@ public class RankingBoardController extends HttpServlet {
 				}
 
 				else if(rank_type.equals("time")) {
-					System.out.println("타임 타입임");
+					// System.out.println("타임 타입임 점수 입력 받음");
 					if(isRank > 0) {
 						int oriScore = Check.get(0).getScore();
-						System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
+						// System.out.println("기존 스코어 : " + oriScore + " 새로 받아온 스코어 : " + newScore);
 						if(newScore < oriScore) {
-							System.out.println("업데이트 들어가자");
+							// System.out.println("업데이트 시작");
 							dao.update(newScore, id, game_name);
 							updateCheck = "true"; // 이거 홈페이지로 날려줘서 AJAX로 True 되면 랭킹 갱신 된거 축하한다고 해주면 됨
 
 						}
+						else {
+							// System.out.println("기록이 좋지 않아, 신기록 갱신이 안 됨");
+							// 신기록 달성에 실패한거임 ㅇㅇ..
+							// updateCheck 홈페이지로 날려줘서 AJAX로 False 되면 아무 일도 없게 하면 됨 
+							pw.append(updateCheck);
+						}
 					}
 					else {
-						System.out.println("신기록 등록 하겠음.");
+						// System.out.println("기록이 아예 없어 신기록 등록");
 						dao.insert(id, newScore, game_name);
 						updateCheck = "true";
 						pw.append(updateCheck);
