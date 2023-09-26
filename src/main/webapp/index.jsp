@@ -34,13 +34,22 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="/UI_img/Logo_bird.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_1.png" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/UI_img/Logo_bouncy.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_2.png" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="/UI_img/Logo_color.png" class="d-block w-100" alt="...">
+                            <img src="/UI_img/banner_3.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_4.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_5.png" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/UI_img/banner_6.png" class="d-block w-100" alt="..." style="border:1px solid gainsboro;">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
