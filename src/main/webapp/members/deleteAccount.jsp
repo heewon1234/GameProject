@@ -36,7 +36,6 @@
 
             .row-alert>div {
                 font-size: small;
-                padding: 0px;
                 display: flex;
             }
         </style>
@@ -81,8 +80,8 @@
                                     name="verifyPassword">
                             </div>
                             <div class="row g-0 row-alert">
-                                <div class="col-6 sign-header"></div>
-                                <div class="col-6 sign-body verify-pw-alert alert"></div>
+                                <div class="col-3 sign-header"></div>
+                                <div class="col-9 sign-body verify-pw-alert alert"></div>
                             </div>
                         </div>
 
