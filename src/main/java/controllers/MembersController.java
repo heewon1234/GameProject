@@ -271,7 +271,7 @@ public class MembersController extends HttpServlet {
 
                if (rowsUpdated > 0) {
                   System.out.println("비밀번호 수정 완료");
-                  response.sendRedirect("/login.members"); 
+                  response.sendRedirect("/members/login.jsp"); 
                } else {
                   System.out.println("비밀번호 수정 실패");
                   response.sendRedirect("/pwSearch.members"); 

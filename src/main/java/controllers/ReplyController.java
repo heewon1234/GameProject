@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import constants.Constants;
 import dao.ReplyDAO;
@@ -25,11 +33,22 @@ public class ReplyController extends HttpServlet {
 		ReplyDAO replyDAO = ReplyDAO.getInstance();
 		String cmd = request.getRequestURI();
 		request.setCharacterEncoding("utf8");
+		Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
+			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
+
+			@Override
+			public JsonElement serialize(Timestamp arg0, Type arg1, JsonSerializationContext arg2) {
+				return new JsonPrimitive(sdf.format(arg0));
+			}
+		}).create();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		gson.toJson(timestamp);
+		
 		try {
 			if(cmd.equals("/list.reply")) { // 댓글 리스트 가져오기
 				
 				response.setContentType("text/html; charset=utf8");
-				Gson gson = new Gson();
+				
 				int parent_seq = Integer.parseInt(request.getParameter("parent_seq"));
 				
 				int currentReplyPage=(int)request.getSession().getAttribute("latestReplyPageNum");
