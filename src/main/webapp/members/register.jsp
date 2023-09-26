@@ -572,7 +572,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		frm.onsubmit = function() {
 			let idRegExr = /^[A-Za-z0-9_]{8,14}$/;
 			let pwRegExr = /^[!@A-Za-z0-9_]{8,}$/;
-			let nameRegExr = /^[^A-Za-z0-9_]{2,5}$/;
+			let pwRegExr2 = /[0-9]+/;
+			let pwRegExr3 = /[A-Za-z]+/;
+			let nameRegExr = /^[가-힣]{2,5}$/;
 			let phoneHeadRegExr = /[0-9]{3}$/;
 			let phoneRegExr = /[0-9]{4}$/;
 			let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
@@ -583,7 +585,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 			} else if (!duplCheck) {
 				alert("ID 중복 검사를 해주십시오.");
 				return false;
-			} else if (!pwRegExr.test(inputPW.value)) {
+			} else if (!(pwRegExr.test(inputPW.value) && pwRegExr2
+					.test(inputPW.value) && pwRegExr3.test(inputPW.value))) {
 				alert("비밀번호를 확인 해주십시오.");
 				return false;
 			} else if (!ispwcPassed) {
