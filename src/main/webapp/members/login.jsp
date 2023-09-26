@@ -21,6 +21,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 "></script>
 <style>
 .container {
+	margin-top:150px;
 	width: 400px;
 }
 
@@ -33,9 +34,10 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 }
 
 #body {
-	border: 1px solid gray; /* 테두리 스타일 및 색상 설정 */
+	border: 2px solid gainsboro; /* 테두리 스타일 및 색상 설정 */
 	padding: 20px; /* 테두리 주위의 여백 설정 */
-	background-color: #D2DAFF;
+	border-radius:5px;
+	
 }
 </style>
 </head>
@@ -72,7 +74,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 				</div>
 				<div class="row mb-3 px-2">
 					<button type="submit" class="btn" id="loginBtn"
-						style="background-color: #B1B2FF;">로그인</button>
+						style="background-color: gainsboro">로그인</button>
 				</div>
 			</form>
 			<div class="row mb-3">

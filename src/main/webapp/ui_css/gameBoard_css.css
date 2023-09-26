@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box;}
+
+/* div{border:1px solid black;} */
+
+.header+hr{
+    margin-top:30px;
+}
+.menubar>div{
+    font-weight: bold;
+    font-size:23px;
+}
+
+.game-dropdown{
+    font-weight: bold;
+    font-size: 23px;
+}
+.game-select{
+    border:1px solid gainsboro;
+    padding:20px;
+    margin-top:30px;
+    margin-bottom:30px;
+    font-size:large;
+    display: flex;
+    justify-content: space-between;
+}
+.game{
+    margin-top:30px;
+    margin-bottom:30px;
+    padding-bottom:30px;
+    background-color:rgba(245, 245, 245, 0.515);
+}
+.game-title{
+    margin-top:20px;
+    padding-left:30px;
+    padding-top:30px; 
+    font-size:25px; 
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.game-title+hr{
+    margin-left:30px;
+    margin-right:30px;
+    margin-bottom:30px;
+}
+
+.wrapper{
+    border:1px solid gainsboro;
+    width:800px;
+    height:600px;
+    margin:auto;
+    margin-top:20px;
+    background-color: black;
+}
+.wrapper+hr{
+    margin:30px;
+}
+.info{
+    margin:30px;
+    background-color: white;
+}
+.info-txt{
+    padding-top:20px;
+    margin-top:20px;
+    padding-left:30px; 
+    font-size:20px;
+    font-weight:bold; 
+    margin-bottom:10px;
+    width:100%;
+}
+.info-txt+hr{
+    width:95%;
+    margin-left:30px;
+}
+.game-info{
+    margin-left:30px;
+    margin-right:30px;
+    padding-bottom:20px;
+}
