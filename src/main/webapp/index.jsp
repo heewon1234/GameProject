@@ -86,7 +86,7 @@
 											<div class="game-list">
 												<a href="/game/minesweeper/eazyMinesweeper.jsp">
 													<div class="game-img">
-														<img src="/UI_img/1.png" style="width:80%;">
+														<img src="/UI_img/1_1.png" style="width:80%;">
 														<img src="/UI_img/3.gif" style="width:80%">
 													</div>
 													<div class="game-txt">지뢰찾기</div>
