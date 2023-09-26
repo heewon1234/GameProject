@@ -335,7 +335,6 @@ class PlayScene extends Phaser.Scene {
         } else{
             this.time++;
             let timer = this.time / 60;
-            console.log(Math.floor(this.time/60));
             $("#score").val(Math.floor(this.time/60));
             this.text.setText("Time : " + Math.floor(timer));
         }
