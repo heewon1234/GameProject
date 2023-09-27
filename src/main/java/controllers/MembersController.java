@@ -231,7 +231,9 @@ public class MembersController extends HttpServlet {
 				request.getRequestDispatcher("/members/deleteAccount.jsp").forward(request, response);
 			} else if(cmd.equals("/memberOut.members")) { // 회원 탈퇴 버튼 클릭 시 
 				String id = (String)request.getSession().getAttribute("loginID");
-				int result = membersDAO.delAccount(id);
+				
+				int result = membersDAO.changePosition(id);
+
 				request.getSession().invalidate();
 				response.sendRedirect("/index.jsp");
 
