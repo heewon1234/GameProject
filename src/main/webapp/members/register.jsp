@@ -479,37 +479,64 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		// 이메일 인증 코드 발송 버튼 클릭 이벤트 핸들러
 		$("#btn-send-verification").on("click", function() {
 			let email = inputEmail.value + "@" + inputEmail2.value;
-
-			// 이메일 주소가 유효한지 확인 (예: 정규식 사용)
-			let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
-			if (!emailRegExr.test(email)) {
-				$(".verification-alert").text("올바른 이메일 형식이 아닙니다.");
-				return;
-			}
-
-			// 서버에 이메일 주소를 전송하고 인증 코드를 요청
+			
+			// Email 중복 검사
 			$.ajax({
-				url : "/sendVerificationCode.members", // 서버의 인증 코드 발송 API 엔드포인트
-				method : "POST",
-				data : {
-					email : email
-				},
-				success : function(data) {
-					if (data === "success") {
-						// 인증 코드 발송 성공
-						$(".verification-alert").text("인증 코드가 이메일로 발송되었습니다.");
-					} else if (data === "email_error") {
-						// 이메일 주소 오류
-						$(".verification-alert").text("올바르지 않은 이메일 주소입니다.");
-					} else if (data === "send_error") {
-						// 이메일 발송 오류
-						$(".verification-alert").text("인증 코드 발송에 실패했습니다.");
+		        url: "/emailDupleCheck.members",
+		        data: {
+		            email: email
+		        },
+		        type: "post"
+		    })
+		    .done(function(resp) {
+		        if (resp === "true") {
+		        //	console.log("이메일 존재");
+		            // 이메일 존재시
+		            alert("이미 사용 중인 이메일입니다. 다른 이메일을 사용해주세요.");
+		            $("#email1").val("");
+		            $("#email2").val("");
+		            $("#email2_dropdown").val("선택하세요").prop("selected",true); 
+		            $("#email1").focus(); 
+		            
+		        }else{
+		        //	console.log("이메일 없지롱");
+		        	// 이메일 존재하지 않을 시
+		        	// 이메일 주소가 유효한지 확인 (예: 정규식 사용)
+					let emailRegExr = /^[A-Za-z0-9_].+@[A-Za-z0-9].+\.[a-z].+$/;
+					if (!emailRegExr.test(email)) {
+						$(".verification-alert").text("올바른 이메일 형식이 아닙니다.");
+						return;
 					}
-				},
-				error : function() {
-					$(".verification-alert").text("서버와의 통신 중 오류가 발생했습니다.");
-				}
-			});
+					
+					// 서버에 이메일 주소를 전송하고 인증 코드를 요청
+					$.ajax({
+						url : "/sendVerificationCode.members", // 서버의 인증 코드 발송 API 엔드포인트
+						method : "POST",
+						data : {
+							email : email
+						},
+						success : function(data) {
+							if (data === "success") {
+								// 인증 코드 발송 성공
+								$(".verification-alert").text("인증 코드가 이메일로 발송되었습니다.");
+							} else if (data === "email_error") {
+								// 이메일 주소 오류
+								$(".verification-alert").text("올바르지 않은 이메일 주소입니다.");
+							} else if (data === "send_error") {
+								// 이메일 발송 오류
+								$(".verification-alert").text("인증 코드 발송에 실패했습니다.");
+							}
+						},
+						error : function() {
+							$(".verification-alert").text("서버와의 통신 중 오류가 발생했습니다.");
+						}
+					});
+		        }
+		        
+		    })
+		    .fail(function() {
+		        alert("서버와의 통신 중 오류가 발생했습니다.");
+		    });
 		});
 
 		let isEmailVerified = false;
@@ -656,8 +683,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 									})
 									.done(
 											function(resp) {
-												console.log(resp)
-												console.log(typeof resp)
+											//	console.log(resp)
+											//	console.log(typeof resp)
 												if (resp == "true") {
 													idAlert.setAttribute(
 															"style",
