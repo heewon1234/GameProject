@@ -63,18 +63,12 @@
 }
 .board-info>input{
     font-size:12px;
-    width:13%;
     text-align: center;
     border:none;
 }
+.board-info>input:nth-child(3){width:20%;}
 .board-info>input:focus{
     outline:none;
-}
-.board-info>input:nth-child(2),.board-info>input:nth-child(4){
-    width:15%;
-}
-.board-info>input:last-child{
-    width:20%;
 }
 .board-contents{
     margin-top:30px;
@@ -109,6 +103,7 @@
     border:1px solid gainsboro;
     padding:15px;
     margin:30px;
+    margin-top:10px;
 }
 
 .replyWriter{
@@ -132,7 +127,12 @@
 }
 
 .replies{overflow:hidden;}
-
+#replyTxT{
+	margin-top:10px;
+	padding-left:30px;
+	font-size:x-large;
+	font-weight:bold;
+}
 #replyListContainer{
     border: 1px solid gainsboro;
     margin:30px;
