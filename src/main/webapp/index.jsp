@@ -449,7 +449,7 @@ a {
 									<tr>
 										<th scope="col" style="width:50px; text-align:center;">랭킹</th>
 										<th scope="col" style="text-align:center;">게임</th>
-										<th scope="col" style="text-align:center;">score</th>
+										<th scope="col" style="text-align:center;">기록</th>
 										<th scope="col" style="text-align:center;">날짜</th>
 									</tr>
 								</thead>
