@@ -45,9 +45,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 	<div class="container">
 		<div id="body">
 			<div id="title">Login</div>
-			<form action="/login.members" method="post"
-				onsubmit="return validateForm();">
-
+			<form action="/login.members" method="post">
 				<div class="row mb-3">
 					<label for="inputId" class="col-sm-4 col-form-label"><img
 						src="/UI_img/user.svg" alt="userImg"> 아이디</label>
@@ -94,24 +92,6 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 		</div>
 	</div>
 	<script>
-        function validateForm() {
-            var idField = document.getElementById("inputId");
-            var pwField = document.getElementById("inputPassword");
-
-            if (idField.value.trim() === "") {
-                alert("아이디를 입력하세요.");
-                idField.focus();
-                return false;
-            }
-
-            if (pwField.value.trim() === "") {
-                alert("비밀번호를 입력하세요.");
-                pwField.focus();
-                return false;
-            }
-            return true;
-        }
-
         $(document).ready(function() {
             let inputID = document.getElementById("inputId");
             let remID = document.getElementById("remID");
@@ -136,10 +116,22 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
             }
             $("#loginBtn").on("click", function(e) {
                 //e.preventDefault(); // 기본 폼 제출 동작을 막습니다.
+                
+                var idField = document.getElementById("inputId");
+            	var pwField = document.getElementById("inputPassword");
 
                 var id = $("#inputId").val();
                 var password = $("#inputPassword").val();
 
+                if(id == "") {
+                	alert("아이디를 입력하세요.");
+                    idField.focus();
+                    return false;
+                } else if(password == "") {
+           			alert("비밀번호를 입력하세요.");
+           			pwField.focus();
+           			return false;
+           		}
                 // 서버에 인증 코드를 전송하고 검증
                 $.ajax({
                     type: "POST",
