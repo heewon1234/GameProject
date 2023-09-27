@@ -164,7 +164,7 @@ a {
 			</div>
 		</div>
 
-	</div>
+	
 	<hr>
 	<div class="body">
 		<div class="bodyBorder">
