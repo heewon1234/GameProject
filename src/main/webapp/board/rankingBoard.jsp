@@ -173,9 +173,7 @@
                $(".game.nav-item a.nav-link,.game.dropdown-item").on("click", function (event) {
                   event.preventDefault();
                   var gameName = $(this).data("game");
-                  
-                  $(".game.nav-item a.nav-link").removeClass("active-game");
-			      $(this).addClass("active-game");
+         
 			        
                   //console.log("게임 이름:", gameName);
                   
@@ -250,6 +248,12 @@
                   });
 
 
+               });
+               $(".game.nav-item a.nav-link").on("click", function (event) {
+                   event.preventDefault();
+                   
+                   $(".game.nav-item a.nav-link").removeClass("active-game");
+ 			      $(this).addClass("active-game");
                });
             });
          </script>
