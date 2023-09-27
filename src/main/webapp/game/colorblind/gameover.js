@@ -22,7 +22,7 @@ class Gameover extends Phaser.Scene {
       bestScore = resp;
       
     });
-
+    if(this.finalScore > 0) {
         $.ajax({
             url: "/rankReadPoint.rankBoard",
             data: {
@@ -34,8 +34,9 @@ class Gameover extends Phaser.Scene {
         }).done(function(resp) {
     console.log(resp);
     if (resp === "true") { // 문자열 "true"와 비교
-        alert("신기록이 달성되었습니다. 축하합니다!");
+        alert("축하합니다! 신기록이 달성되었습니다.");
     }})
+    }
     
         this.events.on('transitioncomplete', () => {
             let ls = this.add.rectangle(this.cameras.main.x / 3, this.cameras.main.y, this.cameras.main.x / 3, this.cameras.main.y)
