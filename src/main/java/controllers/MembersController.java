@@ -232,7 +232,8 @@ public class MembersController extends HttpServlet {
 			} else if(cmd.equals("/memberOut.members")) { // 회원 탈퇴 버튼 클릭 시 
 				String id = (String)request.getSession().getAttribute("loginID");
 				
-				int result = membersDAO.changePosition(id);
+				int result = membersDAO.deleteEmailById(id);
+				int result2 = membersDAO.changePosition(id);
 
 				request.getSession().invalidate();
 				response.sendRedirect("/index.jsp");
@@ -250,8 +251,7 @@ public class MembersController extends HttpServlet {
 					request.getRequestDispatcher("/members/id_search_result.jsp").forward(request, response);
 				} else {
 					System.out.println("아이디를 찾을 수 없음");
-					request.setAttribute("errorMessage", "Email에 해당하는 아이디를 찾을 수 없습니다.");
-					request.getRequestDispatcher("/members/id_Search.jsp").forward(request, response);
+					response.getWriter().write("<script>alert('Email에 해당하는 아이디를 찾을 수 없습니다.'); window.location='/members/id_Search.jsp';</script>");
 				}
 			} 
 			else if(cmd.equals("/goToIdSearch.members")) {
@@ -271,8 +271,7 @@ public class MembersController extends HttpServlet {
 					request.getRequestDispatcher("/members/pw_search_result.jsp").forward(request, response);
 				} else {
 					System.out.println("가입시 사용한 이메일이 아님");
-					request.setAttribute("errorMessage", "가입시 사용한 이메일이 아닙니다.");
-					request.getRequestDispatcher("/members/pw_Search.jsp").forward(request, response);
+					response.getWriter().write("<script>alert('가입시 사용한 이메일이 아닙니다.'); window.location='/members/pw_Search.jsp';</script>");
 				}
 			}
 			else if (cmd.equals("/pw_reset.members")) {

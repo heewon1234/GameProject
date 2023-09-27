@@ -102,6 +102,18 @@ public class MembersDAO {
 			}
 		}
 	}
+	
+	// 회원탈퇴 시 이메일 비우기
+		public int deleteEmailById(String id) throws Exception{
+			String sql = "UPDATE MEMBERS SET EMAIL = 'resigned' WHERE ID = ?";
+
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);) {
+				pstat.setString(1, id);
+
+				return pstat.executeUpdate();
+			}
+		}
 
 	// 회원탈퇴 시 position 을 resigned로 바꾸기
 	public int changePosition(String id) throws Exception{
