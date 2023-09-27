@@ -282,7 +282,6 @@ public class RankingBoardDAO {
 			}
 		}
 	};
-	
 	//처음 랭킹 페이지 들어갔을 때 default로 지뢰찾기 초급을 보여주는 코드
 	public List<RankingBoardDTO> selectAll() throws Exception {
 		String sql = "SELECT rb1.*, (SELECT COUNT(*) + 1 FROM rankingBoard AS rb2 WHERE rb2.game_name = rb1.game_name AND rb2.score < rb1.score) AS `ranking` FROM rankingBoard AS rb1 WHERE game_name = 'minesweeperEazy' ORDER BY ranking";
