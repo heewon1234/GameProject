@@ -34,12 +34,12 @@
 						<div style="display:none;" id="board-seq">${dto.seq }</div>
 					</c:if>
 				</div>
-				<div class="board-info col-md-11 p-0">
-					<input type="text" value="글 번호 : ${dto.seq}" readonly> | 
-					<input type="text" value="작성자 : ${dto.writer}" readonly> | 
-					<input type="text" value="작성일 : ${dto.write_date}" readonly> | 
-					<input type="text" value="조회수 : ${dto.view_count}" readonly> | 
-					<input type="text" value="카테고리 : ${dto.game_name}" readonly>
+				<div class="board-info col-md-11 p-0" >
+					<input type="text" value="글 번호 : ${dto.seq}" style="font-size: medium;" readonly> | 
+					<input type="text" value="작성자 : ${dto.writer}" style="font-size: medium;" readonly> | 
+					<input type="text" value="작성일 : ${dto.write_date}" style="font-size: medium;" readonly> | 
+					<input type="text" value="조회수 : ${dto.view_count}" style="font-size: medium;" readonly> | 
+					<input type="text" value="카테고리 : ${dto.game_name}" style="font-size: medium;" readonly>
 				</div>
 				<div class="board-contents">
 					${dto.contents}
