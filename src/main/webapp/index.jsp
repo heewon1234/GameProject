@@ -164,7 +164,7 @@ a {
 			</div>
 		</div>
 
-	</div>
+	
 	<hr>
 	<div class="body">
 		<div class="bodyBorder">
@@ -173,23 +173,64 @@ a {
 					data-bs-ride="carousel">
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="/UI_img/banner_1.png" class="d-block w-100" alt="...">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_1.png" class="d-block w-100" alt="..."></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/minesweeper/eazyMinesweeper.jsp"><img src="/UI_img/banner_1.png" class="d-block w-100" alt="..."></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/banner_2.png" class="d-block w-100" alt="...">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_2.png" class="d-block w-100" alt="..."></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/bounceball/bounceball_main.jsp"><img src="/UI_img/banner_2.png" class="d-block w-100" alt="..."></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/banner_3.png" class="d-block w-100" alt="...">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_3.png" class="d-block w-100" alt="..."></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/flappyBird/flappyBird_main.jsp"><img src="/UI_img/banner_3.png" class="d-block w-100" alt="..."></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/banner_4.png" class="d-block w-100" alt="...">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_4.png" class="d-block w-100" alt="..."></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp"><img src="/UI_img/banner_4.png" class="d-block w-100" alt="..."></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/banner_5.png" class="d-block w-100" alt="...">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_5.png" class="d-block w-100" alt="..."></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/dragon/dragon.jsp"><img src="/UI_img/banner_5.png" class="d-block w-100" alt="..."></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="carousel-item">
-							<img src="/UI_img/banner_6.png" class="d-block w-100" alt="..."
-								style="border: 1px solid gainsboro;">
+							<c:choose>
+								<c:when test="${loginID == null }">
+									<a href="/members/login.jsp"><img src="/UI_img/banner_6.png" class="d-block w-100" alt="..." style="border: 1px solid gainsboro;"></a>
+								</c:when>
+								<c:otherwise>
+									<a href="/game/colorblind/colorblind.jsp"><img src="/UI_img/banner_6.png" class="d-block w-100" alt="..." style="border: 1px solid gainsboro;"></a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<button class="carousel-control-prev" type="button"
