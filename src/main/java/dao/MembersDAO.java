@@ -103,9 +103,9 @@ public class MembersDAO {
 		}
 	}
 
-	// 회원탈퇴
-	public int delAccount(String id) throws Exception{
-		String sql = "DELETE FROM MEMBERS WHERE ID = ?";
+	// 회원탈퇴 시 position 을 resigned로 바꾸기
+	public int changePosition(String id) throws Exception{
+		String sql = "UPDATE MEMBERS SET POSITION = 'resigned' WHERE ID = ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);) {
