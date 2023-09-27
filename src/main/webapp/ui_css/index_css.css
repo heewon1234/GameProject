@@ -149,13 +149,13 @@
 }
 .rnk-txt{
     margin-top:15px;
-    padding-left:30px; 
+    padding-left:15px; 
     font-size:x-large; 
     font-weight:bold;
     margin-bottom:10px;
 }
 .rnk-txt>a:hover{text-decoration:underline;}
 .rnk-board-contents{
-    padding-left:30px;
-    padding-right:30px;
+    padding-left:15px;
+    padding-right:15px;
 }

@@ -447,10 +447,10 @@ a {
 							<table class="table">
 								<thead>
 									<tr>
-										<th scope="col">랭킹</th>
-										<th scope="col">게임</th>
-										<th scope="col">score</th>
-										<th scope="col">날짜</th>
+										<th scope="col" style="width:50px; text-align:center;">랭킹</th>
+										<th scope="col" style="text-align:center;">게임</th>
+										<th scope="col" style="text-align:center;">score</th>
+										<th scope="col" style="text-align:center;">날짜</th>
 									</tr>
 								</thead>
 								<tbody class="table-group-divider" id="rankList">
@@ -544,10 +544,10 @@ a {
 									var myRank = parsedData[i];
 
 									var $row = $("<tr>");
-									$row.append($("<td>").text(myRank.ranking), 
-									$("<td>").text(myRank.game_name), 
-									$("<td>").text(myRank.score), 
-									$("<td>").text(myRank.rank_date));
+									$row.append($("<td>").text(myRank.ranking).css("text-align","center"), 
+									$("<td>").text(myRank.game_name).css("text-align","center"), 
+									$("<td>").text(myRank.score).css("text-align","center"), 
+									$("<td>").text(myRank.rank_date)).css("text-align","center");
 									$rankList.append($row);
 								}
 							}
