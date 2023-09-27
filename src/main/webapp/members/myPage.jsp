@@ -236,11 +236,11 @@
             }
             
          	// 비밀번호 확인칸과 비교 및 알림창 바꾸기
-			if (inputPW.value != inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+			if (inputCPW.value != inputVPW.value && $(rowAlert[1]).attr("style") == "display: flex") {
                 pwcAlert.setAttribute("style", "color: red;");
                 pwcAlert.innerHTML = "비밀번호가 다릅니다.";
                 ispwcPassed = false;
-            } else if (inputPW.value == inputPWC.value && $(rowAlert[1]).attr("style") == "display: flex") {
+            } else if (inputCPW.value == inputVPW.value && $(rowAlert[1]).attr("style") == "display: flex") {
                 pwcAlert.setAttribute("style", "color: blue;");
                 pwcAlert.innerHTML = "비밀번호와 일치합니다.";
                 ispwcPassed = true;
@@ -269,22 +269,25 @@
         }
 
         // 이름 입력 시 유효성 검사
+        
         let nameAlert = document.getElementsByClassName("name-alert")[0];
         inputName.onkeyup = function (e) {
-        	let nameRegExr = /^[가-힣]{2,5}$/;
-            if (inputName.value == "") {
-                rowAlert[2].setAttribute("style", "display:none");
-                nameAlert.innerHTML = "";
-            } else {
-                rowAlert[2].setAttribute("style", "display: flex")
-                if (!nameRegExr.test(inputName.value)) {
-                    nameAlert.setAttribute("style", "color: red;");
-                    nameAlert.innerHTML = "올바르지 않은 이름 형식입니다.";
-                } else {
-                    nameAlert.setAttribute("style", "color: blue;");
-                    nameAlert.innerHTML = "올바른 이름 형식입니다.";
-                }
-            }
+        	if(!$("#name").attr("readonly")) {
+	        	let nameRegExr = /^[가-힣]{2,5}$/;
+	            if (inputName.value == "") {
+	                rowAlert[2].setAttribute("style", "display:none");
+	                nameAlert.innerHTML = "";
+	            } else {
+	                rowAlert[2].setAttribute("style", "display: flex")
+	                if (!nameRegExr.test(inputName.value)) {
+	                    nameAlert.setAttribute("style", "color: red;");
+	                    nameAlert.innerHTML = "올바르지 않은 이름 형식입니다.";
+	                } else {
+	                    nameAlert.setAttribute("style", "color: blue;");
+	                    nameAlert.innerHTML = "올바른 이름 형식입니다.";
+	                }
+	            }
+        	}
         }
 
         // submit 버튼 클릭시
@@ -297,19 +300,22 @@
             let phoneHeadRegExr = /[0-9]{3}$/;
             let phoneRegExr = /[0-9]{4}$/;
 			
-            if (hex_sha512(inputPW.value) != "${mypageList.password}" ) {
-            	alert("비밀번호를 확인 해주십시오.");
-                inputPW.focus();
-                return false;
-            } else if (!(pwRegExr.test(inputCPW.value) && pwRegExr2.test(inputCPW.value) && pwRegExr3.test(inputCPW.value))) {
-                alert("변경할 비밀번호를 확인 해주십시오.");
-                inputCPW.focus();
-                return false;
-            } else if (!ispwcPassed) {
-                alert("비밀번호 재입력 칸을 확인 해주십시오.");
-                inputVPW.focus();
-                return false;
-            } else if (!nameRegExr.test(inputName.value)) {
+            if(inputPW.value != "" || inputCPW.value != "" || inputVPW.value != "") {
+	            if (hex_sha512(inputPW.value) != "${mypageList.password}" ) {
+	            	alert("비밀번호를 확인 해주십시오.");
+	                inputPW.focus();
+	                return false;
+	            } else if (!(pwRegExr.test(inputCPW.value) && pwRegExr2.test(inputCPW.value) && pwRegExr3.test(inputCPW.value))) {
+	                alert("변경할 비밀번호를 확인 해주십시오.");
+	                inputCPW.focus();
+	                return false;
+	            } else if (!ispwcPassed) {
+	                alert("비밀번호 재입력 칸을 확인 해주십시오.");
+	                inputVPW.focus();
+	                return false;
+	            } 
+            }
+            if (!nameRegExr.test(inputName.value)) {
                 alert("이름을 확인 해주십시오.");
                 inputName.focus();
                 return false;
