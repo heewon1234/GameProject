@@ -26,7 +26,7 @@
 					
 				}
 				.game-img:hover>img:last-child{
-					transform: scale(1.2);
+					transform: scale(1.1);
    					transition-duration: 0.75s;
    					}
 			</style>
@@ -95,7 +95,7 @@
 												<a href="/game/bounceball/bounceball_main.jsp">
 													<div class="game-img">
 														<img src="/UI_img/2.png" style="width:80%;">
-														<img src="/UI_img/4.gif" style="width:80%">
+														<img src="/UI_img/4.gif" style="width:80%;">
 													</div>
 													<div class="game-txt">바운스볼</div>
 												</a>
