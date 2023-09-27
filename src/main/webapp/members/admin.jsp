@@ -78,8 +78,16 @@ a {
 								<th scope="row" style="text-align: center">${l.id}</th>
 								<td style="text-align: center">${l.position}</td>
 								<td></td>
-								<td><button type="button" class="btn btn-outline-danger btn_ban" value="${l.id}">Ban</button></td>
-								<td><button type="button" class="btn btn-outline-success btn_unban" value="${l.id}">Unban</button></td>
+								<c:choose>
+									<c:when test="${l.position eq 'resigned'}">
+										<td style="height : 55px;"></td>
+										<td></td>
+									</c:when>
+									<c:otherwise>
+										<td><button type="button" class="btn btn-outline-danger btn_ban" value="${l.id}">Ban</button></td>
+										<td><button type="button" class="btn btn-outline-success btn_unban" value="${l.id}">Unban</button></td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 						</c:forEach>
 					</tbody>
