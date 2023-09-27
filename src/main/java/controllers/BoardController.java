@@ -42,7 +42,7 @@ public class BoardController extends HttpServlet {
 		ReplyDAO replyDAO = ReplyDAO.getInstance();
 
 		Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
-			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
+			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm");
 
 			@Override
 			public JsonElement serialize(Timestamp arg0, Type arg1, JsonSerializationContext arg2) {

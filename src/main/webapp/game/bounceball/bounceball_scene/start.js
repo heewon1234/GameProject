@@ -33,7 +33,7 @@ class StartScene extends Phaser.Scene{
       		url: "/rankaddBest.rankBoard?game_name=bounceball",
     	}).done((resp) => {
      		bestScore = resp;
-     		if(bestScore == ""){bestScore='0'}
+     		if(bestScore == "--"){bestScore='0'}
       		this.add.text(this.cameras.main.width/2,this.cameras.main.height/2+10,"최고 기록 : " + bestScore + "s",{ fontSize: "20px", fill: "#ffffff" }).setOrigin(0.5).setPadding(10);
     	});
 

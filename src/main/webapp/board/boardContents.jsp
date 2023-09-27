@@ -35,13 +35,13 @@
 					</c:if>
 				</div>
 				<div class="board-info col-md-11 p-0">
-					<input type="text" value="글 번호 : ${dto.seq}" readonly> | 
+					&nbsp;&nbsp;<input type="text" value="글 번호 : ${dto.seq}" readonly> | 
 					<input type="text" value="작성자 : ${dto.writer}" readonly> | 
 					<input type="text" value="작성일 : ${dto.write_date}" readonly> | 
 					<input type="text" value="조회수 : ${dto.view_count}" readonly> | 
-					<input type="text" value="카테고리 : ${dto.game_name}" readonly>
+					<input type="text" value="카테고리 : ${dto.game_name}" readonly>&nbsp;&nbsp;
 				</div>
-				<div class="board-contents" style="overflow:scroll;">
+				<div class="board-contents" style="overflow-x:scroll;">
 					${dto.contents}
 				</div>
 				<div class="btns">
@@ -55,9 +55,10 @@
 		</form>
 
 		<hr>
+		<div id="replyTxT">댓글</div>
 		<form action="/insert.reply" id="replyInsertForm">
 			<div class="reply">
-				<div class="replyWriter">${loginID}</div>
+				<div class="replyWriter"><i class="fa-solid fa-user"></i>&nbsp;${loginID}</div>
 				<div class="replyContents">
 					<input type="hidden" value="${dto.seq }" name="seq">
 					<textarea placeholder="내용을 입력해주세요" name="contentsReply" id="contentsReply"></textarea>
@@ -142,7 +143,13 @@
 					replyBtns.addClass("reply-btns");
 
 					if(resp[i].writer == "${loginID}"){
-	
+						
+						let updateReply = $("<button>");
+						updateReply.addClass("updateReply");
+						updateReply.attr("type","button");
+						updateReply.append("수정");
+						$(replyBtns).append(updateReply);
+						
 						let deleteReply = $("<button>");
 						deleteReply.addClass("deleteReply");
 						deleteReply.attr("type","button");
@@ -150,12 +157,6 @@
 						deleteReply.attr("parent_seq",resp[i].parent_seq);
 						deleteReply.append("삭제");
 						$(replyBtns).append(deleteReply);
-						
-						let updateReply = $("<button>");
-						updateReply.addClass("updateReply");
-						updateReply.attr("type","button");
-						updateReply.append("수정");
-						$(replyBtns).append(updateReply);
 					}
 
 					let cancelReply = $("<button>");
@@ -221,9 +222,11 @@
 					updateSuccess = false;
 					let value = $(this).parent(".reply-btns").siblings(".reply-body").html().trim();
 					$(this).parent(".reply-btns").siblings(".reply-body").html("");
-					let contentsInput = $("<input>");
+					let contentsInput = $("<textarea>");
 					contentsInput.attr("name", "contents");
-					contentsInput.attr("value", value);
+					value = value.replaceAll("<br>","");
+					contentsInput.val(value);
+					contentsInput.attr("style","width:100%;resize:none;");
 					contentsInput.addClass("input");
 					$(this).parent(".reply-btns").siblings(".reply-body").append(contentsInput);
 					$(this).css("display", "none");

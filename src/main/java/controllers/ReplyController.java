@@ -34,7 +34,7 @@ public class ReplyController extends HttpServlet {
 		String cmd = request.getRequestURI();
 		request.setCharacterEncoding("utf8");
 		Gson gson = new GsonBuilder().registerTypeAdapter(Timestamp.class, new JsonSerializer<Timestamp>() {
-			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. hh:mm");
+			private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm");
 
 			@Override
 			public JsonElement serialize(Timestamp arg0, Type arg1, JsonSerializationContext arg2) {
@@ -91,6 +91,7 @@ public class ReplyController extends HttpServlet {
 				
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String contents = request.getParameter("contents");
+				contents = contents.replaceAll("\n", "<br>");
 				int result = replyDAO.update(contents, seq);
 				int parent_seq = Integer.parseInt(request.getParameter("parent_seq"));
 				int currentReplyPage = Integer.parseInt(request.getParameter("currentReplyPage"));
