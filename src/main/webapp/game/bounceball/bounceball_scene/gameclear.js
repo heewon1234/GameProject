@@ -20,7 +20,7 @@ $.ajax({
     method: "GET"
 }).done(function(resp) {
 	if(resp === "true") { // 문자열 "true"와 비교
-        alert("신기록이 달성되었습니다. 축하합니다..");
+        alert("축하합니다! 신기록이 달성되었습니다.");
     }
 });
 	
