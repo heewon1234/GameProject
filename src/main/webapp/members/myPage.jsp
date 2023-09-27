@@ -16,6 +16,9 @@
     <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -54,8 +57,10 @@
 </head>
 
 <body>
-    <div class="container border">
-        <div class="row">
+    <div class="container g-0 mb-5">
+    	<div class="row p-0 m-0 header" id="main-header"></div>
+        <hr>
+        <div class="row pt-1">
             <!-- 사이드바 -->
             <div class="col-md-3">
                 <div class="panel panel-info">
@@ -69,7 +74,7 @@
                 <hr>
                 <div class="panel panel-info">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="/mypage.members">내프로필</a></li>
+                        <li class="list-group-item"><a href="/mypage.members">내 프로필</a></li>
                         <li class="list-group-item"><a href="/board/rankingBoard.jsp">랭킹</a></li>
                         <li class="list-group-item"><a href="/delAccountPage.members">회원탈퇴</a></li>
                         <c:if test="${mypageList.id eq 'admin'}">
@@ -79,7 +84,7 @@
                 </div>
                 <hr>
             </div>
-            <div class="col-md-9 border" style="padding: 20px;">
+            <div class="col-md-9 border-start" style="padding: 20px;">
                 <form action="/update.members" class="row g-3 needs-validation" id="mypage_form" method="post">
                     <div class="mb-3 row">
                         <label for="password" class="col-sm-3 col-form-label">현재 Password</label>
@@ -177,7 +182,15 @@
             </div>
         </div>
     </div>
+    <div id="footer_container"></div>
     <script>
+    $(document).ready(function() {
+		$("#main-header").load("/commons_ui/header.html");
+	});
+    $(document).ready(function() {
+		$("#footer_container").load("/commons/footer.html")
+	});
+    
         let inputPW = document.getElementById("password");
         let inputCPW = document.getElementById("changePassword");
         let inputVPW = document.getElementById("verifyPassword");
