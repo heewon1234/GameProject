@@ -91,6 +91,7 @@ public class ReplyController extends HttpServlet {
 				
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String contents = request.getParameter("contents");
+				contents = contents.replaceAll("\n", "<br>");
 				int result = replyDAO.update(contents, seq);
 				int parent_seq = Integer.parseInt(request.getParameter("parent_seq"));
 				int currentReplyPage = Integer.parseInt(request.getParameter("currentReplyPage"));

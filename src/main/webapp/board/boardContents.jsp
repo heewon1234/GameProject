@@ -41,7 +41,7 @@
 					<input type="text" value="조회수 : ${dto.view_count}" readonly> | 
 					<input type="text" value="카테고리 : ${dto.game_name}" readonly>
 				</div>
-				<div class="board-contents" style="overflow:scroll;">
+				<div class="board-contents" style="overflow-x:scroll;">
 					${dto.contents}
 				</div>
 				<div class="btns">
@@ -221,9 +221,11 @@
 					updateSuccess = false;
 					let value = $(this).parent(".reply-btns").siblings(".reply-body").html().trim();
 					$(this).parent(".reply-btns").siblings(".reply-body").html("");
-					let contentsInput = $("<input>");
+					let contentsInput = $("<textarea>");
 					contentsInput.attr("name", "contents");
-					contentsInput.attr("value", value);
+					value = value.replaceAll("<br>","");
+					contentsInput.val(value);
+					contentsInput.attr("style","width:100%;resize:none;");
 					contentsInput.addClass("input");
 					$(this).parent(".reply-btns").siblings(".reply-body").append(contentsInput);
 					$(this).css("display", "none");
