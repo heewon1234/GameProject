@@ -30,7 +30,7 @@
          <ul class="nav nav-pills nav-fill"
             style="width: 100%; margin: 0 auto; display: flex; justify-content: space-between; padding: 0;">
             <li class="nav-item dropdown game-list"><button type="button" class="btn"
-                  data-bs-toggle="dropdown" aria-expanded="false">지뢰찾기</button>
+                  data-bs-toggle="dropdown" aria-expanded="false">지뢰 찾기</button>
                <ul class="dropdown-menu">
                   <li><a class="game dropdown-item" href="#"
                      data-game="minesweeperEazy">초급</a></li>
@@ -42,13 +42,13 @@
             <li class="game nav-item game-list"><a class="nav-link" href="#"
                data-game="bounceball" style="color:black;">바운스볼</a></li>
             <li class="game nav-item game-list"><a class="nav-link" href="#"
-               data-game="flappyBird" style="color:black;">플래피버드</a></li>
+               data-game="flappyBird" style="color:black;">플래피 버드</a></li>
             <li class="game nav-item game-list"><a class="nav-link" href="#"
-               data-game="fullMoonBoat" style="color:black;">풀문보트</a></li>
+               data-game="fullMoonBoat" style="color:black;">풀 문 보트</a></li>
             <li class="game nav-item game-list"><a class="nav-link" href="#"
                data-game="dragon" style="color:black;">드래곤 플라이트</a></li>
             <li class="game nav-item game-list"><a class="nav-link" href="#"
-               data-game="colorblind" style="color:black;">컬러블라인드</a></li>
+               data-game="colorblind" style="color:black;">컬러 블라인드</a></li>
          </ul>
       </div>
       <div class="board-border">
