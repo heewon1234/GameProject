@@ -12,7 +12,9 @@ class GameOverScene extends Phaser.Scene {
 
     create() {
         const pointValue = $("#point").html();
-        $.ajax({
+        
+        if(pointValue > 0) {
+	        $.ajax({
             url: "/rankReadPoint.rankBoard",
             data: {
                 score: pointValue,
@@ -22,10 +24,25 @@ class GameOverScene extends Phaser.Scene {
             method: "GET"
         }).done(function(resp) {
             if (resp === "true") {
-                alert("신기록이 달성되었습니다. 축하합니다.");
+                alert("축하합니다! 신기록이 달성되었습니다.");
             }
         });
+      }
 
+        
+    let bestScore;
+    $.ajax({
+      url: "/rankaddBest.rankBoard?game_name=flappyBird",
+    }).done((resp) => {
+      bestScore = resp;
+      this.add.text(
+        this.cameras.main.width / 2,
+        235,
+        "BEST: " + bestScore,
+        { fontSize: "30px", fill: "#ffffff",  stroke: "#123456", strokeThickness: 5 }
+      ).setPadding(5).setOrigin(0.5, 0.5);
+    });
+    
         const prevScene = this.scene.get("project");
         if (prevScene && prevScene.backgroundMusic.isPlaying) {
             prevScene.backgroundMusic.stop();
@@ -40,13 +57,13 @@ class GameOverScene extends Phaser.Scene {
                 this.backgroundMusic.play();
             }
         }
-
+        
         this.back = this.add.tileSprite(0, 0, 800, 500, "background8");
         this.back.setOrigin(0, 0);
 
-        this.logo = this.physics.add.sprite(this.cameras.main.width / 2, 180, "gameover");
+		this.logo = this.physics.add.sprite(this.cameras.main.width / 2, 140, "gameover");
         this.logo.setOrigin(0.5, 0.5);
-        this.startBtn = this.physics.add.sprite(this.cameras.main.width / 2, 350, "startBtn");
+        this.startBtn = this.physics.add.sprite(this.cameras.main.width / 2, 360, "startBtn");
         this.startBtn.setSize(110, 50);
 
         this.startBtn.setInteractive();
@@ -63,6 +80,16 @@ class GameOverScene extends Phaser.Scene {
             this.scene.stop("GameOverScene");
             this.scene.start("Project");
         });
+        
+this.add.text(this.cameras.main.width / 2, 280, "CUUR: " + pointValue, {
+    fontSize: "30px",
+    fill: "#ffffff", // 텍스트 색상
+    stroke: "#123456",
+    strokeThickness: 5 // 외곽선 두께
+}).setPadding(5).setOrigin(0.5, 0.5);
+        
+   
+   
     }
 
     update() {
