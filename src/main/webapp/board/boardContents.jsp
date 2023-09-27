@@ -101,6 +101,15 @@
 			}
 		});
 		
+		$("#replyForm").submit(function(){
+			if($("#inputcontents").val()==""){
+				alert("내용을 입력해주세요");
+				$("#inputcontents").focus();
+				return false;
+				
+			}
+		})
+		
 		$("#backBtn").on("click", function() {
 			location.href = "/list.board?cPage=${latestPage}";
 		});
@@ -224,6 +233,7 @@
 					$(this).parent(".reply-btns").siblings(".reply-body").html("");
 					let contentsInput = $("<textarea>");
 					contentsInput.attr("name", "contents");
+					contentsInput.attr("id", "inputcontents");
 					value = value.replaceAll("<br>","");
 					contentsInput.val(value);
 					contentsInput.attr("style","width:100%;resize:none;");
