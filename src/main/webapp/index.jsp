@@ -104,27 +104,27 @@ a {
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 								<c:choose>
 									<c:when test="${loginID == null }">
-										<li><a class="dropdown-item" href="/members/login.jsp">1.지뢰찾기</a></li>
-										<li><a class="dropdown-item" href="/members/login.jsp">2.바운스볼</a></li>
-										<li><a class="dropdown-item" href="/members/login.jsp">3.플래피버드</a></li>
-										<li><a class="dropdown-item" href="/members/login.jsp">4.풀문보트</a></li>
-										<li><a class="dropdown-item" href="/members/login.jsp">5.드래곤
+										<li><a class="dropdown-item" href="/members/login.jsp">지뢰찾기</a></li>
+										<li><a class="dropdown-item" href="/members/login.jsp">바운스볼</a></li>
+										<li><a class="dropdown-item" href="/members/login.jsp">플래피버드</a></li>
+										<li><a class="dropdown-item" href="/members/login.jsp">풀문보트</a></li>
+										<li><a class="dropdown-item" href="/members/login.jsp">드래곤
 												플라이트</a></li>
-										<li><a class="dropdown-item" href="/members/login.jsp">6.컬러블라인드</a></li>
+										<li><a class="dropdown-item" href="/members/login.jsp">컬러블라인드</a></li>
 									</c:when>
 									<c:otherwise>
 										<li><a class="dropdown-item"
-											href="/game/minesweeper/eazyMinesweeper.jsp">1.지뢰찾기</a></li>
+											href="/game/minesweeper/eazyMinesweeper.jsp">지뢰찾기</a></li>
 										<li><a class="dropdown-item"
-											href="/game/bounceball/bounceball_main.jsp">2.바운스볼</a></li>
+											href="/game/bounceball/bounceball_main.jsp">바운스볼</a></li>
 										<li><a class="dropdown-item"
-											href="/game/flappyBird/flappyBird_main.jsp">3.플래피버드</a></li>
+											href="/game/flappyBird/flappyBird_main.jsp">플래피버드</a></li>
 										<li><a class="dropdown-item"
-											href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">4.풀문보트</a></li>
+											href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀문보트</a></li>
 										<li><a class="dropdown-item"
-											href="/game/dragon/dragon.jsp">5.드래곤 플라이트</a></li>
+											href="/game/dragon/dragon.jsp">드래곤 플라이트</a></li>
 										<li><a class="dropdown-item"
-											href="/game/colorblind/colorblind.jsp">6.컬러블라인드</a></li>
+											href="/game/colorblind/colorblind.jsp">컬러블라인드</a></li>
 									</c:otherwise>
 								</c:choose>
 
