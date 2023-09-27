@@ -51,27 +51,26 @@
             </div>
             <hr>
             <div class="body">
-                <div class="game-select">
-                    &nbsp;&nbsp;
-                    <div class="dropdown">
-	                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: large; padding:0px; margin:0px; margin-bottom:5px;">
-	                    지뢰찾기
-	                	</button>
-	                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-						    <li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">초급</a></li>
-						    <li><a class="dropdown-item" href="/game/minesweeper/normalMinesweeper.jsp">중급</a></li>
-						    <li><a class="dropdown-item" href="/game/minesweeper/hardMinesweeper.jsp">고급</a></li>
-					    </ul>
-				    </div> |
-                    <a href="/game/bounceball/bounceball_main.jsp">바운스볼</a> |
-                    <a href="/game/flappyBird/flappyBird_main.jsp">플래피버드</a> |
-                    <a href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀문보트</a> |
-                    <a href="/game/dragon/dragon.jsp">드래곤플라이트</a> |
-                    <a href="/game/colorblind/colorblind.jsp">컬러블라인드</a>
-                    &nbsp;&nbsp;
-                </div>
+            	<div class="game-select">
+                	&nbsp;&nbsp;
+                <div class="dropdown">
+	                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+	                  style="font-size: large; padding: 0px; margin: 0px; margin-bottom: 5px;">지뢰 찾기</button>
+	                <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+	                	<li><a class="dropdown-item" href="/game/minesweeper/eazyMinesweeper.jsp">초급</a></li>
+	                	<li><a class="dropdown-item" href="/game/minesweeper/normalMinesweeper.jsp">중급</a></li>
+	                	<li><a class="dropdown-item" href="/game/minesweeper/hardMinesweeper.jsp">고급</a></li>
+	                </ul>
+            	</div> | 
+                <a href="/game/bounceball/bounceball_main.jsp">바운스볼</a> |
+                <a href="/game/flappyBird/flappyBird_main.jsp">플래피 버드</a> |
+                <a href="/game/fullMoonBoat/JSP/fullMoonBoat.jsp">풀 문 보트</a> | 
+                <a href="/game/dragon/dragon.jsp">드래곤 플라이트</a> |
+                <a href="/game/colorblind/colorblind.jsp">컬러 블라인드</a>
+                &nbsp;&nbsp;
+            </div>
                 <div class="game">
-                    <div class="game-title">지뢰찾기 중급</div>
+                    <div class="game-title">지뢰 찾기 중급</div>
                     <hr>
                     <div id="wrapper" align="center"></div>
                     <hr>
