@@ -21,10 +21,13 @@
 		display: block;
 		margin-top: 0;
 	}
+	
+	#icon:hover{cursor:pointer;}
+	#logoImg:hover{cursor:pointer;}
 </style>
 
 <div class="col-md-2 col-12 d-flex align-items-center justify-content-center logo">
-    <img src="/UI_img/logo3.jpg" class="w-75 h-100">
+    <img src="/UI_img/logo3.jpg" class="w-75 h-100" id="logoImg">
 </div>
 <div class="col-md-8 p-0">
     <div class="row p-0 m-0 h-100 menubar">
@@ -51,6 +54,16 @@
         <div class="col-md-3 p-0 d-flex align-items-center justify-content-center"><a href="/board/rankingBoard.jsp">랭킹게시판</a></div>
     </div>
 </div>
-<div class="col-md-2 mt-2 d-md-flex justify-content-end align-items-center icon-place d-none d-md-block pe-5">
-    <i class="fa-solid fa-right-to-bracket fa-2x"></i>
+<div class="col-md-2 mt-2 d-md-flex justify-content-end align-items-center icon-place d-none d-md-block pe-5" id="iconplace">
+    <i class="fa-solid fa-right-to-bracket fa-2x" id="icon"></i>
 </div>
+
+<script>
+	$("#logoImg").on("click",function(){
+		location.href="/index.jsp";
+	})
+	
+	$("#icon").on("click",function(){
+		location.href="/logout.members";
+	});
+</script>
