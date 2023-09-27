@@ -143,7 +143,16 @@
 									</div>
 								</div>
 								<div class="board-border">
-									<div class="board-text"><a href="/list.board" style="text-decoration-line: none;">최근게시물 ></a></div>
+									<div class="board-text">
+										<c:choose>
+											<c:when test="${loginID == null}">
+												<a href="/members/login.jsp" style="text-decoration-line: none;">최근게시물 ></a>											
+											</c:when>
+											<c:otherwise>
+												<a href="/list.board" style="text-decoration-line: none;">최근게시물 ></a>
+											</c:otherwise>
+										</c:choose>		
+									</div>
 									<div class="board">
 										<table class="table">
 											<thead>
@@ -197,7 +206,16 @@
 									</c:choose>
 								</div>
 								<div class="rnk-board">
-									<div class="rnk-txt"><a href="/board/rankingBoard.jsp" style="text-decoration-line: none;">나의 랭킹 ></a> </div>
+									<div class="rnk-txt">
+										<c:choose>
+											<c:when test="${loginID == null}">
+												<a href="/members/login.jsp" style="text-decoration-line: none;">나의 랭킹 ></a>											
+											</c:when>
+											<c:otherwise>
+												<a href="/board/rankingBoard.jsp" style="text-decoration-line: none;">나의 랭킹 ></a>
+											</c:otherwise>
+										</c:choose>
+									</div>
 									<div class="rnk-board-contents">
 										<table class="table">
 											<thead>
