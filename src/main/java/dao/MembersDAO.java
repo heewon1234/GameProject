@@ -69,6 +69,24 @@ public class MembersDAO {
 
 		}
 	}
+	
+	// Email 중복체크
+		public boolean isDuplicatedEmail(String input) throws Exception {
+			String sql = "select email from MEMBERS where email=?";
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+
+					) {
+				pstat.setString(1, input);
+				try(
+						ResultSet rs = pstat.executeQuery();
+						){
+					return rs.next();
+				}
+
+			}
+		}
 
 	// 로그인
 	public boolean isAccountExist(String id, String password) throws Exception{
@@ -99,7 +117,7 @@ public class MembersDAO {
 
 	// 정보수정
 	public int updateAccount(MembersDTO dto) throws Exception {
-		String sql = "UPDATE MEMBERS SET PASSWORD = ?, NAME = ? , PHONE = ?, EMAIL = ?, ZIPCODE = ?, ADDRESS1 = ?, ADDRESS2 = ? WHERE ID = ?";
+		String sql = "UPDATE MEMBERS SET PASSWORD = ?, NAME = ? , PHONE = ?, ZIPCODE = ?, ADDRESS1 = ?, ADDRESS2 = ? WHERE ID = ?";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);) {
@@ -107,11 +125,11 @@ public class MembersDAO {
 			pstat.setString(1, dto.getPassword());
 			pstat.setString(2, dto.getName());
 			pstat.setString(3, dto.getPhone());
-			pstat.setString(4, dto.getEmail());
-			pstat.setString(5, dto.getZipcode());
-			pstat.setString(6, dto.getAddress1());
-			pstat.setString(7, dto.getAddress2());
-			pstat.setString(8, dto.getId());
+//			pstat.setString(4, dto.getEmail());
+			pstat.setString(4, dto.getZipcode());
+			pstat.setString(5, dto.getAddress1());
+			pstat.setString(6, dto.getAddress2());
+			pstat.setString(7, dto.getId());
 
 			return pstat.executeUpdate();
 		}
