@@ -230,7 +230,7 @@ public class MembersDAO {
     }
 	
 	public List<MembersDTO> selectMembersInfo() throws Exception {
-		String sql = "SELECT * FROM MEMBERS WHERE position IN ('user', 'banned')";
+		String sql = "SELECT * FROM MEMBERS WHERE position IN ('user', 'banned', 'resigned')";
 		List<MembersDTO> list = new ArrayList<>();
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);) {
