@@ -29,6 +29,18 @@ class Project extends Phaser.Scene {
     }
 
     create() {
+		    let bestScore;
+    $.ajax({
+      url: "/rankaddBest.rankBoard?game_name=flappyBird",
+    }).done((resp) => {
+      bestScore = resp;
+      this.add.text(
+        0,
+        50,
+        "최고 기록 " + bestScore,
+        { fontSize: "20px", fill: "#ffffff" }
+      );
+    });
         this.registerTexture();
         // 배경 음악 설정
         const prevScene = this.scene.get("startScene");
