@@ -90,7 +90,7 @@ public class MembersDAO {
 
 	// 로그인
 	public boolean isAccountExist(String id, String password) throws Exception{
-		String sql = "select * from MEMBERS WHERE ID = ? AND PASSWORD = ?";
+		String sql = "select * from MEMBERS WHERE ID = ? AND PASSWORD = ? AND POSITION IN ('user','admin')";
 
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);) {

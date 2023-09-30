@@ -51,7 +51,7 @@ a {
 				<hr>
 				<div class="panel panel-info">
 					<ul class="list-group">
-						<li class="list-group-item"><a href="/members/myPage.jsp">내 프로필</a></li>
+						<li class="list-group-item"><a href="/mypage.members">내 프로필</a></li>
 						<li class="list-group-item"><a href="/board/rankingBoard.jsp">랭킹</a></li>
 						<li class="list-group-item"><a href="/delAccountPage.members">회원탈퇴</a></li>
 						<c:if test="${myInfo.id eq 'admin'}">
