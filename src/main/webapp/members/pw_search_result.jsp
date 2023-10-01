@@ -16,8 +16,9 @@
 	rel="stylesheet">
 </head>
 <style>
-body {
+.containerBox {
 	padding-top: 60px;
+	margin: auto;
 }
 
 a {
@@ -26,63 +27,78 @@ a {
 }
 </style>
 <body>
-	<div class="container border" style="width: 50rem; margin-top: 10%;">
+	<div class="containerBox" style="width: 50rem;">
 		<div class="row">
-			<!-- 사이드바 -->
-			<div class="col-md-3" style="padding-top: 5%;">
-				<hr>
-				<div class="panel panel-info">
-					<ul class="list-group">
-						<li class="list-group-item"><a
-							href="/members/id_Search.jsp">아이디 찾기</a></li>
-						<li class="list-group-item" style="background-color: #DDE6ED;"><a href="/members/pw_Search.jsp" style="color: #526D82">비밀번호 찾기</a></li>
-						<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
-					</ul>
-				</div>
-				<hr>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<img src="/UI_img/logo3.jpg"
+					style="width: 100%; margin-bottom: 35px;" id="logoImg">
 			</div>
-			<div class="col-md-9 border" style="padding: 20px;">
-				<div>비밀번호 찾기</div>
-				<hr>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="container border">
+			<div class="row">
+				<!-- 사이드바 -->
+				<div class="col-md-3" style="padding-top: 5%;">
+					<hr>
+					<div class="panel panel-info">
+						<ul class="list-group">
+							<li class="list-group-item"><a href="/members/id_Search.jsp">아이디
+									찾기</a></li>
+							<li class="list-group-item" style="background-color: #DDE6ED;"><a
+								href="/members/pw_Search.jsp" style="color: #526D82">비밀번호 찾기</a></li>
+							<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
+						</ul>
+					</div>
+					<hr>
+				</div>
+				<div class="col-md-9 border" style="padding: 20px;">
+					<div>비밀번호 찾기</div>
+					<hr>
 
-				<div>비밀번호를 수정해주세요.</div>
-				<hr style="color: white;">
-				<form action="/pw_reset.members" id="pw-update-form" method="post">
+					<div>비밀번호를 수정해주세요.</div>
+					<hr style="color: white;">
+					<form action="/pw_reset.members" id="pw-update-form" method="post">
 
-					<div>
-						<div class="mb-3 row">
-							<label for="newPassword" class="col-sm-3 col-form-label">새
-								비밀번호</label>
-							<div class="col-sm-9">
-								<input type="password" class="form-control update_list"
-									id="newPassword" name="newPassword">
+						<div>
+							<div class="mb-3 row">
+								<label for="newPassword" class="col-sm-3 col-form-label">새
+									비밀번호</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control update_list"
+										id="newPassword" name="newPassword">
+								</div>
+							</div>
+							<div class="mb-3 row">
+								<label for="confirmPassword" class="col-sm-3 col-form-label">비밀번호
+									확인</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control update_list"
+										id="confirmPassword" name="confirmPassword">
+								</div>
+								<div class="password-alert" id="password-alert"
+									style="padding: 12px;"></div>
 							</div>
 						</div>
-						<div class="mb-3 row">
-							<label for="confirmPassword" class="col-sm-3 col-form-label">비밀번호
-								확인</label>
-							<div class="col-sm-9">
-								<input type="password" class="form-control update_list"
-									id="confirmPassword" name="confirmPassword">
+
+
+						<hr style="color: gray;">
+
+						<div class="row justify-content-center">
+							<div class="col-auto">
+								<button type="submit" class="btn btn-primary" id="btn-submit">수정완료</button>
 							</div>
-							<div class="password-alert" id="password-alert"
-								style="padding: 12px;"></div>
 						</div>
-					</div>
-
-
-					<hr style="color: gray;">
-
-					<div class="row justify-content-center">
-						<div class="col-auto">
-							<button type="submit" class="btn btn-primary" id="btn-submit">수정완료</button>
-						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script>
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
+
 		// 비밀번호 입력 시 유효성 검사
 		let newPasswordInput = document.getElementById("newPassword");
 		let confirmPasswordInput = document.getElementById("confirmPassword");

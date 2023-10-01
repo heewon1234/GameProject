@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>자유 게시판</title>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <style>
 		.container{

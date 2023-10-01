@@ -140,7 +140,7 @@ class Project extends Phaser.Scene {
         this.physics.add.overlap(scoreBoundary, this.player, function (boundary, box) {
             if (!hasCollided) {
                 this.cnt++;
-                console.log(this.cnt);
+         //       console.log(this.cnt);
                 hasCollided = true;
             }
         }, null, this);

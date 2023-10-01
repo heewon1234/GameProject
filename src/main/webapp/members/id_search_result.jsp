@@ -16,8 +16,9 @@
 	rel="stylesheet">
 </head>
 <style>
-body {
+.containerBox {
 	padding-top: 60px;
+	margin: auto;
 }
 
 a {
@@ -33,50 +34,64 @@ a {
 }
 </style>
 <body>
-	<div class="container border" style="width: 50rem; margin-top: 10%;">
+	<div class="containerBox" style="width: 50rem;">
 		<div class="row">
-			<!-- 사이드바 -->
-			<div class="col-md-3" style="padding-top: 5%;">
-				<hr>
-				<div class="panel panel-info">
-					<ul class="list-group">
-						<li class="list-group-item" style="background-color: #DDE6ED;"><a
-							href="/members/id_Search.jsp" style="color: #526D82">아이디 찾기</a></li>
-						<li class="list-group-item"><a href="/members/pw_Search.jsp">비밀번호
-								찾기</a></li>
-						<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
-					</ul>
-				</div>
-				<hr>
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<img src="/UI_img/logo3.jpg"
+					style="width: 100%; margin-bottom: 35px;" id="logoImg">
 			</div>
-			<div class="col-md-9 border" style="padding: 20px;">
-
-				<div>아이디 찾기</div>
-				<hr>
-
-				<div>고객님의 정보와 일치하는 아이디 목록입니다.</div>
-				<hr style="color: white;">
-
-				<div class="foundID">
-					Found ID:
-					<%=request.getAttribute("foundId")%>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="container border">
+			<div class="row">
+				<!-- 사이드바 -->
+				<div class="col-md-3" style="padding-top: 5%;">
+					<hr>
+					<div class="panel panel-info">
+						<ul class="list-group">
+							<li class="list-group-item" style="background-color: #DDE6ED;"><a
+								href="/members/id_Search.jsp" style="color: #526D82">아이디 찾기</a></li>
+							<li class="list-group-item"><a href="/members/pw_Search.jsp">비밀번호
+									찾기</a></li>
+							<li class="list-group-item"><a href="/members/login.jsp">로그인</a></li>
+						</ul>
+					</div>
+					<hr>
 				</div>
+				<div class="col-md-9 border" style="padding: 20px;">
+
+					<div>아이디 찾기</div>
+					<hr>
+
+					<div>고객님의 정보와 일치하는 아이디 목록입니다.</div>
+					<hr style="color: white;">
+
+					<div class="foundID">
+						Found ID:
+						<%=request.getAttribute("foundId")%>
+					</div>
 
 
-				<hr style="color: gray;">
+					<hr style="color: gray;">
 
-				<div class="row justify-content-center">
-					<div class="col-auto">
-						<button class="btn btn-primary" id="btn-login">로그인하기</button>
+					<div class="row justify-content-center">
+						<div class="col-auto">
+							<button class="btn btn-primary" id="btn-login">로그인하기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script>
-	$("#btn-login").click(function(){
-        window.location.href = "/members/login.jsp";
-    });
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
+
+		$("#btn-login").click(function() {
+			window.location.href = "/members/login.jsp";
+		});
 	</script>
 </body>
 </html>

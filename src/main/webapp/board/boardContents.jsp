@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>board Contentes</title>
+<title>자유 게시판</title>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -264,15 +264,15 @@
 		} else {
 			pageTotalCount =  recordTotalCount/ recordCountPerPage;
 		}
-		console.log(recordTotalCount, recordCountPerPage, naviCountPerPage, currentReplyPage)
+	//	console.log(recordTotalCount, recordCountPerPage, naviCountPerPage, currentReplyPage)
 		if(currentReplyPage<1){currenReplyPage=1;}
 		else if(currentReplyPage>pageTotalCount){currentReplyPage=pageTotalCount;}
 		
 		let startNavi = Math.floor(( currentReplyPage - 1 ) / naviCountPerPage) * naviCountPerPage + 1;
 		let endNavi = startNavi + naviCountPerPage - 1;
 		if(endNavi > pageTotalCount) {endNavi = pageTotalCount;}
-		console.log(currentReplyPage);
-		console.log(Math.floor(( currentReplyPage - 1 )));
+	//	console.log(currentReplyPage);
+	//	console.log(Math.floor(( currentReplyPage - 1 )));
 		let needPrev = true;
 		let needNext = true;
 		

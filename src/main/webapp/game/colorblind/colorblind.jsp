@@ -57,7 +57,7 @@
                 &nbsp;&nbsp;
             </div>
             <div class="game">
-                <div class="game-title">컬러블라인드</div>
+                <div class="game-title">컬러 블라인드</div>
                 <hr>
                 <div class="wrapper" id="wrapper" style="width: 800px; height: 500px">
 

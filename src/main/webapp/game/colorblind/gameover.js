@@ -32,7 +32,7 @@ class Gameover extends Phaser.Scene {
             },
             method: "GET"
         }).done(function(resp) {
-    console.log(resp);
+ //   console.log(resp);
     if (resp === "true") { // 문자열 "true"와 비교
         alert("축하합니다! 신기록이 달성되었습니다.");
     }})

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -38,64 +38,82 @@ a {
 </style>
 </head>
 <body>
-	<div class="container border">
-		<div class="row">
-			<!-- 사이드바 -->
-			<div class="col-md-3">
-				<div class="panel panel-info">
-					<div class="panel-heading" align="center">
-						<h3>${myInfo.id}</h3>
-						${myInfo.email}
+	<div class="containerBox">
+		<div class="row p-0 m-0 header" id="main-header"></div>
+		<hr>
+		<div class="container border">
+			<div class="row">
+				<!-- 사이드바 -->
+				<div class="col-md-3">
+					<div class="panel panel-info">
+						<div class="panel-heading" align="center">
+							<h3>${myInfo.id}</h3>
+							${myInfo.email}
+						</div>
 					</div>
+					<hr>
+					<div class="panel panel-info">
+						<ul class="list-group">
+							<li class="list-group-item"><a href="/mypage.members">내
+									프로필</a></li>
+							<li class="list-group-item"><a
+								href="/board/rankingBoard.jsp">랭킹</a></li>
+							<li class="list-group-item"><a
+								href="/delAccountPage.members">회원탈퇴</a></li>
+							<c:if test="${myInfo.id eq 'admin'}">
+								<li class="list-group-item"><a href="/membersInfo.members">관리자
+										페이지</a></li>
+							</c:if>
+						</ul>
+					</div>
+					<hr>
 				</div>
-				<hr>
-				<div class="panel panel-info">
-					<ul class="list-group">
-						<li class="list-group-item"><a href="/mypage.members">내 프로필</a></li>
-						<li class="list-group-item"><a href="/board/rankingBoard.jsp">랭킹</a></li>
-						<li class="list-group-item"><a href="/delAccountPage.members">회원탈퇴</a></li>
-						<c:if test="${myInfo.id eq 'admin'}">
-							<li class="list-group-item"><a href="/membersInfo.members">관리자 페이지</a></li>
-						</c:if>
-					</ul>
-				</div>
-				<hr>
-			</div>
-			<div class="col-md-9 border" style="padding: 20px;">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col" style="width: 150px; text-align: center">아이디</th>
-							<th scope="col" style="width: 80px; text-align: center">상태</th>
-							<th style="width: 80px;"></th>
-							<th style="width: 80px;"></th>
-							<th style="width: 80px;"></th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
-						<c:forEach var="l" items="${list }">
+				<div class="col-md-9 border" style="padding: 20px;">
+					<table class="table">
+						<thead>
 							<tr>
-								<th scope="row" style="text-align: center">${l.id}</th>
-								<td style="text-align: center">${l.position}</td>
-								<td></td>
-								<c:choose>
-									<c:when test="${l.position eq 'resigned'}">
-										<td style="height : 55px;"></td>
-										<td></td>
-									</c:when>
-									<c:otherwise>
-										<td><button type="button" class="btn btn-outline-danger btn_ban" value="${l.id}">Ban</button></td>
-										<td><button type="button" class="btn btn-outline-success btn_unban" value="${l.id}">Unban</button></td>
-									</c:otherwise>
-								</c:choose>
+								<th scope="col" style="width: 150px; text-align: center">아이디</th>
+								<th scope="col" style="width: 80px; text-align: center">상태</th>
+								<th style="width: 80px;"></th>
+								<th style="width: 80px;"></th>
+								<th style="width: 80px;"></th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody class="table-group-divider">
+							<c:forEach var="l" items="${list }">
+								<tr>
+									<th scope="row" style="text-align: center">${l.id}</th>
+									<td style="text-align: center">${l.position}</td>
+									<td></td>
+									<c:choose>
+										<c:when test="${l.position eq 'resigned'}">
+											<td style="height: 55px;"></td>
+											<td></td>
+										</c:when>
+										<c:otherwise>
+											<td><button type="button"
+													class="btn btn-outline-danger btn_ban" value="${l.id}">Ban</button></td>
+											<td><button type="button"
+													class="btn btn-outline-success btn_unban" value="${l.id}">Unban</button></td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div id="footer_container" style="margin-top:50px;"></div>
 	<script>
+		$(document).ready(function() {
+			$("#main-header").load("/commons_ui/header.html");
+		});
+		$(document).ready(function() {
+			$("#footer_container").load("/commons/footer.html")
+		});
+
 		$(".btn_ban").on("click", function() {
 			let id = $(this).val();
 			$.ajax({
@@ -108,7 +126,7 @@ a {
 				location.reload();
 			})
 		})
-		
+
 		$(".btn_unban").on("click", function() {
 			let id = $(this).val();
 			$.ajax({
