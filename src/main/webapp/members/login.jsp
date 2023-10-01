@@ -21,7 +21,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 "></script>
 <style>
 .container {
-	margin-top:150px;
+	margin-top: 150px;
 	width: 400px;
 }
 
@@ -36,8 +36,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 #body {
 	border: 2px solid gainsboro; /* 테두리 스타일 및 색상 설정 */
 	padding: 20px; /* 테두리 주위의 여백 설정 */
-	border-radius:5px;
-	
+	border-radius: 5px;
 }
 </style>
 </head>
@@ -87,77 +86,81 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 				</ul>
 			</div>
 			<div id="footer" style="text-align: center;">
-				<img src="/UI_img/logo3.jpg" width="150" height="auto">
+				<img src="/UI_img/logo3.jpg" width="150" height="auto" id="logoImg">
 			</div>
 		</div>
 	</div>
 	<script>
-        $(document).ready(function() {
-            let inputID = document.getElementById("inputId");
-            let remID = document.getElementById("remID");
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
 
-            let userID = Cookies.get("remid");
-            if (userID) {
-                inputID.value = userID;
-                remID.checked = true;
-            }
-            inputID.oninput = function() {
-                remID.checked = false;
-            };
-            remID.onchange = function() {
-                if (remID.checked) {
-                    let id = inputID.value;
-                    Cookies.set("remid", id, {
-                        expires : 7
-                    });
-                } else {
-                    Cookies.remove("remid")
-                }
-            }
-            $("#loginBtn").on("click", function(e) {
-                //e.preventDefault(); // 기본 폼 제출 동작을 막습니다.
-                
-                var idField = document.getElementById("inputId");
-            	var pwField = document.getElementById("inputPassword");
+		$(document).ready(function() {
+			let inputID = document.getElementById("inputId");
+			let remID = document.getElementById("remID");
 
-                var id = $("#inputId").val();
-                var password = $("#inputPassword").val();
+			let userID = Cookies.get("remid");
+			if (userID) {
+				inputID.value = userID;
+				remID.checked = true;
+			}
+			inputID.oninput = function() {
+				remID.checked = false;
+			};
+			remID.onchange = function() {
+				if (remID.checked) {
+					let id = inputID.value;
+					Cookies.set("remid", id, {
+						expires : 7
+					});
+				} else {
+					Cookies.remove("remid")
+				}
+			}
+			$("#loginBtn").on("click", function(e) {
+				//e.preventDefault(); // 기본 폼 제출 동작을 막습니다.
 
-                if(id == "") {
-                	alert("아이디를 입력하세요.");
-                    idField.focus();
-                    return false;
-                } else if(password == "") {
-           			alert("비밀번호를 입력하세요.");
-           			pwField.focus();
-           			return false;
-           		}
-                // 서버에 인증 코드를 전송하고 검증
-                $.ajax({
-                    type: "POST",
-                    url: "/login.members",
-                    data: {
-                        id: id,
-                        password: password
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        if (response === "false") {
-                            // 로그인 실패 시, alert 창 띄우기
-                            alert("로그인 실패하였습니다.");
-                            location.href = "/members/login.jsp"
-                        } else if (response == "banned") {
-                        	alert("해당 사용자는 관리자에 의해 사용이 차단되었습니다.");
-                        	location.href = "/members/login.jsp"
-                        }
-                    },
-                    error: function() {
-                        // Ajax 요청 실패 시 처리
-                        console.error("Ajax 요청이 실패하였습니다.");
-                    }
-                });
-            });
-        });
-    </script>
+				var idField = document.getElementById("inputId");
+				var pwField = document.getElementById("inputPassword");
+
+				var id = $("#inputId").val();
+				var password = $("#inputPassword").val();
+
+				if (id == "") {
+					alert("아이디를 입력하세요.");
+					idField.focus();
+					return false;
+				} else if (password == "") {
+					alert("비밀번호를 입력하세요.");
+					pwField.focus();
+					return false;
+				}
+				// 서버에 인증 코드를 전송하고 검증
+				$.ajax({
+					type : "POST",
+					url : "/login.members",
+					data : {
+						id : id,
+						password : password
+					},
+					success : function(response) {
+						console.log(response);
+						if (response === "false") {
+							// 로그인 실패 시, alert 창 띄우기
+							alert("로그인 실패하였습니다.");
+							location.href = "/members/login.jsp"
+						} else if (response == "banned") {
+							alert("해당 사용자는 관리자에 의해 사용이 차단되었습니다.");
+							location.href = "/members/login.jsp"
+						}
+					},
+					error : function() {
+						// Ajax 요청 실패 시 처리
+						console.error("Ajax 요청이 실패하였습니다.");
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
