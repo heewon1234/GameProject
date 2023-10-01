@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<script>
-		console.log(opener.document.getElementById('parent_seq').value, opener.document.getElementById('replyPage').value);
+	//	console.log(opener.document.getElementById('parent_seq').value, opener.document.getElementById('replyPage').value);
 		$("#cancelBtn").on("click",function(){
 			window.close();
 		});

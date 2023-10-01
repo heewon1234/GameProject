@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Main</title>
+<title>Home</title>
 <link href="/ui_css/index_css.css" rel="stylesheet" type="text/css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -521,10 +521,10 @@ a {
 								}
 							}
 						} catch (error) {
-							console.error("JSON 파싱 오류:", error);
+					//		console.error("JSON 파싱 오류:", error);
 						}
 					}).fail(function (xhr, status, error) {
-						console.error("요청 실패:", status, error);
+					//	console.error("요청 실패:", status, error);
 					});
 				// 내 랭킹
 				$.ajax({
@@ -552,10 +552,10 @@ a {
 								}
 							}
 						} catch (error) {
-							console.error("JSON 파싱 오류:", error);
+						//	console.error("JSON 파싱 오류:", error);
 						}
 					}).fail(function (xhr, status, error) {
-						console.error("요청 실패:", status, error);
+					//	console.error("요청 실패:", status, error);
 					});
 			</script>
 

@@ -9,7 +9,7 @@ class GameOverScene extends Phaser.Scene {
     create() {
 
         const pointValue = $("#point").html();
-        console.log($("#point").html());
+    //    console.log($("#point").html());
 
         $.ajax({
             url: "/rankReadPoint.rankBoard",
@@ -20,7 +20,7 @@ class GameOverScene extends Phaser.Scene {
             },
             method: "GET"
         }).done(function (resp) {
-            console.log(resp);
+      //      console.log(resp);
             if (resp === "true") { // 문자열 "true"와 비교
                 alert("신기록이 달성되었습니다. 축하합니다..");
             }

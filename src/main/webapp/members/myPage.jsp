@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Page</title>
+    <title>마이 페이지</title>
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <!-- Kakao Post API -->

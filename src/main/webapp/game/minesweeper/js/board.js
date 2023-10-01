@@ -86,7 +86,7 @@ var Board = function (columns, rows, mines) {
         if (!tilesLeft) {
 
             if (gameProperties.totalMines == 10) {
-				console.log("Eazy: "+gameProperties.count);
+			//	console.log("Eazy: "+gameProperties.count);
 				this.time = gameProperties.count;
                 $.ajax({
                     url: "/rankReadPoint.rankBoard",
@@ -97,14 +97,14 @@ var Board = function (columns, rows, mines) {
                     },
                     method: "GET"
                 }).done(function(resp) {
-			    console.log(resp);
+			//    console.log(resp);
 			    if (resp === "true") { // 문자열 "true"와 비교
 			        alert("축하합니다! 신기록이 달성되었습니다.");
 			    }
 			    });
-                console.log("Eazy: "+gameProperties.count);
+           //     console.log("Eazy: "+gameProperties.count);
             } else if(gameProperties.totalMines == 40) {
-				console.log("Normal: "+gameProperties.count);
+		//		console.log("Normal: "+gameProperties.count);
                $.ajax({
                     url: "/rankReadPoint.rankBoard",
                     data: {
@@ -114,13 +114,13 @@ var Board = function (columns, rows, mines) {
                     },
                     method: "GET"
                 }).done(function(resp) {
-			    console.log(resp);
+			//    console.log(resp);
 			    if (resp === "true") { // 문자열 "true"와 비교
 			        alert("신기록이 달성되었습니다. 축하합니다..");
 			    }
 			    });
             } else if(gameProperties.totalMines == 99) {
-                console.log("Hard: "+gameProperties.count);
+         //       console.log("Hard: "+gameProperties.count);
                 $.ajax({
                     url: "/rankReadPoint.rankBoard",
                     data: {
@@ -130,7 +130,7 @@ var Board = function (columns, rows, mines) {
                     },
                     method: "GET"
                 }).done(function(resp) {
-			    console.log(resp);
+			//    console.log(resp);
 			    if (resp === "true") { // 문자열 "true"와 비교
 			        alert("신기록이 달성되었습니다. 축하합니다..");
 			    }
