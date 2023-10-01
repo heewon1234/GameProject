@@ -40,7 +40,6 @@ class Over extends Phaser.Scene {
             },
             method: "GET"
         }).done(function(resp) {
-            console.log(resp);
             if (resp === "true") { // 서버에서 반환한 응답을 확인하고 신기록일 경우 축하 메시지 출력
                 alert("축하합니다! 신기록이 달성되었습니다.");
             }
