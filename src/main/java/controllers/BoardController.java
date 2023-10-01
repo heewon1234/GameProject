@@ -152,7 +152,8 @@ public class BoardController extends HttpServlet {
 
 				request.getRequestDispatcher("/board/editBoard.jsp").forward(request, response);
 			}else if(cmd.equals("/showContents.board")) { // 게시글 보기
-
+				int currentPage = request.getParameter("cPage")==null ? 1 : Integer.parseInt(request.getParameter("cPage"));
+				request.getSession().setAttribute("latestPage", currentPage);
 				int currentReplyPage=1;
 				if(request.getParameterMap().containsKey("currentReplyPage")) {
 					currentReplyPage = Integer.parseInt(request.getParameter("currentReplyPage"));
