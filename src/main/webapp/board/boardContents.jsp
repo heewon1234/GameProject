@@ -29,7 +29,7 @@
 					<input value="${dto.title}" readonly>
 				</div>
 				<div class="game-select col-md-1 d-flex justify-content-end">
-					<c:if test="${loginID eq dto.writer }">
+					<c:if test="${loginID eq dto.writer or loginID eq 'admin'}">
 						<button id="delBtn" type="button">삭제</button>
 						<div style="display:none;" id="board-seq">${dto.seq }</div>
 					</c:if>
