@@ -38,6 +38,7 @@ https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js
 	padding: 20px; /* 테두리 주위의 여백 설정 */
 	border-radius: 5px;
 }
+#logoImg:hover{cursor:pointer;}
 </style>
 </head>
 <body>
