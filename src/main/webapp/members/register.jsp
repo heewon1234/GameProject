@@ -65,6 +65,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 	-webkit-appearance: none;
 	margin: 0;
 }
+
+#logoImg:hover{cursor:pointer;}
 </style>
 </head>
 
@@ -75,7 +77,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 				<div class="row g-0">
 					<div
 						class="col-12 d-flex justify-content-center align-items-center">
-						<div class="signup_title mt-5 mb-5">환영합니다.</div>
+						<div class="signup_title mt-5 mb-5 col-md-3"><img src="/UI_img/logo3.jpg"
+				style="width: 100%; margin-bottom: 35px;" id="logoImg"></div>
 					</div>
 				</div>
 
@@ -254,6 +257,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 		$(document).ready(function() {
 			$("#footer_container").load("../commons/footer.html")
 		});
+		
+		$("#logoImg").on("click", function() {
+			location.href = "/";
+		})
 
 		function inputNum(id) {
 			let element = document.getElementById(id);
