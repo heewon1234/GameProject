@@ -76,6 +76,11 @@ a {
 #logoImg:hover {
 	cursor: pointer;
 }
+.user-info>div {
+	overflow:hidden; 
+	text-overflow:ellipsis; 
+	white-space:nowrap;
+}
 </style>
 </head>
 
@@ -412,7 +417,7 @@ a {
 											<i class="fa-solid fa-user"></i>
 										</div>
 									</div>
-									<div class="user-info">
+									<div class="user-info" style="width:50%;">
 										<div style="margin-top: 20px;">${loginID }</div>
 										<div>${email }</div>
 									</div>
