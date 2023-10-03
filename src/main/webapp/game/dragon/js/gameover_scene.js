@@ -22,7 +22,7 @@ class GameOverScene extends Phaser.Scene {
         }).done(function (resp) {
       //      console.log(resp);
             if (resp === "true") { // 문자열 "true"와 비교
-                alert("신기록이 달성되었습니다. 축하합니다..");
+                alert("축하합니다! 신기록이 달성되었습니다.");
             }
         });
 
@@ -55,6 +55,10 @@ class GameOverScene extends Phaser.Scene {
 
         restartBtn.on("pointerdown", () => {
             this.scene.start("MainScene");
+        });
+        
+        restartBtn.on("pointerdown", () => {
+            this.scene.resume("MainScene"); // MainScene으로 돌아가면서 resume 이벤트 발생
         });
     }
     update() {

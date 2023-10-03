@@ -11,7 +11,7 @@ class StartScene extends Phaser.Scene {
         this.back = this.add.tileSprite(0, 0, 400, 500, "background").setOrigin(0, 0);
 
         this.physics.add.sprite(this.cameras.main.width / 2, this.cameras.main.height / 2 - 140, "logo").setOrigin(0.5);
-
+        
         let startBtn = this.add.text(
             this.cameras.main.width / 2,
             this.cameras.main.height / 2 + 100,
