@@ -129,16 +129,16 @@ public class BoardController extends HttpServlet {
 				String game_name = multi.getParameter("game_name");
 				int result = boardDAO.update(new BoardDTO(seq, null, title, contents, null, 0, game_name));      
 
-//				Enumeration<String> fileNames = multi.getFileNames();
+				Enumeration<String> fileNames = multi.getFileNames();
 
-//				while(fileNames.hasMoreElements()) {
-//					String fileName = fileNames.nextElement();
-//					if(multi.getFile(fileName) != null) {
-//						String ori_name = multi.getOriginalFileName(fileName);
-//						String sys_name = multi.getFilesystemName(fileName);
-//						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
-//					}
-//				}
+				while(fileNames.hasMoreElements()) {
+					String fileName = fileNames.nextElement();
+					if(multi.getFile(fileName) != null) {
+						String ori_name = multi.getOriginalFileName(fileName);
+						String sys_name = multi.getFilesystemName(fileName);
+						fileDAO.insert(new FilesDTO(0,ori_name,sys_name,result));
+					}
+				}
 				
 				response.sendRedirect("/showContents.board?seq="+seq);
 				
