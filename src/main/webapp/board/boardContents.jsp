@@ -151,7 +151,7 @@
 					let replyBtns = $("<div>");
 					replyBtns.addClass("reply-btns");
 
-					if(resp[i].writer == "${loginID}"){
+					if(resp[i].writer == "${loginID}" || "${loginID}" == "admin"){
 						
 						let updateReply = $("<button>");
 						updateReply.addClass("updateReply");

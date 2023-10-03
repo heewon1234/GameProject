@@ -79,13 +79,7 @@
                         	formData.append("image"+ i,files[i]);
                         }
                     	
-                        let input = $("<input>");
-                        input.attr("type","file");
-                        input.attr("name","file");
-                        input.css("display","none");
-                        input[0].files = files;
-                        $("#frm").append(input);
-                        //formData.append("image",files[0]); // input type=file 넣기
+
 
                         $.ajax({
                         	url : "/upload.file",

@@ -25,6 +25,7 @@ a {
 	text-decoration-line: none;
 	color: black;
 }
+#logoImg:hover{cursor:pointer;}
 </style>
 <body>
 	<div class="containerBox" style="width: 50rem;">

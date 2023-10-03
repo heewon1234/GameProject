@@ -32,6 +32,7 @@ a {
 	padding: 15px;
 	font-weight: bolder;
 }
+#logoImg:hover{cursor:pointer;}
 </style>
 <body>
 	<div class="containerBox" style="width: 50rem;">
