@@ -8,7 +8,7 @@ class MainScene extends Phaser.Scene {
         this.enemies = [];
         this.fires = [];
         this.collisionCounts = {};
-        this.startTime = this.time.now;
+        this.startTime = 0;
         this.score = 0;
     }
 
@@ -44,6 +44,17 @@ class MainScene extends Phaser.Scene {
             font: "16px Arial",
             fill: "#ffffff"
         });
+        
+         // 타이머를 시작 시간으로 설정
+        // this.startTime = this.time.now;
+        this.events.on('transitionstart', () => {
+            // MainScene으로 전환될 때마다 타이머를 새롭게 만들어 초기화
+            this.startTime = this.time.now;
+        });
+        
+        this.events.on('resume', () => {
+            this.resetTimer();
+        });
 
         this.anims.create({
             key: "fly",
@@ -67,7 +78,6 @@ class MainScene extends Phaser.Scene {
         this.physics.add.overlap(topBoundary, this.fires, (topBoundary, fire) => {
             fire.destroy();
         });
-
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -93,6 +103,13 @@ class MainScene extends Phaser.Scene {
                 { fontSize: "20px", fill: "#ffffff" }
             ).setPadding(10);
         });
+        // 씬이 생성될 때마다 타이머를 초기화
+        this.resetTimer();
+    }
+    
+    resetTimer() {
+        // 타이머를 초기화하는 함수
+        this.startTime = this.time.now;
     }
 
     destroyEnemy() {
@@ -219,7 +236,7 @@ class MainScene extends Phaser.Scene {
             this.destroyEnemy();
         }
 
-        if (Time >= 3 && this.frame % 50 == 0) {
+        if (Time >= 0 && this.frame % 50 == 0) {
             this.createFire();
         }
 
