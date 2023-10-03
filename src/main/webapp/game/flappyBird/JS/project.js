@@ -97,12 +97,12 @@ class Project extends Phaser.Scene {
         this.player.body.gravity.y = 2000;
 
         // Score 텍스트 생성
-        this.scoreText = this.add.text(10, 10, 'Block: 0', {
+        /*this.scoreText = this.add.text(10, 10, 'Block: 0', {
             fontSize: '24px',
             fill: '#fff',
             align: 'left'
-        });
-
+        });   
+        */
         // Time 텍스트 생성
         this.timeText = this.add.text(this.cameras.main.width - 10, 10, 'Time: 0 초', {
             fontSize: '24px',
@@ -155,15 +155,15 @@ class Project extends Phaser.Scene {
         this.elapsedTime += 1;
         this.timeText.setText(`Time: ${this.elapsedTime} 초`);
     }
-
+   /*
     updateCnt() {
         this.scoreText.setText(`Score: ${this.cnt}`);
     }
-
+   */
     update() {
-	this.frame++;
-	$("#point").html(Math.floor(this.frame / 60));
-        this.updateCnt();
+   this.frame++;
+   $("#point").html(Math.floor(this.frame / 60));
+        /*this.updateCnt();*/
         this.back.tilePositionX += 3;
         if (this.topBoxes && this.downBoxes) {
             for (let i = 0; i < this.topBoxes.length; i++) {
